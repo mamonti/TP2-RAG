@@ -1,0 +1,2 @@
+Silogismo Hipotético: A → B, B → C ⊢ A → C
+Ley de De Morgan: ¬(A ∨ B) ≡ ¬A ∧ ¬B

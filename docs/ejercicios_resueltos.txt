@@ -1,0 +1,5 @@
+Ejercicio 1: Demostrar que A → B, B → C ⊢ A → C.
+Solución: Aplicar silogismo hipotético. Asumimos A, deducimos B y luego C.
+
+Ejercicio 2: Demostrar que ¬(A ∨ B) ⊢ ¬A ∧ ¬B.
+Solución: Usamos Ley de De Morgan.
