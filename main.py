@@ -1,10 +1,23 @@
 import os
 from dotenv import load_dotenv
+import cv2
+import pytesseract
 from langchain_community.document_loaders import DirectoryLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings, HuggingFaceEndpoint
 from langchain.chains import RetrievalQA
+
+# OCR: convertir imagen a texto
+def imagen_a_texto(ruta_imagen):
+    img = cv2.imread(ruta_imagen)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    _, thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)
+    # Asegura que Tesseract y la carpeta del idioma están bien seteados
+    pytesseract.pytesseract.tesseract_cmd = "/usr/local/bin/tesseract"  # <-- Reemplazá si usás otro path
+    os.environ["TESSDATA_PREFIX"] = "/usr/local/share/tessdata"
+    texto = pytesseract.image_to_string(thresh, lang='spa')
+    return texto.strip()
 
 def load_documents():
     loader = DirectoryLoader("docs", glob="*.txt", loader_cls=TextLoader)
@@ -50,11 +63,16 @@ def main():
     llm = get_llm()
     qa_chain = generate_qa_chain(vectorstore, llm)
 
-    print("\n🤖 Asistente: ¡Hola! Escribí un enunciado de lógica o escribí 'salir' para terminar.")
+    print("\n🤖 Asistente: Escribí un enunciado o pasá una imagen con un ejercicio (escribí 'salir' para terminar).")
     while True:
-        user_input = input("Ejercicio de lógica (o 'salir'): ")
+        user_input = input("Texto o ruta de imagen (o 'salir'): ")
         if user_input.lower() == "salir":
             break
+        elif user_input.lower().endswith((".png", ".jpg", ".jpeg")) and os.path.exists(user_input):
+            print("🖼️ Procesando imagen con OCR...")
+            user_input = imagen_a_texto(user_input)
+            print("📝 Texto extraído:", user_input)
+
         respuesta = qa_chain.invoke({"query": user_input})
         print("📘 Asistente:", respuesta["result"])
 
