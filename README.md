@@ -46,8 +46,17 @@ El asistente abrirá un prompt donde podés escribir un enunciado o duda, y reci
 
 ## 📝 Ejemplo
 
+**Con texto:**
+
 ```
 Tú: ¿Cómo pruebo que ¬(p ∧ q) ↔ (¬p ∨ ¬q)?
+Asistente: Podés usar la ley de De Morgan y luego demostrar la doble implicación con tablas de verdad...
+```
+
+**Con path a una imagen:**
+
+```
+Tú: path/a/tu/imagen.png
 Asistente: Podés usar la ley de De Morgan y luego demostrar la doble implicación con tablas de verdad...
 ```
 
