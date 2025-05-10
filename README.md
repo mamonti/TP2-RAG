@@ -28,10 +28,11 @@ Agregá tus archivos `.txt` con ejercicios, teoremas o resoluciones en la carpet
 
 4. **Agregar archivo `.env`:**
 
-Debe contener tu clave de HuggingFace Hub:
+Debe contener tu clave de HuggingFace Hub y de OpenAi:
 
 ```
 HUGGINGFACEHUB_API_TOKEN=tu_token_aqui
+OPENAI_API_KEY=tu_token_aqui
 ```
 
 5. **Ejecutar el asistente:**
