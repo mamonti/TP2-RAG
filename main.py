@@ -10,6 +10,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings, HuggingFaceEndpoint
 from langchain.chains import RetrievalQA
+from langchain_community.llms import LlamaCpp
 
 VECTORSTORE_DIR = "chroma_db"
 
@@ -63,7 +64,7 @@ def ocr_desde_carpeta(carpeta="images"):
     return documentos
 
 def split_documents(docs):
-    splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=200, add_start_index=True)
+    splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100, add_start_index=True)
     return splitter.split_documents(docs)
 
 def create_or_load_vectorstore():
@@ -87,24 +88,20 @@ def create_or_load_vectorstore():
         return vectorstore
 
 def get_llm():
-    return HuggingFaceEndpoint(
-        repo_id="HuggingFaceH4/zephyr-7b-beta",
-        task="text-generation",
-        huggingfacehub_api_token=os.getenv("HUGGINGFACEHUB_API_TOKEN"),
-        max_new_tokens=512,
-        top_k=30,
-        temperature=0.3,
-        repetition_penalty=1.2,
-        provider="auto"
-    )
+    return LlamaCpp(
+    model_path="/Users/florenciamonti/Documents/GitHub/models/mistral-7b-instruct-v0.1.Q4_K_M.gguf",  # AJUSTÁ ESTA RUTA
+    temperature=0.7,
+    max_tokens=512,
+    n_ctx=4096,
+    verbose=False,
+)
 
 def generate_qa_chain(vectorstore, llm):
     return RetrievalQA.from_chain_type(
-        llm=llm,
-        chain_type="stuff",
-        retriever=vectorstore.as_retriever(search_type="similarity", search_kwargs={"k": 2}),
-        verbose=False
-    )
+    llm=llm,
+    chain_type="stuff",
+    retriever=vectorstore.as_retriever(search_kwargs={"k": 2})
+)
 
 def main():
     load_dotenv()
