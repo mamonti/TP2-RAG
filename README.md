@@ -22,17 +22,32 @@ source venv/bin/activate  # o venv\Scripts\activate.bat en Windows
 pip install -r requirements.txt
 ```
 
-3. **Agregar tus archivos de conocimiento:**
+3. **Colocar el modelo LLM local:**
 
-Agregá tus archivos `.txt` con ejercicios, teoremas o resoluciones en la carpeta `docs/`.
+Descargá un modelo compatible en formato .gguf, por ejemplo:
+Mistral 7B Instruct (Q4_K_M)
 
-4. **Agregar archivo `.env`:**
-
-Debe contener tu clave de HuggingFace Hub y de OpenAi:
+Ubicalo en una ruta como:
 
 ```
-HUGGINGFACEHUB_API_TOKEN=tu_token_aqui
-OPENAI_API_KEY=tu_token_aqui
+/Users/tu_usuario/Documents/GitHub/models/mistral-7b-instruct-v0.1.Q4_K_M.gguf
+```
+
+4. **Configurar el uso del modelo local:**
+
+Verificá que en main.py esté configurado algo como:
+
+```
+from langchain.llms import LlamaCpp
+
+llm = LlamaCpp(
+    model_path="ruta/a/tu/modelo.gguf",
+    temperature=0.7,
+    max_tokens=512,
+    n_ctx=4096,
+    verbose=False,
+)
+
 ```
 
 5. **Ejecutar el asistente:**
