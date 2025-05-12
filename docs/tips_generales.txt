@@ -1,2 +1,0 @@
-Para resolver ejercicios de lógica, identificar premisas y conclusión.
-Aplicar reglas como Modus Ponens, Silogismo, o equivalencias lógicas.

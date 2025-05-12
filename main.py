@@ -22,7 +22,7 @@ def imagen_a_texto(ruta_imagen):
     pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract"
     os.environ["TESSDATA_PREFIX"] = "/opt/homebrew/share/tessdata"
     texto = pytesseract.image_to_string(thresh, lang='spa')
-    return texto.strip()
+    return texto.replace("\n", " ").strip()
 
 # OCR masivo + extracción de PDFs
 def ocr_desde_carpeta(carpeta="images"):
@@ -91,9 +91,10 @@ def get_llm():
     return LlamaCpp(
     model_path="/Users/florenciamonti/Documents/GitHub/models/mistral-7b-instruct-v0.1.Q4_K_M.gguf",  # AJUSTÁ ESTA RUTA
     temperature=0.7,
-    max_tokens=512,
-    n_ctx=4096,
+    max_tokens=256,
+    n_ctx=2048,
     verbose=False,
+    n_gpu_layers=0,
 )
 
 def generate_qa_chain(vectorstore, llm):
@@ -114,6 +115,7 @@ def main():
     print("\n🤖 Asistente: Escribí un enunciado o pasá una imagen con un ejercicio (escribí 'salir' para terminar).")
     while True:
         user_input = input("Texto o ruta de imagen (o 'salir'): ")
+        user_input = user_input.strip().strip('"').strip("'")
         if user_input.lower() == "salir":
             break
         elif user_input.lower().endswith((".png", ".jpg", ".jpeg")) and os.path.exists(user_input):
@@ -121,7 +123,7 @@ def main():
             user_input = imagen_a_texto(user_input)
             print("📝 Texto extraído:", user_input)
 
-        respuesta = qa_chain.invoke({"query": user_input})
+        respuesta = qa_chain.invoke({"query": user_input + "Solo responde en español."})
         print("📘 Asistente:", respuesta["result"])
 
 if __name__ == "__main__":

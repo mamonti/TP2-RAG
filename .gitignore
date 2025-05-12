@@ -1,0 +1,35 @@
+# Entornos virtuales
+venv/
+venv310/
+
+# Configuración de entorno
+.env
+.python-version
+
+# Base de datos local (ChromaDB)
+chroma_db/
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de logs
+*.log
+
+# Archivos de Jupyter
+.ipynb_checkpoints
+
+# Configuración de IDEs
+.vscode/
+.idea/
+
+# Archivos temporales
+*.swp
+*.swo
+*.bak
+*.tmp

@@ -3,6 +3,7 @@ from datasets import Dataset
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy, context_precision, context_recall
 from main import imagen_a_texto, create_or_load_vectorstore, get_llm, generate_qa_chain
+from langchain_huggingface import HuggingFaceEmbeddings
 
 
 def evaluar_samples_desempeño(qa_chain, vectorstore, carpeta="samples"):
@@ -50,9 +51,12 @@ def evaluar_samples_desempeño(qa_chain, vectorstore, carpeta="samples"):
 
     # Evaluar
     print("\nEvaluando con métricas RAGAS...")
+    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     score = evaluate(
         dataset,
-        metrics=[faithfulness, answer_relevancy, context_precision, context_recall],
+        metrics=[faithfulness, answer_relevancy],
+        llm = get_llm(),
+        embeddings=embeddings,
         raise_exceptions=False
     )
     print(score.to_pandas())
@@ -63,3 +67,4 @@ if __name__ == "__main__":
     qa_chain = generate_qa_chain(vectorstore, llm)
 
     evaluar_samples_desempeño(qa_chain, vectorstore)
+    del llm
