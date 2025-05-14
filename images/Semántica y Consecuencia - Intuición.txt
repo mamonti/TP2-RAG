@@ -1,0 +1,222 @@
+Semántica y consecuencia lógica: intuición, usando gatos
+Lógica computacional - ITBA
+Marcelo Lynch
+
+Sobre la “verdad” de una fórmula
+La introducción de una semántica (“significado”) para las fórmulas, que en principio definimos
+como elementos puramente sintácticos (cadenas de sı́mbolos) la hicimos a través de valuaciones:
+funciones que a cada fórmula hace valer 1 o 0. Rápidamente identificamos al 1 como “verdadero” y
+al 0 como “falso”, y de hecho tanto la definición de lo que vale una valuación como los razonamientos
+los hacemos con eso en la cabeza.
+Claro, la definición de lo que vale una valuación en una fórmula con conectivos está hecha para que
+funcione igual que nuestra noción de “lo que significa ese conectivo”: que v(α ∧ β) = mı́n {v(α), v(β)}
+en definitiva es porque es la manera conveniente de decir “quiero que la conjunción sea verdadera solo
+cuando ambos miembros lo sean”.
+Desarrollar esta intuición cuando nos encontramos con esas definiciones en esta materia es bastante natural, quizás porque ya nos habı́amos encontrado antes con los sı́mbolos ∧, ∨, → interpretados
+como “y”, “o”, “implica”, haciendo demostraciones en materias anteriores. Ası́, no nos es dificil ver
+“qué oración” es la que “dice” cada fórmula: (p1 → (p2 ∨ p3 )) la leemos como “p1 implica p2 o p3 ” y
+sabemos que esta fórmula es verdadera dependiendo de si son verdaderas o no p1 , p2 , p3 . Pero: ¿qué
+significa en sı́ misma la fórmula p1 ? ¿Que significa decir que “p1 es verdad”? La respuesta rápida es:
+“bueno, es si la valuación en p1 vale 1”, pero la contrapregunta a eso es: ¿y qué significa intuitivamente
+una valuación? (¿hay una intuición posible?).
+En lo que sigue quiero mostrar una forma de des-abstraer (!) un poco las definiciones, interpretándolas en términos de la verdad o falsedad de hechos concretos (en este caso los hechos serán
+la actividad de ciertos gatitos). Ası́ es justamente (aunque en el sentido inverso) cómo se usa la
+lógica proposicional en la práctica: se hacen corresponder con variables proposicionales a ciertos “hechos” que podrı́an ser verdaderos o falsos (aunque no suelen tener que ver con gatitos). Con esta
+concretización conceptual también se puede bajar un poco más a tierra el concepto de conjunto de
+consecuencias y sus distintas propiedades, dando una intuición más directa que evidencia la motivación de las definiciones.
+
+Valuaciones como posibles mundos de gatos dormilones
+Como ya sabemos, la verdad o falsedad de cada variable está dada por la valuación que elegimos,
+entonces elegir una valuación es en definitiva elegir elegir que ciertas cosas son verdaderas y ciertas
+cosas son falsas, donde esas “ciertas cosas” están representadas por las infinitas variables.
+La forma de hacer esto más concreto es asociar las variables a ciertos hechos que podrı́an ser
+verdaderos o falsos en un “estado posible del mundo”. Podriamos elegir cualquier mundo que tenga
+“hechos” verdaderos y falsos que nos interesan (como el mundo real), pero para hacerlo fácil elijamos
+un mundo que sea simple: para lo que sigue vamos a trabajar en un universo que lo único que tiene es tiene infinitos (pero numerables) gatos al sol.
+Cada gato tiene un número natural asociado (los podemos coordinar con N), y puede estar dormido o despierto (el sol está especial para dormir la siesta, pero también hay que estirar las patas cada
+tanto). En adelante cuando hablemos del mundo vamos a estar hablando de este mundo, en donde
+solo importa si cada gato está despierto o dormido.
+Supongamos ahora que frenamos el tiempo en este universo y nos fijamos en como está la cosa. En
+ese instante cada gato tiene un estado definido: o está despierto o está dormido. Ası́, podemos definir
+una función f : V ar → {0, 1} tal que f (pi ) = 1 si el gato i está despierto, y 0 el gato i está dormido. O
+sea que podemos “leer” la variable pi como “el gato i está despierto”, y hacerla valer 1 si esto es verdad.
+
+Figura 1: f (pi ) = 0 cuando el gato i está dormido
+Con esta idea podemos pensar a una función V ar → {0, 1} como un estado posible de este universo felino: frenar el tiempo en distintos momentos nos puede dar distintas funciones, y
+cada función se puede pensar como una configuración distinta de sueño y vigilia de los
+infinitos gatos.
+En esta analogı́a entonces las fórmulas son todas las cosas que podemos decir usando el estado
+de cada gato individual (las variables) y los conectivos que tenemos: (p1 ∧ p3 ) es “el gato 1 está
+despierto y el gato 3 está despierto”, (p4 → ¬p0 ) es “si el gato 4 está despierto, entonces el gato 0 no
+está despierto”. Entonces las fórmulas son oraciones que dicen cosas sobre el estado de los gatos y
+podrı́an ser verdaderas o falsas, dependiendo de cómo esté el mundo.
+Y una valuación v : Form → {0, 1} entonces se puede pensar como un oráculo de la “verdad o
+mentira” de cualquiera de estas oraciones, en un momento en que el universo de gatos está
+descrito por la restricción de v a las variables. Es decir, un oráculo que puede darme el valor
+de verdad (en ese momento particular de gatitos) de cualquier oración (fórmula) de las que podemos
+armar.
+De nuevo: una valuación me define un estado del mundo y determina qué cosas (de las que
+podemos expresar a partir de nuestros “hechos” individuales, o sea las variables) son verdaderas y son
+falsas en ese estado. Ası́, una tautologı́a serı́a algo que es verdadero (“vale 1”) en todos los estados
+posibles del mundo (“para cualquier valuación”) y una contradicción es algo que es falso en todos los
+estados posibles del mundo. Y una contingencia es una oración que dice algo que podrı́a ser verdadero
+o falso... depende del estado del mundo en el que estemos parados.
+Observación: Pensandolo ası́ es fácil convencerse de dos propiedades que tenemos de las valuaciones: primero, que la valuación va a estar únicamente determinada por lo que vale en las variables:
+lo unico que importa en este mundo es si los gatos están despiertos o dormidos, la verdad del resto de las “oraciones” (fórmulas) va a quedar determinada por “cómo está el mundo”. Segundo, que el valor
+de verdad de una fórmula queda determinado unicamente por el valor en las variables involucradas
+en esa fórmula: ¿qué me importa el gato 34 si la oración que le pregunto al oráculo solo habla sobre
+los gatos 6, 28 y 1995?
+
+Satisfactibilidad
+Una fórmula α es satisfacible si existe una valuación v que la satisface, es decir que cumple
+v(α) = 1. En la analogı́a, las definiciones se vuelven:
+v(α) = 1 si lo que dice α es verdadero en el estado del mundo descrito por v
+α es satisfacible si existe un posible estado del mundo en el que lo que dice es verdadero
+Asi, (p0 ∧ ¬p0 ) no es satisfacible, porque de ninguna manera podrı́a ser que el gato 0 esté despierto
+y dormido al mismo tiempo.
+Una valuación v satisface a un conjunto Γ ⊂ F orm si satisface a toda α ∈ Γ. En la analogı́a,
+tenemos:
+v(Γ) = 1 si todas las oraciones de Γ son verdad en el estado del mundo descrito por v
+Γ es satisfacible si es posible un estado del mundo en el que todas las oraciones de Γ sean ciertas
+
+Consecuencia lógica
+Cotidianamente decimos que A es consecuencia de B si “que pase B hace que pase A”. Cuando
+hablamos de consecuenca lógica lo que nos interesa es este concepto aplicado a nociones sobre la
+verdad o falsedad de oraciones. Coloquialmente, Q es una consecuencia lógica de P si siempre que P
+es verdadero, Q también lo es.
+La definición del conjunto de consecuencias de un conjunto de fórmulas Γ es:
+C(Γ) = {α : v(Γ) = 1 ⇒ v(α) = 1}
+Intuitivamente, lo que me está diciendo esta definición es que α ∈ C(Γ) si y solo si α es verdadera
+en cualquier estado del mundo que (“para cualquier valuación que”) haga que Γ tenga todas fórmulas
+verdaderas (“satisface Γ”).
+De otra manera: supongamos que nos dan una lista de fórmulas Γ y nos dicen: en este momento
+todo esto es verdadero en el mundo. La pregunta es: ¿qué otras cosas son verdaderas si Γ lo es?
+O: ¿qué más se desprende de saber que Γ es verdad? Todo esto (junto con Γ) constituye C(Γ).
+Ejemplo: Consideremos Γ = {p0 , (p0 → ¬p1 ), (p2 ∧ p3 )}. Supongamos un estado del mundo en el
+que todo lo que dice Γ es verdadero. Entonces sabemos (y solo sabemos esto en principio) que son
+ciertas las siguientes:
+“El gato 0 está despierto”
+“Si el gato 0 está despierto, entonces el gato 1 no está despierto”
+“El gato 2 está despierto y el gato 3 está despierto”
+¿Qué cosas estamos seguros que serán verdad siempre que todo esto sea verdad? Algunos
+ejemplos:
+“El gato 1 no está despierto” (por lo primero y lo segundo anterior)“El gato 2 está despierto”
+“El gato 3 está despierto”
+Traduciendo a fórmulas: {¬p1 , p2 , p3 } ⊂ C(Γ).
+Demostración (comparar con lo anterior): Sea v valuación tal que v(Γ) = 1, entonces:
+1. v(p0 ) = 1
+2. v(p0 → ¬p1 ) = 1
+3. v(p2 ∧ p3 ) = 1
+Entonces:
+v(p0 → ¬p1 ) = 1 o sea máx {1 − v(p0 ), v(¬p1 )} = 1, es decir v(¬p1 ) = 1
+| {z }
+=1
+
+v(p2 ∧ p3 ) = 1, entonces v(p2 ) = 1
+v(p2 ∧ p3 ) = 1, entonces v(p3 ) = 1
+Es decir probamos que si v(Γ) = 1 ⇒ v(α) = 1 para α ∈ {¬p1 , p2 , p3 }, es decir que {¬p1 , p2 , p3 } ⊂
+C(Γ)
+.
+Observación: Con esta intuición (“C(Γ) es todo lo que estamos seguros que será verdad siempre
+que estemos en un estado del mundo en el que Γ es verdad”) es claro que C(Γ) incluye a las tautologı́as
+para todo Γ (porque siempre estamos seguros de que las tautologı́as son verdad), pero quizás se escapa
+el hecho de que C(Γ) = F orm si Γ es insatisfacible. Lo que pasa es que si Γ es insatisfacible entonces
+no será verdad en ningún estado posible del mundo, entonces si asumimos que lo es... ¡podrı́amos
+asegurar cualquier cosa! (O: “si el antecedente es falso cualquier implicación es verdadera”).
+
+Propiedades de las consecuencias, intuitivamente
+Recomendación: No leer lo que sigue antes de intentar por lo menos una vez de resolver los
+ejercicios sobre consecuencias de la guı́a 3.
+
+Recordatorio: Lo que viene a continuación es simplemente una forma intuitiva de razonar las
+propiedades, que puede servir para razonar sobre otras que uno se pueda encontrar en el camino.
+Nada de esto reemplaza a una demostración utilizando las definiciones (y la intuición siempre
+puede fallar), pero puede servir para saber por dónde encararla.
+Me gusta pensar en la obtención del conjunto de consecuencias de Γ como el resultado del siguiente
+procedimiento:
+1. Imprimo las fórmulas de Γ en una hoja (posiblemente infinita)
+2. Llamo a alguno de mis ayudantes, que tienen infinita paciencia, y le digo: suponete que esta
+lista de cosas sobre los gatos (Γ) es cierta: necesito que me traigas en una lista todas las cosas
+que seguro, seguro son ciertas en un mundo en el que lo unico que sabés es que lo que te
+entrego es cierto.3. Se pone a trabajar, haciendo razonamientos como los que hicimos en el ejemplo anterior a toda
+velocidad. Cada vez que logra desprender algo nuevo como verdadero a partir de lo que yo
+le di, lo agrega a su lista como una consecuencia. Además, cada cosa que anota se transforma
+también en un nuevo “dato” que puede asumir verdadero para seguir trabajando.
+4. Espero un tiempito: el ayudante es realmente minucioso y completará la lista con absolutamente
+todas las fórmulas que cumplen lo que le pedı́.
+5. El ayudante me trae la lista completa. En esa lista tengo C(Γ).
+Con esta versión “procedimental” de C(Γ), veamos cómo podemos intuitivamente atacar y convencernos de la verdad o falsedad de algunas propiedades (o afirmaciones falsas) sobre los conjuntos
+de consecuencias. Es importante volver a recordar que esto es puramente intuitivo: la demostración
+siempre debe hacerse con las definiciones formales.
+Propiedad: Γ1 ⊂ Γ2 ⇒ C(Γ1 ) ⊂ C(Γ2 )
+Como Γ2 tiene todo lo que dice Γ1 (y quizás más cosas), entonces claro que C(Γ2 ), que es todo
+lo que se desprende de Γ2 , incluirá a C(Γ1 ), que es todo lo que se desprende de “solamente” Γ1 . O
+bien: si yo le doy a mi ayudante la lista Γ2 , ella a la vuelta me va a traer a algo que incluye todo lo
+que me traeria si sólo le doy Γ1 , que es “una parte” de Γ2 .
+
+Propiedad: C(C(Γ)) = C(Γ)
+Tengo un conjunto Γ. Quiero sus consecuencias: se las doy a un ayudante (“Por favor, traeme todo
+lo que es verdadero si Γ es verdadero”). Vuelve después de todo ese trabajo con C(Γ).
+Inmediatamente le digo: tomá, te lo devuelvo, traéme todo lo que es cierto si esto que me acabas
+de traer es cierto (o sea: “traeme C(C(Γ))”). Pero eso lo ofende, y me dice: “pero: ¡ya te traje todo
+lo que se puede desprender de ahı́, si hubiera más cosas lo habrı́a agregado antes de traertelo! Lo que
+me pedı́s es esa misma lista!”.
+Efectivamente, no hay nada más que hacer: C(Γ) y C(C(Γ)) son lo mismo.
+
+En general es falso que C(Γ1 ∪ Γ2 ) ⊂ C(Γ1 ) ∪ C(Γ2 ) (ejercicio 5.1)
+Supongamos que tengo dos listas de fórmulas, Γ1 y Γ2 . Llamo a mis ayudantes, y a una le doy una
+copia de la lista Γ1 y le digo: traéme las consecuencias, C(Γ1 ). Mientras ella va a hacer la lista de todas
+las cosas que son verdaderas sabiendo solamente Γ1 , a otro ayudante le doy una copia de Γ2 . Cuando
+vuelven con sus reportes (C(Γ1 ) por un lado, C(Γ2 ) por el otro) obtengo entonces C(Γ1 ) ∪ C(Γ2 ).
+Mientras tanto, yo tengo tanto Γ1 como Γ2 y puedo entonces obtener C(Γ1 ∪ Γ2 ) por mi lado.
+Ahora bien: si la propiedad es verdadera:
+C(Γ1 ∪ Γ2 ) ⊂ C(Γ1 ) ∪ C(Γ2 )
+entonces todo lo que yo haya desprendido de Γ1 ∪ Γ2 está en alguna de las dos listas que
+me trajeron mis asistentes: ¡pero cada uno de ellos tenı́a una porción de la información que tenı́a
+yo! ¿Cómo puede ser que siempre (si la propiedad vale, no importa quienes sean Γ1 , Γ2 ) desprendan
+tanto o más que yo?
+Por ejemplo quizás la lista Γ1 solo dice “el gato 1 está despierto” (Γ1 = {p1 }), y la lista Γ2 solo
+dice “el gato 13 está dormido” (o sea Γ2 = {¬p13 }). Yo, que sé las dos cosas, puedo desprender la oración “el gato 1 está despierto y el gato 13 está dormido”, o sea que (p1 ∧ ¬p13 ) es verdadero,
+pero es imposible que ninguno de mis dos asistentes tenga esto entre sus consecuencias ¡porque uno
+no sabe nada del gato 1 y el otro no sabe nada del 13!.
+Dicho de otra forma (y formal entre paréntesis): puede existir un estado del mundo (“existe una
+valuación v”) en el que el gato 1 está despierto (“tal que v satisface Γ1 ”) y el gato 13 también, o sea
+que “el gato 1 está despierto y el gato 13 está dormido” es falso (“pero con v(p1 ∧ ¬p13 ) = 0, entonces
+(p1 ∧ ¬p13 ) 6∈ C(Γ1 )”).
+
+Si Γ2 ⊂ C(Γ1 ) entonces ahora sı́ vale C(Γ1 ∪ Γ2 ) ⊂ C(Γ1 ) ∪ C(Γ2 ) (parte del ejercicio 6.1)
+Si agregamos esta condición extra: Γ2 ⊂ C(Γ1 ), ahora sı́ es verdad la propiedad. Pero ¿por qué?
+Porque si Γ2 se desprende de Γ1 , entonces llega un momento en que la ayudante a la que yo le di Γ1
+consigue desprender Γ2 : en ese momento ya tiene toda la información original que tenı́a yo! O sea tiene
+Γ1 ∪ Γ2 como “cosas verdaderas”. Entonces todo lo que yo desprenda de ahı́ también lo va a haber
+desprendido mi ayudante con la lista Γ1 . Entonces es más fuerte: en este caso C(Γ1 ∪ Γ2 ) ⊂ C(Γ1 ):
+¡la información de Γ2 es redundante si ya tengo Γ1 , porque todo Γ2 es consecuencia de Γ1 !
+
+Si C(Γ1 ) = Γ2 y C(Γ2 ) = Γ1 entonces Γ1 = Γ2
+Le doy Γ1 a mi ayudante y vuelve con C(Γ1 ) y me dice “lo llamé Γ2 ”. Sin mirarlo, se lo devuelvo
+y le pido las consecuencias de eso. A la vuelta me trae C(Γ2 ), pero cuando lo miro con atención veo
+que es igual que Γ1 , la lista original. Pero entonces ¡en ningun paso se agregaron fórmulas nuevas!
+(nunca “se pudo desprender nada más” desde Γ1 ): quiere decir que desde el principio ya tenı́a todo
+lo que se puede saber, y entonces cuando volvió en el primer paso con Γ2 tampoco habı́a cambiado
+nada, o sea que Γ1 = Γ2 .
+
+La relación con la deducción axiomática
+En todo lo anterior solamente hablamos de la consecuencia semántica (porque era la intención de
+este documento), pero conociendo la relación que tiene el conjunto de consecuencias con la deducción
+de la teorı́a axiomática:
+α ∈ C(Γ) ⇐⇒ Γ ` α
+se puede ver que, por ejemplo, lo que podrı́an estar haciendo mis ayudantes tras bambalinas es hacer
+un monton de pruebas (todas las posibles) para ver qué cosas son las consecuencias: se nota ası́
+el caracter “operacional” o mecánico de la obtención de consecuencias (deducciones) a partir de un
+conjunto de fórmulas.
+Que los hechos “estar en las consecuencias de Γ” y “se puede deducir de Γ” sean equivalentes nos
+desbloquea más intuiciones y vale la pena pensar qué nos dice esta equivalencia a la hora de hacer
+ejercicios. Un ejemplo interesante es que esto que vimos que es equivalente al teorema de compacidad:
+α ∈ C(Γ) ⇐⇒ α ∈ C(Γ0 ), con Γ0 ⊂ Γ finito
+Se transforma en:
+Γ ` α ⇐⇒ Γ0 ` α, con Γ0 ⊂ Γ finito
+Y esto es claro: si existe una prueba de α a partir de Γ, a lo sumo usé finitas fórmulas de Γ en la
+prueba, porque las pruebas tienen longitud finita.
+
+
+

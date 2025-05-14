@@ -1,0 +1,62 @@
+Lógica Computacional
+
+ITBA
+
+ÁLEGEBRA DE BOOLE
+
+Definición. Álgebra de Boole
+Un álgebra de Boole B es un conjunto B en el cual se pueden distinguir dos elementos
+notados 0 y 1, y hay tres operaciones: ∨, ∧ y ¬, que verifican las siguientes propiedades:
+1. Conmutatividad:
+x∧y =y∧x
+x∨y =y∨x
+2. Asociatividad:
+x ∧ (y ∧ z) = (x ∧ y) ∧ z
+x ∨ (y ∨ z) = (x ∨ y) ∨ z
+3. Idempotencia:
+x∨x=x
+x∧x=x
+4. Absorción:
+x ∧ (x ∨ y) = x
+x ∨ (x ∧ y) = x
+5. Distributividad doble:
+x ∧ (y ∨ z) = (x ∧ y) ∨ (x ∧ z)
+x ∨ (y ∧ z) = (x ∨ y) ∧ (x ∨ z)
+6. Elemento neutro:
+x∨0=x
+x∧1=x
+7. Elemento absorvente:
+x∧0=0
+x∨1=1
+8. Complementación:
+x ∨ ¬x = 1
+x ∧ ¬x = 0
+
+Ejemplos.
+1. E conjunto no vacı́o.
+B =< P (E), ∧ = ∩, ∨ = ∪, ¬ = complemento de conjuntos, 0 = ∅, 1 = E >
+2. B =< {0, 1}, ∧, ∨, ¬, 0, 1 >
+
+Propiedad. Propiedad fundamental de un Álgebra de Boole
+Sea B =< B, ∧, ∨, ¬, 0, 1 > un álgebra de Boole cualquiera:
+x≤y ⇔x∧y =x⇔x∨y =y
+Notas:
+1. La relación ≤ es reflexiva, antisimétrica y transitiva.
+2. 0 ≤ x ≤ 1 ∀x ∈ B
+
+Definición. Álgebra de Boole de Lindembaum para el cálculo proposicional
+Sea F = conjunto de fórmulas de la lógica proposicional.
+αRβ ⇔ α ≡ β
+Nota: R es una relación de equivalencia.
+Álgebra de Boole de Lindembaum.
+B =< F/R, ∧, ∨, ¬, 0 = [p1 ∧ ¬o1 ], 1 = [p1 ∨ ¬p1 ] >
+donde para [α] y [β] ∈ F/R, ∧, ∨ y ¬ se definen de la siguiente manera:
+1. [α]∧[β] = [α ∧ β]
+2. [α]∨[β] = [α ∨ β]
+3. ¬[α] = [¬α]
+Nota: B es un álgebra de Boole.
+Ejemplo de clase.
+[p1 ] = {p1 , (p1 ∧ p1 ), (p1 ∨ p1 ), ...} = {α ∈ F/α ≡ p1 }
+
+
+

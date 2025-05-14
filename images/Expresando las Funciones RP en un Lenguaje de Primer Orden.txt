@@ -1,0 +1,472 @@
+Expresando las funciones recursivas primitivas en un lenguaje de
+primer orden para la aritmética
+Marcelo Lynch∗
+
+Introducción
+La idea de este documento es definir un lenguaje y una interpretación adecuada para expresar propiedades
+aritméticas, es decir, propiedades de los números naturales con la suma y el producto. Trabajaremos con
+la interpretación (N, +, ·, 0, 1), y nos interesa ver allı́ qué tipo de funciones y relaciones son expresables, y
+en particular veremos que podemos expresar cualquier función recursiva primitiva en esa interpretación.
+Este resultado es central en la demostración de los teoremas de incompletitud de Gödel,
+que fueron posiblemente el acontecimiento más importante en lógica en el siglo XX.
+El documento está estructurado como sigue: primero se define qué significa expresar una relación o una
+función en un lenguaje de primer orden, y se dan ejemplos. Luego se define el lenguaje e intepretación
+que vamos a usar. Después se demuestra que las funciones iniciales y las operaciones constructivas
+de funciones recursivas primitivas (composición y recursión primitiva) son expresables en el lenguaje.
+Esto demuestra que todas las funciones RP son expresables. Finalmente, en un apéndice se exhibe la
+demostración de que existe una sorprendente codificación expresable en nuestro lenguaje, (y fue utiizada
+en las demostraciones previas asumiendo su existencia).
+
+Expresando relaciones y funciones
+Si L es un lenguaje de primer orden y I una interpretación de L con universo U sabemos que expresar
+un conjunto A ⊂ U es dar una fórmula con una sola variable libre α(x) tal que
+VI,vx=a [α(x)] = 1 ⇐⇒ a ∈ A
+.
+Podemos extender naturalmente este concepto para expresar relaciones en U, utilizando más variables libres:
+Definición. Sea A ⊂ U n una relacion n-aria, decimos que una fórmula con exactamente n variables
+libres α(x1 , · · · xn ) expresa la relación A si se cumple:
+VI,v x1 =a1 [α(x1 , · · · , xn )] = 1 ⇐⇒ (a1 , a2 , · · · , an ) ∈ A
+x2 =a2
+···
+xn =an
+
+Observemos que el caso de expresar un subconjunto de U se vuelve el caso particular n = 1.
+
+Recordando que una función n-aria f : U n → U es en definitiva una relación incluida en U n+1 , vemos
+que podemos decir que α(x1 , · · · , xn , y), con n + 1 variables libres, expresa la función f si
+VI,v x1 =a1 [α(x1 , · · · , xn , y)] = 1 ⇐⇒ y0 = f (a1 , a2 , · · · , an )
+x2 =a2
+···
+xn =an
+y=y0
+
+En lo que sigue vamos a abusar la notación para mayor claridad de escritura, omitiendo I y v del
+subı́ndice y usando los mismos sı́mbolos para las variables de la fórmula y los elementos del universo
+que se asocian a esa variable por la valuación (como si las igualdades en la valuación modificada fueran
+“ xi = xi ” en vez de “xi = ai ”) : ası́, la condición anterior se escribirı́a:
+|{z}
+|{z}
+variable
+
+∈N
+
+V [α(x1 , · · · , xn , y)] = 1 ⇐⇒ y = f (x1 , x2 · · · , xn )
+Ası́, será claro por el contexto cuando los sı́mbolos en el papel se refieren a una variable (cuando son
+usados en una fórmula) o al elemento del dominio asociado a la variable por la valuación (cuando son
+usados fuera de las fórmulas).
+
+Un ejemplo
+Sea L con con igualdad y un sı́mbolo de función binario f y la interpretación I = (N, +). Consideremos la
+relación binaria ≤, el orden usual entre los números naturales. Para expresarla necesitamos una fórmula
+α(x, y) tal que
+V [α(x, y)] = 1 ⇐⇒ x ≤ y
+La fórmula α(x, y) := ∃zf (x, z) = y lo cumple:
+V [α(x, y)] = 1
+⇐⇒ ∃z ∈ N tal que x + z = y
+⇐⇒ x ≤ y
+Consideremos ahora la función g : N2 → N con g(n, m) = 2n + m. Para expresarla necesitamos una
+fórmula con tres variables libres α(x1 , x2 , y) tal que
+V [α(x1 , x2 , y)] = 1 ⇐⇒ y = g(x1 , x2 )
+
+La fórmula γ(x1 , x2 , y) := f (f (x1 , x1 ), x2 ) = y lo cumple:
+V [γ(x1 , x2 , y)] = 1
+⇐⇒ (x1 + x1 ) + x2 = y
+⇐⇒ 2x1 + x2 = x
+⇐⇒ g(x1 , x2 ) = y
+Una observación importante: si quisieramos ahora escribir un enunciado que exprese “para todo x, y
+se cumple x ≤ g(x, y)00 , la manera de usar “lo que vale la función” en el predicado es utilizando una
+variable auxiliar z que se “transforme” en g(x, y):
+∀x∀y∀z (γ(x, y, z) → α≤ (x, z)))
+Esto dice “si z = g(x, y) entonces x ≤ z”, que es otra manera de decir lo que querı́amos. Tenemos que
+hacerlo ası́ porque la unica forma de “usar la funcion g” es con la fórmula γ(x, y, z), que lo que dice es
+“g(x, y) es igual a z”: no podemos simplemente obtener un término que denote el valor “suelto” f (x, y).
+
+Un lenguaje para la aritmética
+Como queremos un lenguaje para hablar de los números naturales con la suma y el producto, en lo que
+sigue vamos a trabajar con un lenguaje L con igualdad, una constante 0, un simbolo de funcion unaria S,
+dos sı́mbolos de función binaria + y ·. La interpretación será I = (N, 0, suc, +, ·) es decir tiene universo
+N, 0 se interpreta como el 0, S como la funcion sucesor (suc(n) = n + 1), + se interpreta como la suma, ·
+se interpreta como el producto. Por comodidad de lectura, para los términos que involucren los simbolos
+de funcion + y · escribiremos (x + y) o (x · y) en lugar de +(x, y) o ·(x, y).
+Este lenguaje es el contexto de la llamada aritmética de Peano, una teorı́a de primer orden de
+los números naturales basada en los axiomas homónimos. Por ser la teorı́a “estandar” de los números
+naturales, es aquı́ donde nos interesa desarrollar los teoremas de Gödel, y por eso la elegimos aquı́.
+
+Distinguiendo a cada número natural
+Para entrar en calor, veamos como podemos distinguir a cualquier número natural en esta interpretación.
+Consideremos esta serie de términos de L:
+t0 := 0
+tn := S(tn−1 ) si n ≥ 1
+Si v : T ermL → N es una valuación (extendida) cualquiera para este lenguaje e interpretación, veamos
+que v(tn ) = n para todo n ∈ N, por inducción en n.
+Caso base: n = 0. En este caso tn coincide con la constante 0, entonces es directo: v(tn ) = v(0) = 0.
+Hipótesis inductiva: v(tn ) = n
+Tesis: v(tn+1 ) = n + 1. Pero tenemos:
+v(tn+1 ) = v(S(tn )) = suc( v(tn ) ) = suc(n) = n + 1
+| {z }
+=n por HI
+
+Teniendo esto en cuenta, en lo que sigue vamos a escribir n, el número en negrita, para denotar el término
+tn (en el caso n = 0 estamos escribiendo el sı́mbolo de constante del lenguaje, en los otros lo podemos
+pensar como una “macro” para el término S(S(· · · (S(0))).
+Con esto vemos que podemos distinguir a cualquier número natural n con la fórmula
+αn (x) := x = n
+En efecto:
+V [x = n] = 1
+⇐⇒ x = v(n)
+⇐⇒ x = n
+
+Expresando las funciones recursivas primitivas
+Nos disponemos a demostrar que toda función recursiva primitiva es expresable en esta interpretación.
+Para eso vamos a mostrar que:
+1. las funciones iniciales son expresables,
+2. si dos funciones son expresables, también lo es su composición, y
+3. si dos funciones son expresables también lo es la obtenida por recursión primitiva a partir de ellas
+Como es esperable, el paso (3) va a ser el que nos cueste más trabajo.
+
+Dos relaciones útiles
+Expresemos dos relaciones que nos van a resultar útiles en lo que sigue. A cada relación R le haremos
+corresponder una fórmula αR que la expresa. Las demostraciones quedan como ejercicio para el lector o
+lectora:
+La relación de orden ≤ es expresada por α≤ (x, y) := ∃z(x + z = y)
+La relación de orden estricto < es expresada por α< (x, y) := (α< (x, y) ∧ ¬(x = y))
+
+Las funciones iniciales son expresables
+Cero
+La función cero : N → N tal que cero(x) = 0 es expresable mediante la fórmula
+αcero (x, y) := (y = 0 ∧ x = x)
+Demostración:
+V [αcero (x, y)] = 1
+⇐⇒ y = 0 ∧ x = x
+⇐⇒ y = 0
+⇐⇒ y = cero(x)
+La parte “x = x” aparece únicamente para que la variable x aparezca libre en la fórmula (definimos que
+para que la fórmula exprese a la función n-aria debe tener n + 1 variables libres).
+
+Proyecciones
+Cualquier función proyección πkn : Nn → N / πkn (a1 · · · an ) = ak es expresable mediante la fórmula:
+^
+απkn (x1 , · · · xn , y) := (y = xk ∧
+xi = xi )
+1≤i≤n
+porque:
+V [απkn (x1 , · · · , xn , y)] = 1
+⇐⇒ y = xk y (x1 = x1 y · · · y xn = xn )
+⇐⇒ y = xk
+⇐⇒ y = πkn (x1 , · · · , xn )
+Donde de nuevo la serie de igualdades “xi = xi ” está solamente para asegurar que figuren como variables
+libres.
+Sucesor
+Y la función suc : N → N tal que suc(x) = x + 1 es expresable fácilmente, mediante
+αsuc (x, y) := y = S(x)
+porque
+V [αsuc (x, y)] = 1
+⇐⇒ y = suc(x)
+
+Las composición es expresable
+Composición “simple”
+Supongamos que f : N → N y g : N → N son expresables mediante las fórmulas αf (x, y) y αg (x, y)
+respectivamente. Entonces f ◦ g es expresable mediante
+αf ◦g (x, y) := ∃z(αg (x, z) ∧ αf (z, y))
+Demostración: la idea intuitiva es que usamos la variable z para “guardar” el resultado de aplicar g y
+despues “evaluarla” en f . Más formalmente tenemos:
+V [αf ◦g (x, y)] = 1
+⇐⇒ ∃z ∈ N tal que V [αg (x, z)] = 1 y V [αf (z, y)] = 1
+⇐⇒ ∃z ∈ N tal que z = g(x) y y = f (z)
+⇐⇒ y = f (g(x))
+⇐⇒ y = (f ◦ g)(x)
+Composición “general”
+Supongamos que f : Nm → N es una función expresable y αf (x1 , · · · , xm , y) una fórmula que la expresa,
+y para todo 1 ≤ i ≤ m sean gi : Nk → N funciones expresables mediante fórmulas αgi (x1 , · · · , xk , y)
+Entonces la composición h : Nk → N con h = f ◦ (g1 × · · · × gm ) es expresable mediante la fórmula
+^
+∧
+αf (z1 , · · · , zm , y))
+αh (x1 , · · · , xk , y) := ∃z1 · · · ∃zm (
+αgi (x1 , · · · , xk , zi )
+|
+{z
+}
+1≤i≤m
+“y es el resultado de aplicar f con las zi 00
+{z
+}
+|
+“Cada zi es el resultado de aplicar gi ”
+
+La idea es la misma que antes: cuando interpretamos, el valor ligado a zi (que participa de la fórmula αgi )
+“guarda” el resultado de aplicar gi , y luego todas las zi “entran a f ” en la fórmula αf . Más formalmente:
+V [αh (x1 , · · · , xk , y)] = 1
+⇐⇒ ∃z1 , z2 , · · · , zm ∈ N tal que y = f (z1 · · · zm ) y para 1 ≤ i ≤ m es zi = gi (x1 , · · · , xk )
+⇐⇒ y = f (g1 (x1 · · · xk ), · · · , gm (x1 · · · , xk ))
+⇐⇒ y = (f ◦ (g1 × · · · × gm ))(x1 , · · · , xk )
+⇐⇒ y = h(x1 , · · · , xk )
+
+Expresando la recursión primitiva
+Por qué se nos va a hacer difı́cil
+Recordemos que f : N → N se obtiene por recursión primitiva (de tipo I) a partir de g : N2 → N si
+f (0) = k ∈ N
+f (n + 1) = g(n, f (n))
+La dificultad de expresar la recursión primitiva es que de alguna manera necesitamos, para encontrar f (n),
+tener ya disponible el valor de f (n − 1), y para eso el de f (n − 2), etcétera: en definitiva necesitamos una
+secuencia de n − 1 valores que logramos aplicando g con el anterior (empezando desde el primero que es
+el valor de f (0)), y por ultimo aplicar g una vez más y obtener f (n).
+En definitiva nos encantarı́a tener una fórmula para f que haga algo ası́ (recordar que los números en
+negrita son términos que se interpretan como el correspondiente números natural):
+αf (x, y) := ∃z0 · · · zx−1
+(z0 = k
+
+[en z0 “queda” f (0)]
+
+∧ αg (0, z0 , z1 )
+
+[z1 = g(0, z0 ) = g(0, f (0)) = f (1)]
+
+∧ αg (1, z1 , z2 )
+
+[z2 = g(0, z1 ) = g(1, f (1)) = f (2)]
+
+···
+∧ αg (x − 2, zx−2 , zx−1 )
+∧ αg (x − 1, zx−1 , y))
+
+[y = g(x − 1, zx−1 ) = g(x − 1, f (x − 1)) = f (x)]
+
+A la derecha entre corchetes se explica como se interpreta cada cláusula: en esta “fórmula” es como si
+los valores fueran construyéndose usando las variables zi , donde zi guarda el valor de f (i − 1), y el valor
+“final” en y (que tiene que tener f (x)) queda como g(x − 1, f (x − 1)), que es lo que exige la recursión
+primitiva.
+Pero esta fórmula está increiblemente mal definida, porque x es una variable de la fórmula, no
+podemos usarla “elegir” la cantidad de variables z y construir estas “cadenas de ∧ con x elementos”. ¡x
+ni siquiera es un número, es una variable del lenguaje L! Solamente lo interpretamos como un
+número cuando trabajamos en la interpretación I.
+
+La salvación
+En suma: cuando definamos la fórmula para la función f solo vamos a tener una cantidad fija de
+variables (libres o ligadas) para usar, pero nos gustarı́a de alguna manera tener acceso a una
+secuencia de valores de longitud arbitraria y variable (donde van a “aparecer”, cuando interpretemos la fórmula, los valores “anteriores” de la función). Para eso tenemos que poder expresar algún
+tipo de codificación. Por ahora vamos a enunciar un lema que dice que existe una función que nos
+va a salvar: nos dejará hacer exactamente lo que necesitamos. En el apéndice se muestra esa función
+efectivamente existe. Enunciamos entonces el siguiente
+Lema: Existe una función B : N3 → N tal que dada cualquier secuencia (finita) de valores
+a0 , a1 , · · · , an , existen dos valores b, c ∈ N tal que B(b, c, i) = ai para 1 ≤ i ≤ n. Más aún, la
+función es expresable mediante una fórmula β(x1 , x2 , x3 , y) en el lenguaje para la aritmética
+que definimos.
+Esta función mágica nos garantiza que cualquier secuencia finita de números puede ser codificada eligiendo convenientemente los primeros dos argumentos de B, y una vez encontrados
+estos dos argumentos, la función nos da el i-ésimo elemento de la secuencia si el último argumento es i
+(para 1 ≤ i ≤ n). Por ejemplo, si tenemos la secuencia de números 21, 32, 1, 3, 1 este lema nos dice que
+existen dos valores b0 y c0 tales que:
+B(b0 , c0 , 0) = 21
+B(b0 , c0 , 1) = 32
+B(b0 , c0 , 2) = 1
+B(b0 , c0 , 3) = 3
+B(b0 , c0 , 4) = 1
+Y además podemos expresar en nuestro lenguaje el hecho “y = B(x1 , x2 , x3 )” mediante la fórmula
+β(x1 , x2 , x3 , y).
+Expresando la recursión primitiva de tipo I
+Con la fórmula β que expresa la función B estamos en condiciones de expresar la recursión primitiva.
+Entonces, sea g : N → N una función expresable mediante la fórmula αg (x, y), y sea f una función que
+se obtiene por recursión primitiva a partir de g, es decir que cumple
+f (0) = k ∈ N
+f (n + 1) = g(n, f (n))
+Vamos a construir una fórmula αf (x, y) que expresará lo siguiente cuando la interpretemos:
+(x = 0) ⇒ y = k
+(x 6= 0) ⇒ ∃b ∃c [B(b, c, 0) = k
+∧ ∀i < x se cumple B(b, c, i + 1) = g(i, B(b, c, i))
+∧ B(b, c, x) = y ]
+Es decir:
+• si x es 0 entonces y tiene que ser k, que es f (0)
+• si x 6= 0 (o sea x > 0) usamos la función B, condicionando b y c para que se cumpla:
+B(b, c, 0) = k
+B(b, c, i + 1) = g(i, B(b, c, i))
+Con estas condiciones estamos invocando exactamente los b y c que codifican la secuencia de
+x + 1 elementos f (0), f (1), · · · f (x):
+B(b, c, 0) = k = f (0)
+B(b, c, 1) = g(0, B(b, c, 0) = g(0, f (0)) = f (1)
+···
+B(b, c, x − 1) = g(0, B(b, c, x − 2) = g(x − 2, f (x − 2)) = f (x − 1)
+B(b, c, x) = g(0, B(b, c, x − 1) = g(x − 1, f (x − 1)) = f (x)
+.
+Finalmente, imponemos que B(b, c, x) = y: esto implica que y tiene que ser B(b, c, x) = f (x),
+que es lo que queremos.
+Para escribirla en el lenguaje L tenemos que usar αg (x1 , x2 , y) para expresar “y = g(x1 , x2 )”, β(x1 , x2 , x3 , y)
+para expresar “y = B(x1 , x2 , x3 )”, α< (x, y) para expresar “x < y”, y S(i) para expresar “i+1”, y además
+hay que pasar por variables auxiliares (z1 y z2 en la fórmula de abajo) para componer funciones, entonces
+queda esta fórmula terrible:
+αf (x, y) := ((x = 0 → y = k)
+∧ (¬ x = 0
+→ ∃b ∃c (β(b, c, 0, k)
+| {z }
+B(b,c,0)=k
+
+∧ ∀i (α< (i, x) → (∃z1 ∃z2 (β(b, c, i, z1 ) ∧ αg (i, z1 , z2 )) ∧ β(b, c, S(i), z2 )))
+|
+{z
+} |
+{z
+}
+| {z }
+{z
+} |
+i<x
+
+z1 =B(b,c,i)
+
+|
+
+z2 =g(i,z1 ))
+
+B(b,c,i+1)=z2
+
+{z
+
+B(b,c,i+1)=g(i,B(b,c,i))
+
+}
+
+∧ β(b, c, x, y)))
+| {z }
+y=B(b,c,x)
+
+Para decir que αf expresa f debemos mostrar que V [αf (x, y)] = 1 ⇐⇒ y = f (x). La demostración a
+partir de las sucesivas aplicaciones de V a la fórmula es muy engorrosa, ası́ que no la haremos aquı́, pero
+la idea es:
+• para (⇒): como las fórmulas β, αg , α< , αsuc expresan B, g, < y suc respectivamente, si la fórmula
+αf “es verdadera” (o sea: si V [αf ] = 1) entonces esos b y c “que existen” codifican exactamente la
+secuencia f (0), · · · , f (x) y entonces y siempre vale f (x), y entonces queda demostrado
+• para (⇐): partimos de que y = f (x), si x = 0 entonces y = f (0) = k entonces V [αf ] = 1, y si x > 0
+el lema que enunciamos nos dice que sı́ existen b y c que cumplen lo que dice la fórmula (o sea
+que B(b, c, i) = f (i) para 1 ≤ i ≤ x), entonces V [αf ] = 1, y queda demostrado.
+Expresando la recursión primitiva de tipo II
+La generalización para más de una variable usa exactamente la misma idea, lo único que cambia es que
+ahora las funciones tienen más variables entonces la fórmula se escribe un poquito distinto.
+Ası́, sea k > 1 y f : Nk → N una función que se obtiene por recursión primitiva a partir de g : Nk−1 → N
+y h : Nk+1 → N, es decir:
+f (x1 , · · · , xk−1 , 0) = g(x1 , · · · xk−1 )
+f (x1 , · · · , xk−1 , n + 1) = h(x1 , · · · , xk−1 , n, f (x1 , · · · , n))
+Entonces si g y h son expresables mediante fórmulas αg (x1 , · · · , xk−1 , y) y αh (x1 , · · · , xk , xk+1 , y) respectivamente, f también lo es, mediante la fórmula αf (x1 , · · · , xk , y) que exprese esto:
+(xk = 0) ⇒ y = g(x1 , · · · xk−1 )
+(xk 6= 0) ⇒ ∃b ∃c [B(b, c, 0) = g(x1 , · · · , xk−1 )
+∧ ∀i < x se cumple B(b, c, i + 1) = h(x1 , · · · , xk−1 , i, B(b, c, i))
+∧ B(b, c, x) = y ]
+La fórmula en L es:
+αf (x1 , · · · , xk , y) := (xk = 0 → αg (x1 , · · · , xk−1 , y)
+∧ (¬ xk = 0
+→ ∃b ∃c (∃z(αg (x1 , · · · , xk−1 , z) ∧ β(b, c, 0, z))
+∧ ∀i (α< (i, xk ) → (∃z1 ∃z2 (β(b, c, i, z1 ) ∧ αh (x1 , · · · , xk−1 , i, z1 , z2 ) ∧ β(b, c, S(i), z2 )))
+∧ β(b, c, x, y)))
+Y la demostración de que efectivamente αf expresa f sigue la misma lı́nea que en la de recursión de tipo
+I que describimos en la sección anterior.
+
+Conclusión: las funciones recursivas primitivas son expresables en nuestro
+lenguaje
+Si f es una función RP podemos definir su complejidad como la mı́nima cantidad de pasos (en el sentido:
+composiciones o recursión primitiva con otras funciones RP) necesarios para construirla a partir de
+funciones iniciales. Por definición de las funciones RP este numero siempre existe y es un número natural,
+entonces podemos demostrar nuestra proposición por inducción en la complejidad.
+Proposición: Si f es una función recursiva primitiva entonces f es expresable en nuestro
+lenguaje L para la aritmética con la interpretación I = (N, +, ·, 0, 1)
+Demostración: Caso base: Si la complejidad de f es 0 entonces f es una función inicial, y demostramos
+que las funciones iniciales son expresables.
+Hipótesis inductiva: Si f es una función RP de complejidad k < n entonces f es expresable.
+Tesis: Si f es una función RP de complejidad n + 1 entonces f es expresable.
+Ciertamente: sea f una función RP de complejidad n + 1, entonces pasa alguno de los siguientes:
+1. f se obtuvo por composición de dos funciones g1 y g2
+2. f se obtuvo por recursión primitiva de tipo I a partir de una g recursiva primitiva
+3. f se obtuvo por recursión primitiva de tipo II a partir de dos g1 y g2 que también son RP.
+En los tres casos, las funciones con las que se construye f son funciones RP con complejidad menor a
+n + 1 (pues la construcción de f constituye un último paso, entonces pueden construirse con al menos un
+paso menos). Entonces por hipótesis inductiva son expresables, y con lo que ya demostramos podemos
+en los tres casos afirmar que entonces f también es expresable.
+Corolario: Cualquier conjunto recursivo primitivo es expresable en (N, +, ·, 0, 1).
+Demostración: Un conjunto A ⊂ N es RP si su función caracterı́stica χA : N → {0, 1} es RP. Pero
+si χA es RP entonces, por lo que acabamos de demostrar, existe una fórmula αχA (x, y) que la expresa.
+Entonces la fórmula
+αA (x) := αχA (x, 1)
+expresa al conjunto A:
+V [αχA (x, 1)] = 1 ⇐⇒ 1 = χA (x) ⇐⇒ x ∈ A
+
+Apéndice
+Existencia y expresión de la función B
+Para terminar, vamos a definir la función B del lema y probar que tiene las propiedades que dijimos, es
+decir, demostraremos el lema. Esta función se llama en la literatura “función beta de Gödel”.
+Sea entonces
+B : N3 → N
+B(x, y, i) = resto(x, (i + 1) · y + 1)
+donde resto(x, y) es el resto de dividir x por y.
+Afirmación: dada cualquier secuencia de numeros naturales a0 , a1 , · · · , ak existen b y c tales que
+B(b, c, i) = ai para 0 ≤ i ≤ k.
+Demostración: Sea a0 , a1 , · · · , ak una secuencia de k + 1 numeros naturales, y sea s un número mayor
+que todos los ak y que k, por ejemplo s = 1 + max{a0 , · · · ak , k}.
+
+Ahora definimos los números mi = (i + 1)s! + 1, con 0 ≤ i ≤ k, (notar que tiene el formato del segundo
+argumento a resto que aplica B), es decir:
+m0 = s! + 1
+m1 = 2 · s! + 1
+m2 = 3 · s! + 1
+···
+mk−1 = k · s! + 1
+mk = (k + 1) · s! + 1
+Afirmación: Estos números son coprimos dos a dos: i 6= j ⇒ mi ⊥ mj para 0 ≤ i, j ≤ k.
+Demostración: Supongamos que no para llegar a un absurdo, es decir, supongamos que existe p primo
+tal que p |mi y p |mj con 0 ≤ i < j ≤ k. Vamos a usar estas propiedades de la divisibilidad:
+1. a |b y a |c ⇒ a |b−c
+2. a |b ⇒ a |c·b para cualquier c ∈ Z
+3. a |b·c ⇒ a |b ó a |c para todo b, c ∈ Z
+4. a |b y b |c ⇒ a |c
+Si p divide a mi y mj entonces (por (1)) p divide a la diferencia mj − mi , es decir p |(j−i)s! , y entonces
+(por (3)) p |(j−i) o p |s! .
+Pero j − i < k < s, entonces (j − i) es un factor de s!, entonces j−i |s! y entonces forzosamente tenemos
+que p |s! (porque si p divide a un factor de s! entonces también divide a s!, la propiedad (4) que escribimos
+arriba). Entonces también p |(i+1)·s! , porque i + 1 es un número entero (propiedad (2)).
+Pero habı́amos dicho que p |mi =(i+1)s!+1 , entonces p |(i+1)s!+1−((i+1)·s!) , es decir p |1 . ¡Absurdo! p es primo.
+El absurdo vino de suponer que existian mi , y mj distintos que no eran coprimos, entonces debe ser que
+todos son coprimos dos a dos.
+Consideremos ahora el sistema de congruencias
+x ≡ a0 (mod m0 )
+x ≡ a1 (mod m1 )
+x ≡ a2 (mod m2 )
+···
+x ≡ ak (mod mk )
+
+Como los números m0 , · · · , mk son coprimos dos a dos, entonces por el Teorema Chino del Resto
+existe una única solución módulo M , donde M = m0 · m1 · · · mk . Sea x0 ∈ N la única solución que
+cumple 0 ≤ x0 < M . Entonces:
+x0 ≡ a0 (mod m0 )
+x0 ≡ a2 (mod m1 )
+x0 ≡ a3 (mod m2 )
+···
+x0 ≡ ak (mod mk )
+
+Notemos que como 0 ≤ ai < mi (porque s > ai y la construcción de mi ), entonces ai es efectivamente
+el resto de dividir x0 por mi = (i + 1)s! + 1, entonces tenemos que:
+a0 = resto(x0 , s! + 1) = B(x0 , s!, 0)
+a1 = resto(x0 , 2 · s!) = B(x0 , s!, 1)
+···
+ak−1 = resto(x0 , k · s! + 1) = B(x0 , s!, k − 1)
+ak = resto(x0 , (k + 1) · s! + 1) = B(x0 , s!, k)
+
+Y ası́ demostramos lo que querı́amos: existen b y c naturales tales que B(b, c, i) = ai para todo 0 ≤ i ≤ k
+(con los nombres que elegimos en la demostración, b = x0 y c = s!).
+Existe una fórmula β que expresa a B en nuestra interpretación
+Finalmente, vemos que la función B puede expresarse con una fórmula β(x1 , x2 , x3 , y) de nuestro lenguaje.
+Para eso primero expresaremos la función resto. Recordemos que el resto de dividir a por b es el único
+número r con 0 ≤ r < b tal que a = bq + r para algún q ∈ N. Ası́, la fórmula que expresa la función resto
+es:
+αresto (x1 , x2 , y) := (α≤ (0, y) ∧ α< (y, x2 ) ∧ ∃q ((q · x2 ) + y) = x1 )
+αresto expresa resto:
+V [αresto (x1 , x2 , y)] = 1
+⇐⇒ 0 ≤ y, y < x2 , y existe q ∈ N tal que qx2 + y = x1
+⇐⇒ resto(x1 , x2 ) = y
+Finalmente, la fórmula β que expresa B es
+β(x1 , x2 , x3 , y) = αresto (x1 , S(S(x3 ) · x2 )), y)
+En efecto:
+V [β(x1 , x2 , x3 , y)] = 1
+⇐⇒ y = resto(x1 , (((x3 + 1) · x2 ) + 1))
+
+porque αresto expresa la función resto
+
+⇐⇒ y = resto(x1 , (x3 + 1) · x2 + 1))
+⇐⇒ y = B(x1 , x2 , x3 )
+
+

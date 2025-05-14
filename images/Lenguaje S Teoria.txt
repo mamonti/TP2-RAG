@@ -1,0 +1,306 @@
+Lógica y Computabilidad
+
+ITBA
+
+LENGUAJE S
+
+1.
+
+Elementos del Lenguaje
+
+Un programa en lenguaje S es una secuencia finita de instrucciones. Se escribe una
+instrucción debajo de la otra. Para definir las mismas, es necesario primero definir variables
+y etiquetas. No hay invocación de programas, ni pasaje de parámetros.
+1.1.
+
+Variables. Las variables no se declaran. El tipo de datos es N. Se tienen 3 tipos
+
+de variables:
+1. Variables de entrada:
+X1 , X2 , X3 , X4 , · · ·
+2. Variables temporales:
+Z1 , Z 2 , Z 3 , Z 4 , · · ·
+3. Variable de salida:
+Y
+Las variables auxiliares y la de salida comienzan inicializadas en 0.
+
+1.2.
+
+Etiquetas. Las etiquetas se representan de la siguiente manera:
+A1 , B 1 , C 1 , D 1 , E 1 , A 2 · · ·
+
+1.3.
+
+Instrucciones. A cada instrucción la puede anteceder o no una etiqueta, la cual
+
+se escribe entre corchetes:
+[L] Instruccion
+Se tienen 3 tipos de instrucciones:
+1. Sea V una variable,
+V ←V +1
+Si la variable V tiene el valor n ∈ N, luego de ejecutarse la instrucción va a tener
+el valor n + 1.
+2. Sea V una variable,
+V ←V −1
+Si la variable V tiene el valor n ∈ N≥1 , luego de ejecutarse la instrucción va a tener
+el valor n − 1. Si la variable V tiene el valor 0, luego de ejecutarse la instrucción
+queda con el mismo valor.
+3. Sea V una variable y L una etiqueta,
+IF V 6= 0 GOT O L
+Si la variable V tiene el valor 0, se pasa a la próxima instrucción, si la variable V
+tiene un valor distinto de 0, se pasa a la primer instrucción del programa a la cual
+la antecede la etiqueta L.
+2.
+
+Ejemplos de programas
+
+Ejemplo 2.1. Dado el siguiente programa
+[A1 ] X1 ← X1 − 1
+Y ←Y +1
+IF X 6= 0 GOT O A1
+Cuando X1 = 0 el programa termina, porque no hay una cuarta instrucción. Este
+programa computa la función f : N → N,
+(
+f (x) =
+
+1,
+
+x = 0;
+
+x,
+
+x 6= 0.
+
+Ejemplo 2.2. Dado el siguiente programa
+Y ←Y −1
+Este programa computa la función
+f : N → N, f (x) = 0
+Notemos que el siguiente programa, computa la misma función:
+X1 ← X1 − 1
+Y ←Y −1
+Conclusión: Dos programas distintos pueden computar la misma función.
+
+Ejemplo 2.3. Dado el siguiente programa
+
+Y ← Y + 1
+
+
+
+
+Y ← Y + 1
+k instrucciones
+..
+
+
+.
+
+
+
+Y ← Y + 1
+Este programa computa la función f : N → N, f (x) = k.
+
+Ejemplo 2.4. Dado el siguiente programa
+[A1 ]IF X1 6= 0 GOT O A1
+Este programa computa la función f : N → N,
+(
+↑, x 6= 0;
+f (x) =
+0, x = 0.
+donde ↑ significa que no está definida la función en dicho caso el programa no termina.
+
+Ejemplo 2.5. Dado el siguiente programa
+[A1 ] IF X1 6= 0 GOT O B1
+Z1 ← Z1 + 1
+IF Z1 6= 0 GOT O E1
+[B1 ] X1 ← X1 − 1
+Y ←Y +1
+Z1 ← Z1 + 1
+IF Z1 6= 0 GOT O A1
+Como la etiqueta E1 no antecede a ninguna instrucción, cuando busca dicha etiqueta
+el programa termina.
+Este programa computa la función identidad f : N → N, f (x) = x.
+
+3.
+
+Macros
+
+Las macros son pseudoinstrucciones que representan segmentos de programas. Cada
+vez que en un programa P aparece una macro, hay que reemplazarla por el segmento
+de programa que representa, dicho segmento de programa se denomina expansión de la
+macro. Hay que tener el cuidado de que las variables auxiliares y las etiquetas que se
+utilicen para expandir una macro, no aparezcan en otras instrucciones del programa.
+3.1.
+
+Ejemplos de macros.
+
+Ejemplo 3.1. La macro salto incondicional se representa como
+GOT O L
+siendo L una etiqueta. Y se expande de la siguiente manera:
+V ←V +1
+IF V 6= 0 GOT O L
+
+Ejemplo 3.2. La macro asignación de cero se representa como
+V ←0
+Y se expande de la siguiente manera:
+[L] V ← V − 1
+IF V 6= 0 GOT O L
+
+Ejemplo 3.3. La macro asignación de variable se representa como
+V1 ← V2
+Y se expande de la siguiente manera:
+V1 ← 0
+[A1 ] IF V2 6= 0 GOT O B1
+GOT O C1
+[B1 ] V2 ← V2 − 1
+V1 ← V1 + 1
+Z1 ← Z1 + 1
+GOT O A1
+[C1 ] IF Z1 6= 0 GOT O D1
+GOT O E1
+[D1 ] Z1 ← Z1 − 1
+V2 ← V2 + 1
+GOT O C1
+Recordemos que las etiquetas que aparecen en esta macro: A1 , B1 , C1 , D1 , E1 tienen
+que ser etiquetas que no se usen en el programa donde se va a usar la macro, lo mismo
+tiene que pasar con la variable auxiliar Z1 .
+Notemos que si cambiamos V1 por Y y V2 por X1 y vemos la macro como un programa
+completo, el mismo computarı́a la función identidad, pero a diferencia de como lo hicimos
+antes, resguardarı́a l valor de entrada.
+
+4.
+
+Ejemplos de programas con macros
+
+Ejemplo 4.1. Función suma
+El siguiente programa computa la función: f : N × N → N, f (x1 , x2 ) = x1 + x2 .
+Y ← X1
+Z1 ← X2
+[C1 ] IF Z1 6= 0 GOT O B1
+GOT O E1
+[B1 ] Z1 ← Z1 − 1
+Y ←Y +1
+GOT O C1
+
+Ejemplo 4.2. Función producto
+El siguiente programa computa la función: f : N × N → N, f (x1 , x2 ) = x1 x2 .
+Z2 ← X2
+[B1 ] IF Z2 6= 0 GOT O A1
+GOT O E1
+[A1 ] Z2 ← Z2 − 1
+Z1 ← X1 + Y
+Y ← Z1
+GOT O B1
+
+Ejemplo 4.3. Función sucesor
+El siguiente programa computa la función: f : N → N, f (x) = x + 1.
+Y ← X1
+Y ←Y +1
+
+Ejemplo 4.4. Función proyección
+Basta con cambiarle al programa que computa la función identidad X1 por la variable Xi ,
+si es la i-ésima variable la que se quiere proyectar.
+5.
+
+Descripciones de programas
+
+Estado de un programa
+Un estado de un programa P es una lista de ecuaciones de la forma V = m, donde V es
+una variable y m un número. Hay una única ecuación para cada variable que aparece en P.
+
+Ejemplo 5.1. Dado el siguiente programa P:
+[A1 ]X1 ← X1 − 1
+Y ←Y +1
+IF X1 6= 0 GOT O A1
+Los siguientes son estados de P:
+X1 = 2, Y = 1
+X1 = 3, Y = 1, Z1 = 0
+X1 = 5, Y = 1, Z1 = 6
+Notemos que no es necesario que los estados sean alcanzados.
+Veamos ahora ejemplos de secuencias de ecuaciones que no son estados:
+X1 = 2. No es un estado porque falta una ecuación asociada a la variable Y .
+X1 = 2, Z1 = 3. No es un estado porque falta una ecuación asociada a la variable Y .
+Y = 1, X1 = 6, Y = 2. No es un estado porque hay dos ecuaciones asociadas a la variable
+Y.
+
+Descripción instantánea de un programa o Snapshot
+Supongamos que un programa P tiene longitud n, es decir consta de n instrucciones:
+I1 , I2 , · · · , In . Para un estado σ de P y un i ∈ {1, 2, · · · , n + 1} tenemos qie el par (i, σ)
+es una descripción instantánea de P, la cual se llama terminal si i es igual a n + 1. Para
+una (i, σ) no terminal se puede definir su sucesor (j, τ ):
+
+1. Si la i-ésima instrucción de P es V ← V + 1, entonces j = i + 1, τ es σ salvo que
+V = m se reemplaza por V = m + 1.
+2. Si la i-ésima instrucción de P es V ← V − 1, entonces j = i + 1, τ es σ salvo que
+V = m se reemplaza por V = m − 1 si m no es cero.
+3. Si la i-ésima instrucción de P es IF V 6= 0 GOT
+( O L, entonces τ es σ y si en σ, V =
+min{k : Ik tiene etiqueta L}, si existe [L] Ik
+0, entonces j = i+1 y si V 6= 0 entonces j =
+n + 1,
+si no existe [L] Ik
+
+Cómputo
+Un cómputo de un programa P a partir de una descripción instantánea d1 es una lista
+d1 , d2 , · · · , dk de descripciones instantáneas de P tal que di+1 es el sucesor de di para
+i ∈ {1, · · · , k − 1}, siendo dk terminal.
+
+Ejemplo 5.2. Para el siguiente programa P:
+[A1 ] X1 ← X1 − 1
+Y ←Y +1
+IF X1 6= 0 GOT O A1
+el cómputo a partir de d1 = {1, X1 = 2, Y = 0} es:
+d2 = {2, X1 = 1, Y = 0}
+d3 = {3, X1 = 1, Y = 1}
+d4 = {1, X1 = 1, Y = 1}
+d5 = {2, X1 = 0, Y = 1}
+d6 = {3, X1 = 0, Y = 2}
+d7 = {4, X1 = 0, Y = 2}
+
+Estado inicial
+Sea P un programa y sean u1 , · · · , um números dados. El estado inicial de P para
+u1 , · · · , um es el estado σ1 que tiene X1 = u1 , X2 = u2 , · · · , Xm = um , Y = 0 junto a
+V = 0 para toda V temporal que aparezca en P, o cualquier otra variable que aparezca
+en P y no hayamos mencionado. Por la tanto la descripción inicial de P para u1 , · · · , um
+es (1, σ1 )
+
+Cómputo a partir del estado inicial
+Sea P un programa y sean u1 , · · · , um números dados y σ1 el estado inicial para ellos.
+Existen dos posibilidades:
+1. Hay un cómputo de P, d1 , · · · , dk siendo d1 = (1, σ1 ).
+Notamos Ψm
+P (u1 , · · · , um ) al valor de Y en la descripción instantánea dk .
+2. No hay tal cómputo, es decir existe una secuencia infinita d1 , d2 , · · · siendo
+d1 = (1, σ1 ) y di+1 el sucesor de di .
+m
+Decimos que Ψm
+P (u1 , · · · , um ) está indefinido, lo notamos ΨP (u1 , · · · , um ) =↑
+
+Función computable
+Una función f es parcialmente computable si existe un programa P tal que
+m
+f (u1 , · · · , um ) = Ψm
+P (u1 , · · · , um ) para todo (u1 , · · · , um ) ∈ N .
+
+Una función f es computable si es parcialmente computable y total. Total quiere decir
+que el dominio de f es Nm .
+Observación:
+Notemos que el mismo programa puede servir para computar funciones de 1, 2, 3, · · · ,
+variables. Por lo tanto si en P aparece Xn y no aparece Xi con i > n hay dos opciones:
+1. Si solo se especifican m < n valores de entrada, entonces Xm+1 , · · · , Xn toman el
+valor 0.
+2. Si se especifican m > n valores de entrada, P ignorará un+1 , · · · , um .
+
+Ejemplo 5.3. Sea el programa P:
+[A1 ] IF X1 6= 0 GOT O A1
+(
+Notemos que Ψ1P (x) =
+
+0,
+
+x = 0;
+
+↑, x 6= 0.
+La función que computa es parcialmente computable pues su dominio es {0}.
+
+
+

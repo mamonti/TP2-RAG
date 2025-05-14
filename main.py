@@ -61,6 +61,16 @@ def ocr_desde_carpeta(carpeta="images"):
             except Exception as e:
                 print(f"Error procesando {archivo}: {e}")
 
+        elif archivo.lower().endswith(".txt"):
+            try:
+                with open(ruta, "r", encoding="utf-8") as f:
+                    texto_txt = f.read().strip()
+                    if texto_txt:
+                        print(f"Texto extraído de {archivo}")
+                        documentos.append(Document(page_content=texto_txt, metadata={"source": archivo}))
+            except Exception as e:
+                print(f"Error leyendo {archivo}: {e}")
+
     return documentos
 
 def split_documents(docs):
@@ -123,8 +133,20 @@ def main():
             user_input = imagen_a_texto(user_input)
             print("📝 Texto extraído:", user_input)
 
-        respuesta = qa_chain.invoke({"query": user_input + "Solo responde en español."})
-        print("📘 Asistente:", respuesta["result"])
+        # Paso 1: obtener sugerencias teóricas
+        sugerencia_query = (
+            f"Dado el siguiente ejercicio, ¿qué propiedades, definiciones o teoremas se podrían usar para resolverlo? "
+            f"No des la resolución. Ejercicio: {user_input}. Solo responde en español."
+        )
+        sugerencias = qa_chain.invoke({"query": sugerencia_query})["result"]
+
+        print("📘 Asistente - Sugerencias teóricas:", sugerencias)
+
+        # Paso 2: ofrecer resolución
+        desea_resolver = input("¿Querés que intente resolver el ejercicio? (sí/no): ").strip().lower()
+        if desea_resolver in ["sí", "si", "s"]:
+            respuesta = qa_chain.invoke({"query": user_input + " Solo responde en español."})["result"]
+            print("📘 Asistente - Resolución:", respuesta)
 
 if __name__ == "__main__":
     main()

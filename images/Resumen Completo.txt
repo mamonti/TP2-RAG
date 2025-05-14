@@ -1,0 +1,966 @@
+Instituto Tecnológico de Buenos Aires
+
+LÓGICA COMPUTACIONAL
+
+Autor:
+
+*
+
+Tomás S. Marengo
+
+* tmarengo@itba.edu.ar - se aceptan correcciones y/o sugerencias.
+
+1.
+
+Cardinalidad
+
+DEF: A es coordinable con B (A∼B) si ∃ f:A→B biyectiva. ARB si A∼B ⇒ R es de equivalencia.
+DEF: Sección inicial In = {1, 2, 3, ..., n}, n ∈ N
+OBS: In ∼ Im ⇔ n = m
+DEF: A es nito si A = ∅ ó ∃k ∈ N≥1 /A ∼ Ik
+DEF: A es innito si no es nito.
+Cardinales conocidos
+#P (X) = 2#X
+#∅ = 0
+
+#Rk = C
+
+#[0, 1] = C
+
+#(Z × N) = ℵ0
+
+#Nk = ℵ0
+
+#Z = ℵ0
+
+#Qk = ℵ0
+
+#Ik = K
+
+1.1. Comparación de cardinales
+A y B conjuntos #A = m y #B = k
+
+1. m ≤ k ⇔ ∃ f : A → B inyectiva
+2. m ≥ k ⇔ ∃ f : A → B sobreyectiva
+3. m = k ⇔ ∃ f : A → B biyectiva
+4. m < k ⇔ m ≤ k y m ̸= k
+5. m > k ⇔ m ≥ k y m ̸= k
+
+Teorema de Bernstein y propiedades
+1. m ≤ k y m ≥ k ⇒ m = k
+2. m ≤ n ⇔ n ≥ m
+
+" Si ∃ f :A → B iny y ∃ f ∗ :A → B sobrey ⇒ ∃ f :A→ B biy "
+′
+
+" ∃ f : A → B iny ⇔ ∃ f : A → B sobrey "
+
+3. m ≤ n y n ≤ m ⇒ n = m
+
+" f : A → B iny y g : A → B sobrey ⇒ ∃ h : A → B biy "
+
+Propiedades
+1. Cualquier subconjunto de una sección inicial es nito.
+2. A ⊆ B y A es innito ⇒ B es innito.
+3. X innito ⇒ ∃ f : N → X iny (ℵ0 = #N ≤ #X)
+
+1.2. Numerables
+DEF: A es numerable si A es nito o A ∼ N
+Propiedades
+1. A es numerable y A ̸= ∅ ⇒ ∃ f : N → A sobrey.
+2. ∃f : N → A sobrey ⇒ A es numerable.
+3. A ∼ N y A ∼ N ⇒ A × B ∼ N
+4. A y B numerables ⇒ A ∪ B es numerable.
+5. (An )n∈N una familia de conjuntos numerables ⇒ ∪n∈N An es numerable.
+6. A nito no vacío y S = ∪m∈N>0 Am ⇒ #S = ℵ0
+
+1.3. Innito no numerable
+Propiedad: [0, 1] = {x ∈ R/0 ≤ x ≤ 1} es innito no numerable.
+Propiedades
+1. X es innito no numerable, A numerable ⇒ X ∪ A ∼ X
+2. X es innito no numerable, A numerable ⇒ X − A ∼ X
+
+1.4. Innitos mayores y álgebra de cardinales
+Teorema de Cantor: #X < #P (X)
+Álgebra de cardinales
+a = #X , b = #Y , c = #Z
+
+1. a + b = #(X ∪ Y ) X ∩ Y = ∅
+2. a × b = #(X × Y )
+3. ba = #{f : X → Y / f es función }
+4. (ab ) = abc
+c
+
+5. Si b ≤ c ⇒ ab ≤ ac , ba ≤ ca , a · b ≤ a · c
+6. ab · ac = ab+c
+
+Equivalencias
+1. ℵ0 = n + ℵ0 = ℵ0 + ℵ0 = n · ℵ0 = ℵ0 · ℵ0
+2. C = 2ℵ0 = C + ℵ0 = C · C = ℵ0 · C = C ℵ0 = C n
+3. 2C = C C
+2.
+
+Lógica Proposicional I
+
+2.1. Lenguaje
+DEF: A alfabeto, A un conjunto, A ̸= ∅.
+DEF: Una expresión es una sucesión nita de elementos de A o la cadena vacía λ.
+DEF: A∗ = ∪n∈N An .
+DEF: Un lenguaje Σ sobre A es Σ ⊆ A∗ , Σ ̸= ∅.
+Proposición: A alfabeto, E, F, G, H ∈ A∗ , EF = GH, long(E) ≥ long(G)
+⇒ ∃ H ′ ∈ A∗ /E = GH ′
+
+2.2. Sintaxis
+A = V AR ∪ {(, )} ∪ {∧, ∨, →, ¬}
+
+DEF: Fórmula
+1. V AR ⊆ F
+2. α ∈ F ⇒ ¬α ∈ F
+3. α, β ∈ F ⇒ (α ∨ β), (α ∧ β), (α → β) ∈ F
+4. α ∈ E ∗ es fórmula si se obtiene aplicando nitas veces 1) 2) y 3).
+
+DEF: Cadena de Formación (c.f)
+Una sucesión nita X1 , X2 , ..., Xn de expresiones de A∗ es una c.f si Xi ∈ V AR o ∃ j < i/Xi = ¬Xj
+o ∃ k, j < i/Xi ∈ (Xk ∗ Xj ). Cada Xi se llama eslabón.
+
+Teorema: α ∈ F ⇔ ∃ X1 , ..., Xn = α c.f
+DEF: Subcadena
+Dada X1 , ..., Xn c.f decimos que Xi1 , Xi2 , ..., Xik es subcadena si:
+1. Si es c.f
+2. Xik = Xn
+3. 1 ≤ i1 < i2 < ... < ik = n
+
+DEF: Una c.f es minimal si la única subcadena que tiene es ella misma.
+DEF: E ∈ A∗ expresión.
+c(E) = cantidad de conectivos que aparecen en E.
+cb(E) = cantidad de conectivos binarios que aparecen en E.
+peso(E) = p(E) = cantidad de '(' menos la cantidad de ')'.
+Teorema
+1. p(α) = 0
+2. Si • es un conectivo binario que aparece en α ⇒ la expresión de E a la izquierda de • en α
+verica que tiene p(E) > 0.
+
+DEF: Subfórmula
+c(α) = 0 ⇒ α = Pj ∈ V AR ⇒ S(α) = Pj .
+c(α) > 0
+
+1. α = ¬β ⇒ S(α) = {α} ∪ S(β).
+2. α = (β1 • β2 ) ⇒ S(α) = {α} ∪ S(β1 ) ∪ S(β2 ).
+
+2.3. Semántica
+DEF: Valuación
+Una valuación es una función v : F ORM → {0, 1} que verica:
+1. v(¬α) = 1 − v(α)
+2. v(α1 ∧ α2 ) = min{v(α1 ), v(α2 )}
+3. v(α1 ∨ α2 ) = max{v(α1 ), v(α2 )}
+4. v(α1 → α2 ) = max{1 − v(α1 ), v(α2 )}
+
+Teorema: Dada f : V AR → {0, 1}, ∃! val v : F ORM → {0, 1} / v extiende a f (v|V AR = f ).
+ó, se puede decir que:
+
+v, w : F ORM → {0, 1} val / v|V AR = w|V AR ⇒ v = w
+
+DEF: Clasicación semántica
+1. α es tautología si v(α) = 1∀ v val.
+2. α es contradicción si v(α) = 0∀ v val.
+3. α es contigencia si ∃ v val / v(α) = 1 y ∃ w val / w(α) = 0
+
+Teorema: α ∈ F / var(α) ={pj ∈ V AR / pj aparece en α}
+Si v, w son valuaciones tales que v|V AR(α) = w|V AR(α) ⇒ v(α) = w(α)
+
+DEF: Equivalencia
+Decimos que α es equivalente a β si v(α) = v(β) ∀ v val. α≡β
+
+DEF: Función booleana
+Una función f : {0, 1}n → {0, 1} se llama función booleana.
+
+Teorema: {f / f es función booleana} →biy
+F ORM /≡
+
+3.
+
+Lógica Proposicional II
+
+3.1. Satisfacibilidad y Consecuencias
+DEF: Satisfacibilidad
+1. Γ ⊆ F , decimos que Γ es satisfacible si ∃ v val / v(α) = 1 ∀α ∈ Γ.
+2. Γ ⊆ F , decimos que Γ es insatisfacible si ∄ v val / v(Γ) = 1, es decir ∀ v val ∃α ∈ Γ /
+v(α) = 0.
+
+DEF: Consecuencia
+1. Decimos que α es consecuencia de Γ si: (v(Γ) = 1 ⇒ v(α) = 1) ∀ v val.
+2. Decimos que α ∈
+/ C(Γ) si ∃ v val / v(Γ) = 1 y v(α) = 0.
+
+Teoremas y propiedades
+1. α ∈ C(Γ) ⇔ Γ ∪ {¬α} es insatisfacible.
+2. Γ = {γ1 , ..., γn } :
+
+α ∈ C(Γ) ⇔ ((γ1 ∧ ... ∧ γn ) → α) es tautología.
+
+3. Teorema de la deducción versión semántica: (α → β) ∈ C(Γ) ⇔ β ∈ C(Γ ∪ {α})
+4. Γ ⊂ C(Γ)
+5. C(C(Γ)) = C(Γ)
+6. C(F ) = F
+7. Γ1 ⊂ Γ2 ⇒ C(Γ1 ) ⊂ C(Γ2 )
+8. C(Γ1 ) ∪ C(Γ2 ) ⊂ C(Γ1 ∪ Γ2 )
+9. C(Γ1 ∩ Γ2 ) ⊂ C(Γ1 ) ∩ C(Γ2 )
+10. Si C(Γ1 ) = Γ2 y C(Γ2 ) = Γ1 ⇒ Γ1 = Γ2
+11. Si Γ es satisfacible ⇒ C(Γ) es satisfacible.
+
+3.2. Independencia y base
+DEF: Independencia
+Γ es un conjunto de fórmulas independientes si ∀α ∈ Γ α ∈
+/ C(Γ − {α})
+
+DEF: Base
+1. Γ es independiente.
+2. Si Σ es un conjunto independiente de fórmulas tales que Γ ⊂ Σ ⇒ Γ = Σ
+Propiedades
+1. Si Γ es independiente y Σ ⊂ Γ ⇒ Σ es independiente.
+2. Si Γ contiene una tautología ⇒ Γ es dependiente.
+3. C(Γ) es dependiente.
+
+3.3. Compacidad f.s.
+DEF: Finitamente satisfacible (f.s.) Γ es f.s. si todo subconjunto nito de Γ es satisfacible
+LEMA: Sea Γ f.s. pi ∈ VAR ⇒ Γ ∪ {pi } es f.s. ó Γ ∪ {¬pi }
+Teorema de Compacidad: Γ es satisfacible ⇔ Γ es f.s.
+Proposición: Son equivalentes:
+1. Teorema de compacidad
+2. α ∈ C(Γ) ⇒ ∃ Γ′ ⊆ Γ, Γ′ nito / α ∈ C(Γ′ )
+
+3.4. Teoría axiomática
+Proposición: Los axiomas son tautologías.
+AX1: (α → (β → α))
+AX2: ((α → (β → γ)) → ((α → β) → (α → γ)))
+AX3: ((¬α → ¬β) → ((¬α → β) → α))
+Regla Modus Ponens
+1. (α → β)
+2. α
+3. β
+
+DEF: Prueba
+Una prueba para α ∈ F es una sucesión nita de fórmulas α1 , α2 , ..., αk /
+1. αk = α
+2. αj es un axioma o se obtiene aplicando MP a αi y αt con i, t < j . Es decir αt = (αi → αj )
+
+DEF: Demostrable
+α es demostrable si existe una prueba de α. En este caso α se llama teorema.
+
+Teorema: α es demostrale → α es tautología.
+DEF: Deducibilidad
+Decimos que α se deduce de Γ si existe una sucesión nita de fórmulas α1 , α2 , ..., αn = α (prueba
+a partir de Γ) que verica que:
+1. αi ∈ Γ (αi es un dato)
+2. ó αi es un axioma
+3. ó αi se obtiene aplicando MP a αj = (αk → αi ) y αk , j, k < i, 1 ≤ i ≤ n
+
+Teorema de la deducción versión axiomática: Γ ⊢ (α → β) ⇔ Γ ∪ {α} ⊢ β
+Teorema de correctitud: Γ ⊢ α ⇒ α ∈ C(Γ)
+DEF: Consistente
+Γ es consistente si ∄ φ ∈ F / Γ ⊢ φ y Γ ⊢ ¬φ
+
+Y Γ es inconsistente si ∃ φ ∈ F / Γ ⊢ φ y Γ ⊢ ¬φ
+
+DEF: Maximal consistente
+Γ es m.c si Γ es consistente y ∀ φ ∈ F tenemos que: φ ∈ Γ ó ∃ ψ ∈ F / Γ∪{φ} ⊢ ψ y Γ∪{φ} ⊢ ¬ψ
+
+Teoremas y propiedades
+1. Γ satisfacible ⇒ Γ consistente.
+2. Lema de Lindembaum: Γ es consistente ⇒ ∃ Γ′ m.c / Γ ⊆ Γ′
+3. Γ ∪ {¬φ} es inconsistente ⇔ Γ ⊢ φ
+4. Γ ∪ {φ} es inconsistente ⇔ Γ ⊢ ¬φ
+5. Γ m.c ⇒ φ ∈ Γ′ ó ¬φ ∈ Γ′ (ó excluyente).
+6. Γ m.c ⇒ (Γ ⊢ φ ⇔ φ ∈ Γ)
+
+Teorema: Γ consistente ⇒ Γ satisfacible.
+Teorema de Completitud
+α ∈ C(Γ) ⇒ Γ ⊢ α
+
+DEF: Un sistema axiomático S es consistente si ∄ φ ∈ F / ⊢s φ y ⊢s ¬φ
+4.
+
+Lógica de Primer Orden I
+
+4.1. Lenguaje
+DEF: Alfabeto
+A =VAR ∪ CONECTIVOS ∪ {(, )} ∪ F ∪ C ∪ P
+VAR = {X0 , X1 , X2 , ...}
+CONECTIVOS = {∧, ∨, →, ¬} ∪ {∀, ∃}
+
+F : símbolos de función. F podría ser ∅.
+C : símbolos de constantes. C podría ser ∅.
+P : símbolos de predicados. P no puede ser ∅.
+
+DEF: Término a partir de un alfabeto A
+Es una expresión en A∗ que se obtiene aplicando nitas veces las siguientes reglas:
+1. Toda variable es un término.
+2. Toda constante es un término.
+3. Si t1 , t2 , ..., tk son términos y f k ∈ F ⇒ f k (t1 , t2 , ..., tk ) es un término.
+4. Cualquier expresión de A∗ que se obtiene aplicando nitas veces 1. 2. 3. es un término.
+
+DEF: Fórmula a partir de un alfabeto A
+1. t1 , t2 , ..., tk ∈ T ERM y pk ∈ P ⇒ P k (t1 , t2 , ..., tk ) es una fórmula (Atómica).
+2. α ∈ F ORM ⇒ ¬α ∈ F ORM
+3. α, β ∈ F ORM ⇒ (α ∗ β) ∈ F ORM
+4. α ∈ F ORM , x ∈ V AR ⇒ ∀x α ∈ F ORM
+5. α ∈ F ORM , x ∈ V AR ⇒ ∃x α ∈ F ORM
+6. Cualquier expresión de A∗ que se obtiene aplicando nitas veces 1. 2. 3. 4. 5. ∈ F ORM
+
+DEF: L de 1er orden
+Dado un alfabeto A, L ⊆ A∗ es un lenguaje de 1er orden si L = T ERM ∪ F ORM .
+
+DEF: Un término se llama cerrado si no tiene variables
+DEF: Variables libres y ligadas
+1. Una aparición de una variable x en una fórmula está ligada si es alcanza por un cuanticador.
+En caso contrario decimos que la aparición es libre.
+2. Una variable es libre en una fórmula si todas sus apariciones son libres.
+3. Una variable está ligada en una fórmula si todas sus apariciones están ligadas.
+4. Una fórmula se llamaba enunciado si todas sus variables están ligadas.
+4.2. Semántica
+DEF: Interpretación
+Dado un alfabeto A y un lenguaje L de 1er orden, una interpretación I de un lenguaje L consiste
+en:
+1. U ̸= ∅. U universo.
+2. c ∈ C ⇒ c se interpreta como cI ∈ U
+3. f k ∈ F ⇒ f k se interpreta como una función fIk : U k → U
+4. pk ∈ P ⇒ pk se interpreta como una relación k -aria en U , es decir pkI ⊆ U k
+
+DEF: Valuación
+Dado un lenguaje de 1er orden y una interpretación I de L.
+Una función v : V AR → UI se llama valuación.
+
+DEF: Valuación extendida
+Sea v : T ERM → UI una extensión de v que verica
+1. v(x) = v(x)
+2. v(c) = cI
+3. v(f k (t1 , ..., tk )) = fIk (v(t1 ), ..., v(tk ))
+
+DEF: Valuación modicada
+vxi =a : V AR → UI
+
+/ vxi =a =
+
+
+
+v(x)
+
+si x ̸= xi
+
+
+a
+
+si x = xi
+
+Valor de verdad de las fórmulas
+1. α = pk (t1 , ..., tk )
+2. α = ¬β
+
+VI,v (α) = 1 ⇔ (v(t1 ), ..., v(tk )) ∈ pkI
+
+VI,v (α) = 1 − VI,v (β)
+
+3. α = (β1 ∧ β2 )
+
+VI,v (α) = min{VI,v (β1 ), VI,v (β2 )}
+
+4. α = (β1 ∨ β2 )
+
+VI,v (α) = max{VI,v (β1 ), VI,v (β2 )}
+
+5. α = (β1 → β2 )
+
+VI,v (α) = max{1 − VI,v (β1 ), VI,v (β2 )}
+
+6. α = ∀x β
+
+VI,v (α) = 1 ⇔ VI,vx=a (β) = 1
+
+Para todo a ∈ UI
+
+7. α = ∃x β
+
+VI,v (α) = 1 ⇔ VI,vx=a (β) = 1
+
+Para algún a ∈ UI
+
+1. Decimos que α es satisfacible si ∃ I y v / VI,v (α) = 1
+
+Notación: I |= α[v]
+
+2. Decimos que α es verdadera o válida en una interpretación I si VI,v (α) = 1 ∀v
+Notación: I |= α
+3. Decimos que α es universalmente válida si VI,v (α) = 1 ∀I ∀v
+Notación: |= α
+
+5.
+
+Lógica de Primer Orden II
+
+5.1. Expresables
+DEF: Conjunto expresable
+A es expresable si ∃ α ∈ F ORM con una única variable libre y todas las demás variables ligadas
+tal que:
+VI,vx=a (α(x)) = 1 ⇔ x ∈ A ó dicho de otra forma:
+
+
+
+Si x ∈ A ⇒ VI,v (α(x)) = 1
+x=a
+
+Si x ∈
+/ A ⇒ VI,vx=a (α(x)) = 0
+
+DEF: Elemento distinguible
+Decimos que a es distinguible si {a} es expresable.
+
+5.2. Isomorsmo
+DEF: Isomorsmo
+Una función F : UI1 → UI2 se llama isomorsmo si:
+1. F es biyectiva.
+2. c ∈ C .
+
+cI1 ∈ UI1 y cI2 ∈ UI2 ⇒ f (cI1 ) = cI2 .
+
+3. f k ∈ F
+
+F (fIk1 (u1 , ..., uk )) = fIk2 (F (u1 ), ..., F (uk ))
+
+4. pk ∈ P
+
+(u1 , ..., uk ) ∈ pkI1 ⇔ (F (u1 ), ..., F (uk )) ∈ pkI2
+
+Isomorsmo: Lema, Teorema y Corolarios
+Sea L de 1° orden. I1 y I2 interpretaciones de L. Sea h : UI1 → UI2 iso. Sea v una val en I1 .
+
+Lema: h ◦ v = h ◦ v
+Teorema: I1 |= α[v] ⇔ I2 |= α[h ◦ v]
+Corolario 1: Si I1 |= α ⇔ I2 |= α → Sirve para probar que I1 ̸≈ I2 .
+Corolario 2: Si a ∈ U distinguible ⇒ h(a) = a → Sirve para probar no distinguibles.
+Corolario 3: A expresable en I ⇒ h(A) ⊆ A → Sirve para probar no expresables.
+Corolario 4: Si a ∈ UI1 es distinguible en I1 ⇒ h(a) ∈ UI2 es distinguible en I2
+→
+
+Sirve para armar un iso o para probar que I1 ̸≈ I2 .
+
+6.
+
+Lenguaje S
+
+Tres tipos de variables:
+1. De entrada: X1 , X2 , ...
+2. De salida: Y
+
+inicializada en cero.
+
+3. Auxiliares: Z1 , Z2 , ...
+
+inicializadas en cero.
+
+Etiquetas:
+A1 , B1 , C1 , D1 , E1 , A2 , ...
+
+Tres tipos de instrucciones:
+1. Tipo I: V ← V + 1
+2. Tipo II: V ← V − 1
+3. Tipo III: IF V ̸= 0 GOT O L
+
+DEF: Programa
+Es una lista nita de instrucciones I1 , I2 , ..., In que se escribe una debajo de la otra
+
+DEF: Macro
+Es una pseudoinstrucción que representa un segmento de programa. Cada vez que en un programa
+aparece una macro hay que reemplazarla por el segmento de programa que representa, dicho
+segmento de programa se denomina expansión de la macro.
+
+Macros conocidas
+1. Salto incondicional: GOT O L
+2. Asignación de cero: V ← 0
+3. Asignación de variables: V ← X1
+4. Salto con condicion cero: IF V = 0 GOT O L
+
+DEF: Estado
+Un estado de un programa P es una lista nita de igualdades de la forma V = m. Donde V es una
+variable y m ∈ N. Hay una única igualdad para cada variable que aparece en P . Deben aparecer
+todas las variables que aparecen en P
+DEF: Snapshot
+Supongamos que un programa P tiene longitud n, es decir, tiene n instrucciones I1 , I2 , ..., In . Para
+un estado σ de P y un i ∈ {1, 2, ..., n, n + 1} tenemos que el par (i, σ) es un snapshot de P la cual
+se llama terminal si i = n + 1.
+i dice a qué instrucción apunta antes de ser ejecutada. En σ están los valores de las variables antes
+
+de ejecutar la instrucción i.
+Dada una foto (i, σ) no terminal se dene la foto sucesora (j, τ ) de la siguiente manera:
+1. Si la i-ésima instrucción es V ← V + 1 ⇒ j = i + 1, τ = σ
+salvo que si V = m ∈ σ ⇒ V = m + 1 ∈ τ
+2. Si la i-ésima instrucción es V ← V − 1 ⇒ j = i + 1, τ = σ
+salvo que si V = m > 0 ∈ σ ⇒ V = m − 1 ∈ τ y si V = 0 ∈ σ ⇒
+V =0∈τ
+3. Si la i-ésima instrucción es IF V ̸= 0 GOT O L ⇒ τ = σ , j =
+Siendo k =
+
+i + 1 si V = 0 ∈ σ
+ k
+si V ̸= 0 ∈ σ
+
+
+min{t/I está etiquetado con L}
+
+Si alguna instrucción está etiquetada con L
+
+n+1
+
+Si ninguna instrucción está etiquetada con L
+
+t
+
+
+
+DEF: Cómputo
+Un cómputo de un programa P a partir de una snapshot d1 = (i, σ) es una lista nita d1 , d2 , ..., dk
+de fotos siendo dj+1 la foto sucesora de dj , y dk la foto terminal.
+
+DEF: Estado Inicial
+Sea P un programa y u1 , u2 , ..., um ∈ N. El estado inicial de P para dichos valores es:
+σ = (X1 = u1 , X2 = u2 , ..., Xm = um , Xj = 0 (j > m), Zj = 0, Y = 0) si Zj aparece en P .
+d1 = (1, σ) la foto inicial.
+
+DEF: Cómputo a partir de un estado inicial
+Sea P un programa, u1 , u2 , ..., um ∈ N y σ1 el estado inicial para ellos. Existen dos posibilidades:
+1. Que el programa termine ante dichas entradas ⇒ Existe un cómputo de P a partir de
+d1 = (1, σ), es decir existe d1 , ..., dk / dk terminal.
+
+Ψm
+p (u1 , ..., um ) = Y en dk
+
+2. Que el programa no termine ante dichas entradas ⇒ No existe un cómputo de P a partir de
+d1 = (1, σ).
+
+Ψm
+p (u1 , ..., um ) = ↑
+
+DEF: Función computable
+1. Una función f : Nk → N es parcialmente computable si existe un programa P / f = Ψkp
+Si ⃗x ∈ Domf ⇒ f (⃗x) = Ψkp (⃗x)
+
+y
+
+Si ⃗x ∈
+/ Domf ⇒ Ψkp (⃗x) = ↑
+
+2. Una función f : Nk → N es computable si es parcialmente computable y total
+(Domf = Nk )
+
+7.
+
+Funciones RP
+
+7.1. Primeras deniciones y teoremas
+Teorema: La composición de funciones computables es computable.
+DEF: Esquema Recursivo Tipo I (ERI)
+Sea h : N → N y g : N2 → N
+. Decimos que h se obtiene a partir de g por un ERI si se puede
+escribir de la siguiente forma:
+
+ h(0) = k ∈ N
+
+ h(n + 1) = g(n, h(n))
+
+Teorema: Si h se obtiene a partir de g por un ERI y g es computable ⇒ h es computable.
+DEF: Esquema Recursivo Tipo II (ERII)
+Sea h : Nn+1 → N, g : Nn+2 → N y q : N → N
+. Decimos que h se obtiene a partir de g y q por un
+ERII si se puede escribir de la siguiente forma:
+
+ h(x , ..., x , 0) = q(x , ..., x )
+1
+
+n
+
+1
+
+n
+
+ h(x1 , ..., xn , y + 1) = g(x1 , ..., xn , y, h(x1 , ..., xn , y))
+
+Teorema: Si h se obtiene a partir de g y q por un ERII y g y q son computables ⇒ h es computable.
+DEF: Funciones iniciales
+1. cero : N → N / cero(x) = 0
+2. suc : N → N / suc(x) = x + 1
+3. πjn : Nn → N / πjn (x1 , ..., xn ) = xj
+
+DEF: Recursiva Primitiva (RP)
+Una función es RP si es inicial o se obtiene aplicando nitas operaciones válidas a las funciones
+iniciales. Siendo operaciones válidas: composición, ERI y ERII.
+
+Teorema: Si f : Nk → N es RP ⇒ f es computable.
+Observaciones
+1. Si f no es total ⇒ f no es RP.
+2. Existen funciones computables que no son RP, como la función de Ackermann (no vale la
+vuelta).
+
+Teorema: Si f es composición de funciones RP, o se obtiene a partir de un ERI o un ERII a
+partir de funciones RP ⇒ f es RP.
+DEF: Predicado RP
+Un predicado P k ⊆ Nk de k variables es unarelación k -aria de números naturales. Se asocia a P k
+una función CP k : N → {0, 1} / CP k (⃗x) =
+k
+
+ 1
+
+⃗x ∈ P k
+
+ 0
+
+⃗x ∈
+/ Pk
+
+(Función característica).
+
+Decimos que "P k es RP (computable)" si CP k es RP (computable).
+
+Teorema: P k y Qk RP (computables) ⇒ (P ∧Q), (P ∨Q), (P → Q) y ¬P son RP (computables).
+Teorema: Sean g1 , ..., gm , h : Nn → N RP (computables),
+P1n , ..., Pmn RP (computables),
+
+Pi ∩ Pj = ∅ si i ̸= j
+
+y
+
+
+g1 (⃗x)
+
+
+
+
+
+
+
+ g2 (⃗x)
+n
+f : N → N / f (⃗x) =
+...
+
+
+
+
+gm (⃗x)
+
+
+
+
+
+h(⃗x)
+
+si ⃗x ∈ P1n
+si ⃗x ∈ P2n
+si ...
+
+⇒ f es RP (computable).
+
+si ⃗x ∈ Pmn
+si no
+
+7.2. Funciones Acotadas
+Teorema: Sea f : Nn+1 → N, RP (computable). Sean SAf , P Af : Nn+1 → N.
+1. SUMA ACOT: SAf (⃗x, y) =
+
+Py
+
+x, k)
+k=0 f (⃗
+
+2. PRODUCTORIA ACOT: P Af (⃗x, y) =
+
+es RP (computable).
+
+Qy
+
+x, k)
+k=0 f (⃗
+
+es RP (computable).
+
+Teorema: Sea P n+1 un predicado RP (computable). Sean EAP , U AP : Nn+1 → {0, 1}.
+1. CUANT. EXISTENCIAL ACOT: EAP (⃗x, y) = ∃ t ≤ y CP (⃗x, t) es RP (computable).
+2. CUANT. UNIVERSAL ACOT: U AP (⃗x, y) = ∀ t ≤ y CP (⃗x, t) es RP (computable).
+
+Teorema: Sea P n+1 un predicado RP (computable). Sean EAEP , U AEP : Nn+1 → {0, 1}.
+1. CUANT. EXISTENCIAL ACOT. EST: EAEP (⃗x, y) = ∃ t < y CP (⃗x, t) es RP (computable).
+2. CUANT. UNIVERSAL ACOT. EST : U AEP (⃗x, y) = ∀ t < y CP (⃗x, t) es RP (computable).
+
+Teorema: Sea P n+1 un predicado RP(computable). Sean maP , M AP : Nn+1 → N.
+1. MÍNIMO ACOT: maP (⃗x, y) =
+
+ min t ≤ y C (⃗x, t)
+P
+
+si ∃ t ≤ y / CP (⃗x, t) = 1
+
+
+0
+si no
+
+ max t ≤ y C (⃗x, t)
+si ∃ t ≤ y / CP (⃗x, t) = 1
+P
+2. MÁXIMO ACOT: M AP (⃗x, y) =
+
+0
+si no
+7.3. Funciones RP populares
+1. Funciones Iniciales: cero, suc y πjn
+2. f : N → N / f (x) = x!
+3. suma : N2 → N / suma(x, y) = x + y
+4. prod : N2 → N / prod(x, y) = xy
+5. pot : N2 → N / pot(x, y) = 
+(x + 1)y
+6. pred : N → N / pred(x) =
+
+ x−1
+
+ 0
+
+ x−y
+2
+7. rt : N → N / rt(x, y) =
+ 0
+
+x ̸= 0
+x=0
+x≥y
+x<y
+
+8. dist : N → N / dist(x,
+ y) = |x − y|
+2
+
+9. α : N → N / α(x) =
+
+ 1
+
+x=0
+
+ 0
+
+x ̸= 0
+
+10. hk : N → N / hk (x) = k
+11. impar : N → N / impar(x) =
+12. eq : N2 → N / eq(x, y) =
+
+
+ 0
+
+x par
+
+ 1
+
+x impar
+
+
+ 0
+ 1
+
+13. max : N2 → N / max(x, y) =
+
+x ̸= y
+x=y
+
+ x
+x≥y
+ y
+
+14. If : N2 → N / If (n, x) = f n (x)
+15. menor : N2 → N / menor(x, y) =
+16. coc : N2 → N / coc(x, y) =
+
+
+ ⌊x⌋
+y
+
+x<y
+
+ 0
+
+x≥y
+
+ 1
+
+x<y
+
+y ̸= 0
+
+ 0
+y=0
+
+ r (x)
+y ̸= 0
+y
+17. resto : N2 → N / resto(x, y) =
+ 0
+y=0
+
+ 1
+y|x
+18. div : N2 → N / div(x, y) =
+ 0
+y∤x
+
+ 1
+x primo
+19. primo : N → N / primo(x) =
+ 0
+si no
+
+ x-ésimo primo
+x ̸= 0
+20. p : N → N / p(x) =
+
+1
+x=0
+
+21. digx : N → N / digx (n) = n-ésimo dígito después de la coma, con digx (0) = 1
+8.
+
+Computabilidad - Halt
+
+Teorema: Sea <, >: N2 → N / < x, y >= 2x (2y + 1) − 1. Entonces <, > es biyectiva.
+Teorema: Sea l : N → N / l(z) = x
+
+y
+
+r : N → N / r(z) = y
+
+/
+
+z =< x, y >.
+
+Entonces l, r y <, > son RP.
+
+DEF: Numeración de Gödel
+Sea k ∈ N. Para cada k se dene una función: [ , ..., ] : Nk+1 → N / [(a0 , ..., ak )] = pa00 ...pakk
+donde pi representa el (i + 1)-primo.
+
+Teorema: Las funciones que calculan los números de Gödel son inyectivas, RP y no sobreyectivas.
+DEF: Indicadores de Números de Gödel
+1. ·[·] : N2 → N / x[i] =Vpi (x)
+2. | · | : N → N / |n| =
+
+ long(n)
+
+x ̸= 0
+
+0
+
+x=0
+
+
+
+Teorema: Las funciones antes denidas son RP.
+
+8.1. Codicación de Programas
+Tenemos como objetivo asignarle un n ∈ N a cada programa en lenguaje S, se dene #P ∈ N /
+1. Si dos programas P y P ′ son distintos ⇒ #P ̸= #P ′ .
+2. Dado n ∈ N ⇒ ∃ un programa en S / #P = n.
+
+Obs: La última instrucción no puede ser Y ← Y excepto que sea la única.
+Listas
+1. Variables: Y, X1 , Z1 , X2 , Z2 , ...
+2. Etiquetas: A1 , B1 , C1 , D1 , E1 , A2 , B2 , ...
+3. Instrucciones:
+
+
+
+
+
+
+
+
+V ←V +1
+
+V ←V −1
+
+
+IF V ̸= 0 GOT O L
+
+
+
+
+
+V ←V
+
+Codicar una Instrucción: Sea I una instrucción.
+Denimos # : {Instrucciones} → N / #I =< a, < b, cˇ biyectiva.
+
+ 0
+a=
+ #L
+
+Si I no tiene etiqueta.
+Si tiene etiqueta, siendo #L la posición de la etiqueta en la lista 2.
+b=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
+
+I=V →V
+
+1
+
+I =V →V +1
+
+2
+
+I =V →V −1
+
+#L + 2
+
+I = IF V ̸= 0 GOT O L
+
+c = #V − 1, siendo #V la posición de la variable en la lista 1.
+Codicar un Programa: Sea P un programa con I1 , I2 , ..., Ik instrucciones.
+Denimos # : {P rogramas} → N / #PI1 ,...,Ik = [(#I1 , ..., #Ik )]k − 1 biyectiva.
+
+8.2. Funciones no computables
+Teorema: Existen funciones no computables.
+DEF: Problema de la parada (Halting)
+
+Halt : N → N / Halt(x, y) =
+2
+
+ 1
+
+Si el programa de código y termina ante la entrada x
+
+ 0
+
+Si no (es decir ΨP (x) = ↑ / #P = y )
+
+Teorema: Halt es no computable.
+Tesis de Church-Turing
+En teoría de la computabilidad, la tesis de Church-Turing formula hipotéticamente la equivalencia
+entre los conceptos de función computable y máquina de Turing, que expresado en lenguaje corriente vendría a ser "todo algoritmo es equivalente a una máquina de Turing". No es un teorema
+matemático, es una armación formalmente indemostrable que, no obstante, tiene una aceptación
+prácticamente universal.
+
+DEF: Programas Universales
+Para cada n > 0 se dene Φn : Nn+1 → N / Φn (x1 , ..., xn , e) = ΨnP (x1 , ..., xn ) / #P = e
+
+Teorema: Φn es parcialmente computable ∀ n > 0.
+
+
+

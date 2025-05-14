@@ -1,0 +1,56 @@
+Visualizando cℵ0 = (2ℵ0 )ℵ0 = 2ℵ0·ℵ0 = 2ℵ0 = c
+Marcelo Lynch
+Sabiendo que (ab )c = ab·c , que ℵ0 · ℵ0 = ℵ0 y c = 2ℵ0 , es inmediato ver que
+cℵ0 = (2ℵ0 )ℵ0 = 2ℵ0 ·ℵ0 = 2ℵ0 = c
+. Otra manera de escribir esto es:
+(0, 1)N ∼ ({0, 1}N )N ∼ {0, 1}N×N ∼ {0, 1}N ∼ (0, 1)
+Es ilustrativo ver una manera “natural” de relacionar los elementos de estos conjuntos para
+convencerse de que de alguna manera “son lo mismo”, y es lo que vamos a hacer (informalmente) a continuación. La idea va a ser mostrar como un elemento particular del conjunto
+(0, 1)N “puede pensarse como” un elemento de cualquiera de los otros conjuntos.
+Partimos entonces de un elemento a ∈ (0, 1)N . Esta a es una función de N al intervalo (0, 1), es
+decir una sucesión de numeros reales de ese intervalo. O sea que a es una lista infinita de numeros
+reales a0 , a1 , a2 , · · · . Si escribimos cada uno de estos números en binario (y supongamos, en la
+escritura sin colas de 1), podemos hacer una lista con todos los elementos uno abajo del otro ası́:
+0, a00 a10 a20 a30 a40 · · ·
+0, a01 a10 a21 a31 a41 · · ·
+0, a02 a10 a22 a32 a42 · · ·
+0, a03 a10 a23 a33 a43 · · ·
+0, a04 a10 a24 a34 a44 · · ·
+
+Donde aji es el j-ésimo dı́gito (despues de la coma) del numero ai , y siempre es 0 o 1.
+Estos números siempre se van a poder escribir como “cero coma algo”, porque están en (0, 1),
+entonces podemos ahorrarnos escribir eso y solamente identificar a cada numero con la parte
+después de la coma. Si además numeramos cada fila con un número natural, y “separamos los
+dı́gitos”, nos queda:
+
+¡Momento! A cada número natural (el numero de la fila) le podemos asignar una lista infinita
+de dı́gitos 0 y 1. Pero eso es lo mismo que asignarle una sucesión de 0 y 1 a cada numero natural:
+¡este dibujo es el de una función N → {0, 1}N ! Entonces otra manera de “distribuir” la información
+de a es en un elemento de ({0, 1}N )N . Pero podemos ir más allá: en vez de solamente ponerle
+número a las filas, podemos también numerar las columnas:
+
+Y entonces podemos pensar este dibujo como una asignación de 0 o 1 a cada coordenada (i, j)
+donde i es la fila y j la columna: pero esto es precisamente una función N × N → {0, 1}, o sea un
+elemento de {0, 1}N×N .
+Ahora, ¿cómo hacemos para transformar esto en una única sucesión de ceros y unos (o sea,
+un elemento de {0, 1}N ? El truco está en recorrer la “cuadrı́cula” de manera tal de no perdernos
+ninguno, y asi armar la sucesión individual:
+
+Haciendo este zigzag podemos ir recorriendo todos los dı́gitos sin saltearnos ninguno.
+Con este recorrido podemos armar la sucesión:
+a00 , a01 , a10 , a20 , a11 , a02 , · · ·
+¡Y ya está! Toda la tabla de infinitas filas e infinitas columnas nos queda condensada en una
+sola sucesión de ceros y unos. Por como elegimos la representacion de los números al principio,
+esta sucesión tampoco tendrá colas de 1. Notemos que dada una de estas sucesiones podemos
+reconstruir la tabla, si la arrancamos vacı́a y vamos llenando los espacios mientras recorremos con
+el mismo zig-zag, es decir, no se pierde información.
+Finalmente, la manera de transformar esta sucesión en un único número real es usando los
+elementos como dı́gitos en la representación binaria (sin colas de 1) del número:
+x = 0, a00 a01 a10 a20 a11 a02 · · ·
+Observación: Cada una de estas operaciones que fuimos haciendo puede pensarse como una
+función que lleva un elemento de un conjunto a un elemento del siguiente. Como estuvimos
+forzados a eliminar representaciones al principio, estas construcciones no constituyen biyecciones,
+o sea, hay algunos elementos de ({0, 1}N )N que no podrı́amos construir cuando hacemos el primer
+paso desde (0, 1)N . Pero sı́ son inyecciones, porque todas las construcciones son reversibles.
+
+

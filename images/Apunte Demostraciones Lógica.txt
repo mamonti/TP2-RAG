@@ -1,0 +1,1283 @@
+Demostraciones de Lógica Computacional
+Luciano Boccardi
+5 de junio de 2020
+Parte I
+
+Cardinalidad
+Observación: La relación de coordinabilidad ∼ es de equivalencia
+Demostración:
+Definimos f : A → A/f (x) = x que resulta biyectiva. Entonces A ∼ A. Es decir A ∼ A
+es reflexiva
+Si A ∼ B ⇒ ∃f : A → B biyectiva ⇒ ∃f −1 : B → A biyectiva. Entonces B ∼ A. Es
+decir, ∼ es simétrica
+Si A ∼ B y B ∼ C ⇒ ∃f : A → B y ∃g : B → C biyectivas. Definimos h : A → C/
+h(x) = g ◦ f (x) que resulta biyectiva por ser composición de biyectivas. Entonces A ∼ C, es
+decir ∼ es transitiva
+∴ La relación ∼ es de equivalencia
+
+Observación: In ∼ Im ⇔ n = m
+Demostración:
+⇒)
+Si In ∼ Im ⇒ ∃f : In → Im biyectiva. Se tiene que Im(f ) = {f (1), f (2), ..., f (m)} = Im .
+Notemos que hay n elementos pues f es inyectiva
+Luego m = n
+⇐)
+Si n = m, definimos f : In → Im /f (x) = x, que es biyectiva ⇒ In = Im
+
+Observación: N es infinito
+Demostración:
+Supongamos que N es finito
+N 6= φ pues, por ejemplo, 0 ∈ N
+Supongamos entonces que ∃n ∈ N≥1 /N ∼ In
+Entonces ∃f : In → N biyectiva
+Im(f ) = {f (1), f (2), ..., f (n)}
+
+Llamemos M = max{f (1), f (2), ..., f (n)} M ∈ N
+Resulta que M +1 ∈ N pero M +1 ∈
+/ Im(f ). Entonces Im(f ) 6= N ⇒ f no es sobreyectiva
+⇔ f no es biyectiva. ABS! por hipótesis
+∴ N es infinito
+
+Observación: Si A ⊂ In ⇒ A es finito
+Demostración:
+Si A = φ ⇒ A es finito
+Si A 6= φ ⇒ ∃ i1 , i2 , ..., ir ∈ In para algún r ≤ n/ A = {i1 , i2 , ..., ir }
+Definimos: f : A → In / f (ij ) = j
+Si f (ij ) = f (it ) ⇒ j = t ⇒ ij = it ⇒ f es inyectiva
+Sea t ∈ It ⇒ it ∈ A y resulta que f (it ) = t ⇒ f es sobreyectiva
+Como f es sobreyectiva ⇒ A ∼ It ⇒ A es finito
+
+Observación: Si B ⊂ A y B es infinito ⇒ A es infinito
+Demostración:
+Supongamos que A es finito
+Si A = φ ⇒ B = φ ⇒ B es finito. ABS! por hipótesis
+Si A 6= φ ⇒ ∃f : A → In para algún n ∈ N≥1 / f sea biyectiva
+Como B ⊂ A, podemos definir g : B → A /g(x) = x que resulta inyectiva
+Si consideramos:
+f ◦ g : B → In resulta inyectiva por composición de inyectivas, entonces
+f ◦ g : B → Im(f ◦ g) resulta biyectiva
+Luego B ∼ Im(f ◦ g)
+Como Im(f ◦ g) ⊆ In ⇒ (por proposición anterior) es finita
+⇒ B es finito. ABS! por hipótesis
+Por lo tanto, A es infinito
+Teorema de Bernstein:
+Si #A ≤ #B y #A ≥ #B ⇒ #A = #B
+Demostración: No se ve.
+Proposición: #A ≤ #B ⇒ #B ≥ #A
+Demostración:
+⇒)
+Sabemos que ∃f : A → B inyectiva
+Definimos g : B → A /g(b) = f −1 (b), b ∈ Im(f )
+(
+f −1 (b) b ∈ Im(f )
+siendo a0 un elemento cualquiera de A
+g(b) =
+a0
+b∈
+/ Im(f )
+g está bien definida pues f −1 (b) es única por ser f inyectiva
+Veamos que g es sobreyectiva
+Sea a ∈ A ⇒ f (a) (∈ B) ∈ Im(f ) y resulta que
+g(f (a)) = f −1 (f (a)) = a
+Por tanto #B ≥ #A
+⇐)
+Sabemos que ∃f : B → A sobreyectiva
+Definimos g : B → A /g(a) = xa , xa ∈ f −1 (a)
+f −1 (a) 6= φ, pues f es sobreyectiva
+Veamos que g es inyectiva
+Si a1 6= a2 a1 , a2 ∈ A ⇒ f −1 (a1 ) ∩ f −1 (a2 ) = φ
+Como xa1 ∈ f −1 (a1 ) y xa2 ∈ f −1 (a2 ) ⇒ xa1 6= xa2
+Por lo tanto, #A ≤ #B
+
+
+Observación: ≤ y ≥ son relaciones de orden
+Demostración: (La segunda es análoga a la primera)
+#A ≤ #A pues ∃f : A → A /f (x) = x con f inyectivaEntonces ≤ es reflexiva (1)
+Si #A ≤ #B y #B ≤ #A ⇒ #A = #B (Por Teo. de Bernstein)
+Entonces ≤ es antisimétrica (2)
+Si #A ≤ #B y #B ≤ #C ⇒ ∃ f : A → B y ∃ g : B → C inyectivas. Entonces,
+g ◦ f : A → C es inyectiva por composición de inyectivas ⇒ #A ≤ #C
+Luego ≤ es transitiva (3)
+∴ (Por 1, 2 y 3) La relación es de orden
+
+Observación: Si X es infinito ⇒ ∃f : N → X inyectiva
+Demostración:
+ℵ0 ≤ #X para cualquier conjunto infinito. Es decir, ℵ0 es el menor cardinal asociado a
+conjuntos finitos
+Como X 6= φ ⇒ ∃x0 ∈ X. Definimos f (0) = x0
+X\{x0 } 6= φ, pues si X\{x0 } = φ ⇒ X = {x0 } ⇒ X ∼ I1 ⇒ X es finito ABS! por
+hipótesis (1)
+⇒ ∃x1 ∈ X\{x0 }. Definimos f (1) = x1 . con x1 6= x0
+Supongamos que definimos f (n) = xn , con xn ∈ X\{x0 , x1 , ..., xn−1 }
+X\{x0 , x1 , ..., xn−1 } =
+6 φ (por razonamiento similar a (1))
+⇒ xn+1 ∈ X\{x0 , x1 , ..., xn }. Definimos f (n + 1) = xn+1 , con xn+1 6= xi 0 ≤ i ≤ n
+La f construida resulta inyectiva
+
+Observación: Si ∃f : N → X inyectiva ⇒ X es infinito
+Demostración:
+Si f : N → X es inyectiva ⇒ f : N → Im(f ) es biyectiva ⇒ N ∼ Im(f ) Como N es
+infinito ⇒ Im(f ) es infinito. Y como Im(f ) ⊆ X ⇒ (por Prop. vista anteriormente) X es
+infinito
+
+Observación: Sea A 6= φ. Si A es numerable ⇒ ∃ : N → A sobreyectiva
+Demostración:Caso 1) Supongamos A ∼ Ip para algún p ∈ N≥1 Entonces A = {a1 , a2 , ..., ap }
+Definimos f : N → A /
+(
+f (n) =
+
+an+1
+a1
+
+0≤n≤p−1
+n≥p
+
+Im(f ) = A ⇒ f es sobreyectiva
+Caso 2) Si A ∼ N ⇒ ∃f : N → A biyectiva y, particularmente, f es sobreyectiva
+
+Observación: Si ∃f : N → A sobreyectiva ⇒ A es numerable (A 6= φ)
+Demostración:
+Si f : N → A sobreyectiva ⇒ #N ≥ #A ⇒ #A ≤ ℵ0
+Entonces #A < ℵ0 o #A = ℵ0 ⇒ A es finito o A ∼ N ⇒ A es numerable
+
+Observación: Si A ⊆ N ⇒ A es numerable
+Demostración:
+Si A = φ ⇒ A es finito ⇒ A es numerable
+Si A 6= φ, podemos definir f : A → N /f (x) = x inyectiva ⇒ #A ≤ ℵ0 ⇒ A es numerable
+
+Proposición: U = [0, 1] no es numerable
+Demostración:
+1
+n+1
+1
+1
+Si f (n) = f (m) ⇒
+=
+⇒ n + 1 = m + 1 ⇒ n = m ⇒ f es inyectiva
+n+1
+m+1
+
+Definimos f : N → U /f (n) =
+
+⇒ #N ≤ #U ⇒ #U ≥ ℵ0 ⇒ U es infinito
+Supongamos que U es numerable ⇒ U ∼ N. Entonces, podemos escribir U = {u1 , u2 , ..., }
+donde
+u1 = 0, u11 u12 u13 ... con 0 ≤ uij ≤ 9
+u2 = 0, u21 u22 u23 ...
+...
+un = 0, un1 un2 un3 ...
+Consideremos X = 0, x1 x2 x3 ... 0 ≤ xi ≤ 9 ∀i ∈ N≥1 , y xi 6= uii ∀i ∈ N≥10 < xi < 9, eligiendo ası́ garantizamos la escritura única de X.
+Resulta que x ∈ U , pero x 6= ui ∀i ∈ N≥1 ABS! que vino de suponer que U es numerable.
+(Encontramos un número que pertenece al intervalo pero no está en la representación de U
+que describimos).
+Por lo tanto, U es infinito no numerable.
+
+Proposición: Si X es un conjunto infinito no numerable y a es un conjunto numerable,
+entonces X ∪ A ∼ X
+Demostración:
+Si A ⊆ X, X ∪ A = X ⇒ X ∼ X (Reflexividad de ∼)
+Si A * X, podemos escribir A = A1 ∪ A2 con A1 ⊆ X y A2 ∩ X 6= φ ⇒ X ∪ A =
+X ∪ (A1 ∪ A2 ) = X ∪ A2
+Sin pérdida de generalidad, supongamos que X ∩ A 6= φ
+Como X es infinito ⇒ ∃f : N → X inyectiva ⇒ f : N → Im(f ) = Y es biyectiva ⇒ N ∼ Y ,
+Y ⊆X
+A es numerable ⇒ (por ejer. de la práctica) Y ∪A es numerable. Además Y ⊆ Y (inf inito)∪
+A ⇒ Y ∪A es infinito y numerable ⇒ Y ∪A ∼ N y N ∼ Y ⇒ Y ∪A ∼ Y (transitividad de ∼)
+Entonces ∃g : Y ∪ A ⇒ Y es biyectiva
+(
+Definimos H : X ∪ A → X /H(t) =
+
+t
+t∈X −Y
+g(t) t ∈ Y ∪ A
+
+La cual está bien definida pues (X − Y ) ∩ (Y ∪ A) = φ
+Sea t1 6= t2 , t1 , t2 ∈ X − Y ⇒ H(t1 ) 6= H(t2 ) (por definición de H)
+Sea t1 6= t2 , t1 , t2 ∈ Y ∪ A ⇒ H(t1 ) = g(t1 ) y H(t2 ) = g(t2 ), y H(t1 ) 6= H(t2 ) (por
+inyectividad de g)
+Sea t1 ∈ X − Y y t2 ∈ Y ∪ A, t1 6= t2 ⇒ H(t1 ) ∈ X − Y y H(t2 ) ∈ Y , y además
+H(t1 ) 6= H(t2 ) pues X − Y ∩ Y = φ
+Entonces, H es inyectiva (1)
+Sea y ∈ X:
+Si y ∈ X − Y ⇒ H(y) = y
+Si y ∈ Y ⇒ ∃ t ∈ Y ∪ A ⊆ X /g(t) = y, con g sobreyectiva
+⇒ H(t) = g(t) = y
+Luego, H es sobreyectiva (2)
+Luego, por (1) y (2), H es biyectiva ⇒ X ∪ A ∼ X
+
+Proposición: Si X es infinito no numerable y A es numerables, entonces X\A ∼ X
+Demostración: El truco es pensar a X como (X\A) ∪ A
+Sin pérdida de generalidad, supongamos A ⊆ X
+Si A ∩ X = φ ⇒ X\A = X ∼ X por reflexividad de ∼
+Si A ∩ X 6= φ, podemos escribir A = A1 ∪ A2 , A1 ⊆ X, X ∩ A2 = φ
+En este caso X\A = X\(A1 ∪ A2 ) = X\A1
+Entonces, suponiendo A ⊆ X, podemos escribir X = (X\A) ∪ A (1)
+Si X\A es numerable ⇒ (por ejer. de la práctica) X es numerable, por ser unión de
+conjuntos numerables ABS! por hipótesis.
+Entonces X\A es infinito no numerable, por lo que acabamos de probar: (X\A) ∪ A ∼
+X\A, teniendo en cuenta (1), finalmente queda que X\A ∼ X
+
+Teorema de Cantor:
+#X < #P(x)
+Demostración:
+Definimos f : X → P(x) / f (a) = {a} ∈ P(x)
+Si a 6= b ⇒ f (a) 6= f (b) ⇒ f es inyectiva #X ≤ #P(x)
+Supongamos que ∃ g : X → P(x) sobreyectiva
+Y, consideremos B : {t ∈ X / t ∈
+/ g(t)} ∈ P(x)
+Como g es sobreyectiva ⇒ ∃b ∈ X / g(b) = B
+Supongamos que b ∈ B = g(b) ⇒ b ∈ g(b) ⇒ b ∈
+/ B ABS! pues b ∈ B
+Supongamos que b ∈
+/ B = g(b) ⇒ b ∈
+/ g(b) ⇒ b ∈ B ABS! pues b ∈
+/B
+⇒ g no es sobreyectiva ⇒ #X 6= #P(x)
+Luego, #X < #P(x)
+
+Parte II
+
+Lenguajes
+Proposición: Sea A alfabeto, E, F, G, H ∈ A∗ / EF = GH y long(E) ≥ long(G) ⇒
+∃ H 0 ∈ A∗ / E = GH 0
+Demostración: Por inducción en la longitud de E.
+C.B) long(E) = 0 ⇒ E = λ
+long(E) ≥ long(G) = 0 ⇒ long(G) = 0 ⇒ G = λ
+Tomo H 0 = λ
+∴ E = GH 0 (λ = λλ)
+P (k) = Sea A alfabeto, E, F, G, H ∈ A∗ / EF = GH y long(E) ≥ long(G) ⇒ ∃ H 0 ∈
+A / E = GH 0
+∗
+
+H.I) P(n)
+T.I) P(n+1)
+Sean E, F, G, H ∈ A∗ long(E) = n + 1 > 0, y long(E) ≥ long(G), siendo E = e0 e1 ...en
+C.1) long(G) > 0 ⇒ G = g0 g1 ...gt
+Como EF = GH ⇒ (Saco e0 y g0 por ser iguales) e1 ...en F = g1 ...gt H
+Llamo Ẽ = e1 ...en y G̃ = g1 ...gt
+long(E) ≥ long(G) ⇒ long(E) − 1 ≥ long(G) − 1 ⇒ long(Ẽ) ≥ long(G̃) y ẼF = G̃H
+⇒ por H.I. ∃ H 0 ∈ A∗ / Ẽ = G̃H 0 ⇒ e0 Ẽ = g0 G̃H 0 ⇒ E = GH 0
+C.2) long(G) = 0 ⇒ G = λ
+EF = GH ⇒ EF = λH
+Tomo H 0 = E ⇒ E = GH 0 = λH 0
+
+Corolario: A alfabeto, E, F, G, H ∈ A∗ , EF = GH, long(E) = long(G) ⇒ E = G y
+F =H
+Demostración:
+long(E) = long(G) ⇒ long(E) ≥ long(G) y EF = GH
+⇒ (por Teo. anterior) E = GH 0 , pero long(E) = long(G) + (long(H 0 ) = 0) pues E = G
+⇒ H 0 = λ ⇒ E = G ⇒ EF = GH y como E y G son iguales, los puedo cancelar a ambos lados
+∴F =G
+
+Parte III
+
+Sintaxis de Lógica Proposicional
+Teorema: α ∈ F ORM ⇔ X1 X2 ...Xn = α cadena de formación (c.f)
+Demostración: Ida por inducción en long(α) y vuelta por inducción en el elemento Xn
+⇒)
+C.B) long(α) = 1 ⇒ α = pj ∈ V AR. Luego, X1 = pj es una c.f. de α
+H.I) α ∈ FORM , long(α) = k ≤ n ⇒ ∃ X1 X2 ...Xk = α c.f.
+T.I) α ∈ FORM , long(α) = n + 1 ⇒ ∃ X1 X2 ...Xj = α c.f.
+Sea α ∈ FORM / long(α) = n + 1 > 0
+Caso 1) α = pj ∈ V AR ⇒ def inoX1 = pj que es c.f. de α
+Caso 2) α = ¬β con β ∈ FORM
+long(α) = long(β) + 1 = n + 1 ⇒ long(β) = n ⇒ por H.I. ∃ X1 X2 ...Xk = β c.f.
+Defino {Y1 = X1 , Y2 = X2 , ..., Yk = Xk , Yk+1 = ¬Yk } = α es una c.f. de α
+Caso 3) α = (β1 ∗ β2 ) β1 , β2 ∈ FORM , ∗ ∈ {∧, ∨, →}
+n + 1 = long(α) = 3 + long(β1 ) + long(β2 ) ⇒ long(β1 ) + long(β2 ) = n − 2
+⇒ long(β1 ) < n y long(β2 ) < n ⇒ por H.I:
+∃X1 X2 ...Xk = β1 c. f y ∃Y1 Y2 ...Yt = β2 c.f.
+Defino Z = {Z1 = X1 , ..., Zk = Xk , Zk+1 = Y1 , ..., Zk+t = Yt , Zk+t+1 = (Zk ∗
+Zk+t )} = α que es una c.f. de α
+⇐)
+Sea X1 X2 ...Xn c.f. Vamos a probar por inducción en n que Xj ∈ FORM 1 ≤ j ≤ n
+C.B) n = 1 ⇒ X1 es una c.f. ⇒ X1 ∈ V AR ⇒ X1 ∈ FORM
+H.I) X1 X2 ...Xn c.f ⇒ Xj ∈ FORM 1 ≤ j ≤ n
+T.I) X1 X2 ...Xn+1 c.f ⇒ Xj ∈ FORM 1 ≤ j ≤ n
+Sea X1 X2 ...Xn+1 c.f
+Por observación anterior X1 X2 ...Xn es c.f. ⇒ por H.I.Xj ∈ FORM 1 ≤ j ≤ n
+Caso 1) Xn+1 ∈ V AR ⇒ Xn+1 ∈ FORMCaso 2) ∃j ≤ n / Xn+1 = ¬Xj
+Xj ∈ F ORM por H.I. ⇒ ¬Xj ∈ FORM
+Caso 3) ∃j, i ≤ n / Xn+1 = (Xj ∗ Xi ), ∗ ∈ {∧, ∨, →}
+Xj , Xi ∈ F ORM por H.I. ⇒ (Xj ∗ Xi ) ∈ FORM
+
+Teorema: Sea α ∈ FORM
+Si c(α) = 0 ⇒ α = pj ∈ V AR
+Si c(α) > 0 ⇒ α = ¬β, β ∈ F ORM o α = (β1 ∗ β2 ) β1 , β2 ∈ FORM , ∗ ∈ {∧, ∨, →}
+Demostración: Utilizando teorema anterior.
+α ∈ F ORM ⇔ X1 X2 ...Xn = α
+Si c(α) = 0 ⇒ Xn ∈ V AR
+Si c(α) > 0 ⇒ ∃ j < n / Xn = ¬Xj o ∃ j, i ≤ n / Xn = (Xj ∗ Xi )
+
+Teorema: Sea α ∈ FORM
+
+1) p(α) = 0
+2) Si • es un conectivo binario (c.b.) que aparece en α y E es la expresión a la izquierda de
+• en α ⇒ p(E) > 0
+
+Demostración: Por inducción en c(α)
+C.B) c(α) = 0 ⇒ α = pj , pj ∈ V AR
+1) p(α) = 0 − 0 = 0
+2) Se cumple por antecedente falso (no hay conectivos binarios)
+P (k) = Sea α ∈ F ORM / c(α) = k
+
+1) p(α) = 0
+2) Si • es un conectivo binario (c.b.) que aparece en α y E es la expresión a la izquierda de
+• en α ⇒ p(E) > 0H.I) P (k), k ≤ n
+T.I) P (n + 1)
+Sea α ∈ F orm / c(α) = n + 1 > 0
+Caso 1) α = ¬β, β ∈ F ORM
+c(α) = 1 + c(β) = n + 1 ⇒ c(β) = n
+1) Por H.I. p(β) = 0 ⇒ p(α) = p(¬) + p(β) = 0 + 0 = 0
+2) Sea • es un conectivo binario (c.b.) que aparece en α ⇒ • aparece en β ⇒ por
+H.I. la expresión a la izquierda de • en β tiene peso > 0
+Sea E 0 = ¬E la expresión a la izquierda de • en α
+p(E 0 ) = p(¬) + p(E) = 0 + p(E) > 0
+Caso 2) α = (β1 ∗ β2 ), β1 , β2 ∈ F ORM , ∗ ∈ {∧, ∨, →}
+c(α) = 1 + c(β1 ) + c(β2 ) = n + 1
+c(β1 ) ≤ n ⇒ por H.I. p(β1 ) = 0 y si • es un c.b. que aparece en β1 y E es la
+expresión a la izquierda de • en β1 ⇒ p(E) > 0
+c(β2 ) ≤ n ⇒ por H.I. p(β2 ) = 0 y si • es un c.b. que aparece en β2 y E es la
+expresión a la izquierda de • en β2 ⇒ p(E) > 0
+1) p(α) = 1 + p(β1 ) + p(∗) + p(β2 ) − 1 = 1 + 0 + 0 + 0 − 1 = 0
+2) Sea • un c.b. que aparece en α:
+I. • aparece en β1
+Sea E 0 la expresión a la izquierda de • en α ⇒ E 0 = (E ⇒ p(E 0 ) =
+p(”(”) + p(E) = 1 + p(E) > 0
+II. • es ∗
+La expresión a la izquierda de • en α es
+E = (β1 ⇒ p(E) = p(”(”) + p(β1 ) = 1 + 0 > 0
+III. • aparece en β2
+Sea E 0 la expresión a la izquierda de • en α ⇒ E 0 = (E ⇒ p(E 0 ) = p(”(”) +
++p(β1 ) + p(∗) + p(E) = 1 + 0 + 0 + p(E) > 0
+Corolario (Unicidad de Escritura): Sea α ∈ F ORM / c(α) > 0
+⇒ ∃β ∈ F ORM / α = ¬β o ∃ ∗ ∈ {∧, ∨, →} y únicos β1 , β2 ∈ F ORM / α = (β1 ∗ β2 )
+Demostración: Utilizando teorema anterior.
+Caso 1) α = ¬β1 = ¬β2 ⇒ β1 = β2
+Caso 2) α = (β1 ∗ β2 ) = (γ1 • γ2 )
+I. Supongo que long(β1 ) > long(γ1 )
+⇒ ∃ H 0 expresión /β1 = γ1 H 0 H 0 empieza con •
+⇒ β1 ∈ F ORM por Teo. anterior la expresión a la izquierda de • en β1 tiene
+peso > 0 ⇒ p(γ1 ) > 0 ABS! porque γ1 ∈ F ORM
+II. Supongo que long(β1 ) < long(γ1 ) (Análogo al primer caso)
+III. long(β1 ) = long(γ1 )
+Como (β1 ∗ β2 ) = (γ1 • γ2 ) ⇒ β1 = γ1 , ∗ = • y β2 = γ2
+Caso 3) α = ¬β = (γ1 • γ2 ) ABS! pues no empiezan con el mismo sı́mbolo
+
+Parte IV
+
+Semántica de Lógica Proposicional
+Teorema: Sea f : V AR → {0, 1} función ⇒ ∃! valuación v : F ORM → {0, 1} / v extiende a f
+Es decir, sean v y w valuaciones tales que
+v|V AR = w|V AR ⇒ v = w
+Demostración: Por inducción en m. El truco es definir una unión infinita de conjuntos
+de fórmulas, y luego definir la valuación en función a las anteriores
+Defino Fn = {α ∈ F ORM / c(α) ≤ n}
+Donde, por ejemplo F0 = V AR, F1 = V AR ∪ {α ∈ F ORM / c(α) = 1}
+Vemos también que F0 ⊆ F1 ⊆ ... y que F ORM =
+
+∞
+S
+n=0
+
+P (n) = Existe una única función vn : Fn → {0, 1} / vn extienda a Fn y que vn cumpla
+la definición de valuación
+C.B) n = 0
+v0 = F0 (= V AR) → {0, 1}, defino v0 = f
+v0 extiende a f de forma única y cumple la definición de valuación porque no hay conectivos
+H.I) P (k)k ≤ n
+T.I) P (n + 1)
+Defino vn+1 = Fn+1 → {0, 1}
+Caso 1) c(α) ≤ n, α ∈ Fn+1 , defino vn+1 (α) = vn (α)
+Caso 2) α ∈ Fn+1 , c(α) = n + 1
+I. α = ¬β
+c(α) = 1 + c(β) = n + 1 ⇒ c(β) = n ⇒ por H.I existe una única vn (β) valuación que entienda a f
+Defino vn+1 (α) = 1 − vn+1 (β) = 1 − vn (β)
+II. α = (β1 ∗ β2 ), β1 , β2 ∈ F ORM , ∗ ∈ {∧, ∨, →}
+c(α) = 1 + c(β1 ) + c(β2 ) = n + 1 ⇒ c(β1 ) + c(β2 ) = nc(β1 ) ≤ n ⇒ por H.I existe una única vn (β1 ) valuación que entienda a f
+c(β2 ) ≤ n ⇒ por H.I existe una única vn (β2 ) valuación que entienda a f
+Subcaso 1. α = (β1 ∧ β2 ), β1 , β2 ∈ F ORM
+Defino vn+1 (α) = mı́n{vn+1 (β1 ), vn+1 (β2 )} = mı́n{vn (β1 ), vn (β2 )}
+Subcaso 2. α = (β1 ∨ β2 ), β1 , β2 ∈ F ORM
+Defino vn+1 (α) = máx{vn+1 (β1 ), vn+1 (β2 )} = máx{vn (β1 ), vn (β2 )}
+Subcaso 3. α = (β1 → β2 ), β1 , β2 ∈ F ORM
+Defino vn+1 (α) = máx{1−vn+1 (β1 ), vn+1 (β2 )} = máx{1−vn (β1 ), vn (β2 )}
+∴ defino v : F ORM → {0, 1} / v(α) = vn (α) siendo c(α) = n
+
+Teorema: Sea α ∈ F ORM . Sean v, w valuaciones tal que v|V AR(α) = w|V AR(α) , es
+decir, v(pj ) = w(pj ) ∀ pj ∈ V AR(α) ⇒ v(α) = w(α)
+Demostración: Por inducción en c(α)
+C.B) c(α) = 0 ⇒ α = pi ∈ V AR
+Sean v, w valuaciones tal que v|V AR(α) = w|V AR(α) ⇒ como α = pj ⇒ v(α) = w(α)
+H.I) Sea α ∈ F ORM / c(α) ≤ n. Sean v, w valuaciones tal que v|V AR(α) = w|V AR(α) ⇒
+v(α) = w(α)
+T.I) Sea α ∈ F ORM / c(α) = n + 1. Sean v, w valuaciones tal que v|V AR(α) =
+w|V AR(α) ⇒ v(α) = w(α)
+Caso 1) α = ¬β, β ∈ F ORM
+c(α) = 1 + c(β) = n + 1 ⇒ c(β) = n ⇒ por H.I v(β) = w(β)
+Como V AR(α) = V AR(β) ⇒ v|V AR(α) = v|V AR(β) = w|V AR(β) = w|V AR(α)
+⇒ v(α) = 1 − v(β) = 1 − w(β) = w(α)
+Caso 2) α = (β1 ∗ β2 ), β1 , β2 ∈ F ORM , ∗ ∈ {∧, ∨, →}
+c(α) = 1 + c(β1 ) + c(β2 ) = n + 1 ⇒ c(β1 ) + c(β2 ) = n
+c(β1 ) ≤ n y c(β2 ) ≤ nV AR(α) = V AR(β1 ) ∪ V AR(β2 )
+Como v|V AR(α) = w|V AR(α)
+⇒ v|V AR(β1 ) = w|V AR(β1 ) ⇒ por H.I. v(β1 ) = w(β1 )
+⇒ v|V AR(β2 ) = w|V AR(β2 ) ⇒ por H.I. v(β2 ) = w(β2 )
+Subcaso 1. α = (β1 ∧ β2 ), β1 , β2 ∈ F ORM
+v(α) = mı́n{v(β1 ), v(β2 )} = mı́n{w(β1 ), w(β2 )} = w(α)
+Subcaso 2. α = (β1 ∨ β2 ), β1 , β2 ∈ F ORM
+v(α) = máx{v(β1 ), v(β2 )} = máx{w(β1 ), w(β2 )} = w(α)
+Subcaso 3. α = (β1 → β2 ), β1 , β2 ∈ F ORM
+v(α) = máx{1 − v(β1 ), v(β2 )} = máx{1 − w(β1 ), w(β2 )} = w(α)
+
+Proposición: Sean α ∈ F ORM y (p1 → α) tautologı́a. Si p1 ∈
+/ V AR(α) ⇒ α es tautologı́a
+Demostración:
+Sea v valuación, queremos ver que v(α) = 1
+(
+v(pj ) pj ∈ V AR(α)
+Defino f : V AR → {0, 1} / f (pj ) =
+1
+otro caso
+Sea vf la única valuación que extiende a f
+vf (p1 → α) = 1 (tautologı́a)
+máx{1 − vf (p1 ), vf (α)} = máx{1 − f (p1 ), vf (α)} como p1 ∈
+/ V AR(α), f (p1 ) = 1 ⇒
+máx{1 − f (p1 ), vf (α)} = máx{0, vf (α)} = vf (α) ⇒ vf (α) = 1
+Notemos que vf |V AR(α) = v|V AR(α) ⇒ por Teo. anterior vf (α) = v(α)
+∴ v(α) = 1 ∀v ⇒ α es tautologı́a
+
+Teorema: Sean Γ ⊆ F ORM , α ∈ F ORM
+α ∈ C(Γ) ⇔ Γ ∪ {¬α} es insatisf acible
+Demostración: Por el contrarrecı́proco tanto en la ida como en la vuelta⇒)
+Supongo que Γ ∪ {α} es satisfacible
+⇒ ∃ v val. / v(Γ) = 1 y v(¬α) = 1 ⇒ v(α) = 0 ⇒ α ∈
+/ C(Γ). Queda demostrado por
+contrarrecı́proco
+⇐)
+Supongo que α ∈
+/ C(Γ) ⇒ ∃ v val. v(Γ) = 1 y v(α) = 0
+⇒ v(Γ) = 1 y v(¬α) = 1 ⇒ v satisface a Γ ∪ {¬α} ⇒ Γ ∪ {¬α} es satisfacible. Queda
+demostrado por contrarrecı́proco
+
+Teorema: Sean Γ = {γ1 , γ2 , . . . , γn } ⊆ F ORM , α ∈ F ORM
+α ∈ C(Γ) ⇔ ((γ1 ∧ γ2 ∧ · · · ∧ γn ) → α) es tautologia
+Demostración:
+⇐)
+Sea v val / v(Γ) = 1, queremos probar que v(α) = 1
+v(γi ) = 1, 1 ≤ i ≤ n ⇒ v(γ1 ∧ γ2 ∧ · · · ∧ γn ) = mı́n{v(γ1 ), v(γ2 ), . . . , v(γn )} = 1
+Por dato, sabemos que v((γ1 ∧ γ2 ∧ · · · ∧ γn ) → α) = 1 ∀v
+⇒ máx{1 − v(γ1 ∧ γ2 ∧ · · · ∧ γn ), v(α)} = máx{0, v(α)} = v(α)
+∴ v(α) = 1 ⇒ α ∈ C(Γ), como querı́amos demostrar
+⇒)
+Sabemos por dato que α ∈ C(Γ)
+Queremos ver que σ = ((γ1 ∧ γ2 ∧ · · · ∧ γn ) → α) es tautologı́a
+Caso 1) Si v(γ1 ∧ γ2 ∧ · · · ∧ γn ) = 0
+⇒ v(σ) = máx{1 − v(γ1 ∧ γ2 ∧ · · · ∧ γn ), v(α)} = máx{1 − 0, v(α)} = 1
+Caso 2) Si v(γ1 ∧ γ2 ∧ · · · ∧ γn ) = 1
+⇒ mı́n{v(γ1 ), v(γ2 ), . . . , v(γn )} = 1 ⇒
+v(γi ) = 1, 1 ≤ i ≤ n ⇒ v(Γ) = 1 ⇒ por dato v(α) = 1
+⇒ v(σ) = máx{1 − v(γ1 ∧ γ2 ∧ · · · ∧ γn ), v(α)} = máx{0, 1} = 1∴ v(σ) = 1 ∀v val. ⇒ σ es tautologı́a
+
+Teorema de la Deducción (versión semántica): Sean α ∈ F ORM , Γ ⊆ F ORM
+(α → β) ∈ C(Γ) ⇒ β ∈ C(Γ ∪ {α})
+Demostración:
+⇒)
+Sea v val. / v(Γ ∪ {α}) = 1 ⇒ v(Γ) = 1 y v(α) = 1
+Como (α → β) ∈ C(Γ) ⇒ v(α → β) = 1 ⇒ máx{1 − v(α), v(β)} = 1 ⇒ máx{0, v(β)} =
+1 ⇒ v(β) = 1
+∴ β ∈ C(Γ ∪ {α})
+⇐)
+Sea v val. / v(Γ) = 1
+Si v(α) = 0 ⇒ v(α → β) = máx{1 − v(α), v(β)} = máx{1, v(β)} = 1
+Si v(α) = 1 ⇒ v(Γ ∪ {α}) = 1 ⇒ (como β ∈ C(Γ ∪ {α}) por dato) v(β) = 1
+⇒ v(α → β) = máx{1 − v(α), v(β)} = máx{0, 1} = 1
+∴ v(α → β) = 1 ⇒ (α → β) ∈ C(Γ)
+
+Lema: Sea Γ ⊆ F ORM , Γ finitamente satisfacible, pj ∈ V AR
+⇒ Γ ∪ {pj } es finitamente satisfacible o Γ ∪ {¬pj } es finitamente satisfacible
+Demostración:
+Supongamos que Γ ∪ {pj } no es f.s. y Γ ∪ {¬pj } no es f.s.
+⇒ ∃ Γ1 ⊆ Γ ∪ {pj } finito e insatisfacible
+⇒ ∃ Γ2 ⊆ Γ ∪ {¬pj } finito e insatisfacible
+Notemos que Γ1 * Γ y Γ2 * Γ pues Γ es f.s.
+⇒ Γ1 = Γ̃1 ∪ {pj } / Γ̃1 ⊆ Γ
+⇒ Γ1 = Γ̃2 ∪ {¬pj } / Γ̃2 ⊆ Γ
+Defino Γ̃ = Γ˜1 ∪ Γ˜2 con Γ˜1 y Γ˜2 finitos ⇒ Γ̃ es finito
+Como Γ̃1 ⊆ Γ y Γ̃1 ⊆ Γ ⇒ Γ̃ ⊆ ΓComo Γ̃ es finito, Γ̃ ⊆ Γ y Γ es f.s. ⇒ Γ̃ es satisfacible ⇒ ∃ v val. / v(Γ̃) = 1
+Caso 1) v(pj ) = 1 ⇒ v(Γ̃1 ∪ {pj }) = 1 ABS! pues Γ̃1 ∪ {pj } = Γ1 , y Γ1 es insatisfacible
+Caso 2) v(¬pj ) = 1 ⇒ v(Γ̃2 ∪ {¬pj }) = 1 ABS! pues Γ̃2 ∪ {¬pj } = Γ2 , y Γ2 es insatisfacible
+∴ (Ley de De Morgan) Γ ∪ {pj } es finitamente satisfacible o Γ ∪ {¬pj } es finitamente
+satisfacible
+
+Teorema de Compacidad:
+Γ es satisf acible ⇔ Γ es f initamente satisf acible
+Demostración: La ida es intuitiva, para la vuelta se define una sucesión creciente de
+conjuntos utilizando el lema anterior. Vamos construyendo el nuevo conjunto agregando variables proposicionales
+⇒)
+Γ es satisfacible ⇒ ∃ v val / v(Γ) = 1
+Sea Γ1 = {α1 , α2 , . . . , αn } ⊆ Γ ⇒ como v(α) = 1 ∀ α ∈ Γ, en particular, v(Γ1 ) = 1
+⇐)
+Defino una sucesión creciente de conjuntos ∆0 ⊆ ∆1 ⊆ · · · ⊆ ∆n que van a contener
+literales
+Defino:
+∆0 = φ
+(
+∆n ∪ {pn }
+∆n+1 =
+∆n ∪ {¬pn }
+
+si Γ ∪ ∆n ∪ {pn } es f.s.
+si Γ ∪ ∆n ∪ {¬pn } es f.s.
+
+El n-ésimo elemento del conjunto está bien definido por lema anterior
+∆=
+
+S
+
+∆n
+
+n∈N
+
+(
+1
+Defino f : V AR → {0, 1} / f (pj ) =
+0
+
+pj ∈ ∆
+¬pj ∈ ∆
+
+Sea vf la valuación que extiende a f
+Notemos que vf (∆) = 1
+Veamos que vf (Γ) = 1
+Supongamos que vf no satisface a Γ ⇒ ∃ α ∈ Γ / vf (α) = 0
+Sea k = máx{j / pj apareceenα}Caso 1) vf (pk ) = 1 ⇒
+⇒ Σ = {α} ∪ ∆k ∪ {pj } es insatisfacible. ∆k ∪ {pj } = ∆k+1 por definición
+Σ es finito e insatisfacible, Σ ⊆ Γ ∪ ∆k+1 f.s. ⇒ Σ es satisfacible. ABS! pues en la
+lı́nea anterior vimos que es insatisfacible
+Veamos que Σ es insatisfacible
+Supongamos que lo es ⇒ ∃w val / w(Σ) = 1 ⇒ w(α) = 1 y w(∆k+1 ) = 1
+Notemos que si pj ∈ V AR(α) ⇒ pj ∈ ∆k+1 o ¬pj ∈ ∆k+1
+∴ vf |V AR(α) = w|V AR(α) ⇒ vf (α) = w(α) ⇒ 0 = 1 ABS!
+Caso 2) vf (pk ) = 0
+⇒ Σ = {α} ∪ ∆k ∪ {¬pj } es insatisfacible. ∆k ∪ {¬pj } = ∆k+1 por definición
+Σ es finito e insatisfacible, Σ ⊆ Γ ∪ ∆k+1 f.s. ⇒ Σ es satisfacible. ABS! pues en la
+lı́nea anterior vimos que es insatisfacible
+El resto es análogo al primer caso
+∴ vf (Γ) = 1 ⇒ Γ es satisfacible
+
+Teorema de Equivalencias: Los siguientes enunciados son equivalentes.
+1)
+Γ es satisf acible ⇔ Γ es f initamente satisf acible
+2)
+Γ es insatisf acible ⇔ Γ no es f initamente satisf acible
+3)
+α ∈ C(Γ) ⇔ ∃ Γ0 f inito / α ∈ C(Γ0 ), Γ0 ⊆ Γ
+Demostración: Solamente hay que demostrar que (”1” ⇔ ”2”) ⇔ ”3”
+El enunciado ”1” es el Teorema de Compacidad, y el ”2” es su contrarrecı́proco ⇒ ”1” ⇔
+”2”
+”2” = ”1” ⇒ ”3”)
+α ∈ C(Γ) ⇒ Γ ∪ {¬α} es insatisfacible ⇒ por Teo. de Compacidad Γ ∪ {¬α} no es
+finitamente satisfacible ⇒ ∃ Γ0 ⊆ Γ ∪ {¬α} / Γ0 es finito e insatisfacible
+Caso 1) Γ0 ⊆ Γ. Como Γ0 es insatisfacible ⇒ C(Γ0 ) = F ORM ⇒ α ∈ C(Γ0 )Caso 2) Γ0 * Γ ⇒ Γ0 = Γ00 ∪ {¬α} / Γ00 ⊆ Γ
+Queremos ver que α ∈ C(Γ00 ). Supongamos que no.
+⇒ ∃ v valuación / v(Γ00 ) = 1 y v(α) = 0 ⇒ v(Γ00 ) = 1 y v(¬α) = 1 ⇒ por definición
+v(Γ0 ) = 1 ABS! pues Γ0 es insatisfacible
+∴ α ∈ C(Γ00 )
+”3” ⇒ ”2” = ”1”)
+⇒) Sea Γ satisfacible ⇒ ∃ v valuación / v(Γ) = 1 Sea Γ0 ⊆ Γ finito ⇒ v(Γ0 ) = 1 ⇒ Γ0 es
+finitamente satisfacible
+⇐) Contrarrecı́proco. Queremos ver que Γ insatisfacible ⇒ Γ no es finitamente satisfacible
+Sea Γ insatisfacible ⇒ C(Γ) = F ORM ⇒ (p1 ∧ ¬p1 ) ∈ C(Γ) ⇒ por ”3”∃Γ0 ⊆ Γ finito
+/ (p1 ∧ ¬p1 ) ∈ C(Γ0 ) ⇒ Γ0 es insatisfacible ⇒ Γ0 no es finitamente satisfacible
+
+Parte V
+
+Teorı́a Axiomática
+Teorema: α es demostrable ⇒ α es tautologı́a
+Demostración: Inducción en la longitud de la prueba
+C.B) Sea α1 = α una prueba de α ⇒ α1 es axioma ⇒ α1 es tautologı́a
+H.I) Sea α1 , . . . , αn una prueba de α
+T.I) Sea α1 , . . . , αn+1 una prueba de α
+Caso 1) αn+1 es un axioma ⇒ αn+1 = α es tautologı́a
+Caso 2) ∃ j, k ≤ n / αj = (αk → αn+1 )
+1. αk → αn+1 dato
+2. αk dato
+3. αn+1 M.P. 1 y 2
+α1 , . . . , αk es una prueba de αk porque cada αi es un axioma o se obtiene por M.P.
+de dos anteriores, dado que α1 , . . . , αk , αk+1 , . . . , αn+1 es una prueba
+Como k ≤ n ⇒ por H.I. αk es una tautologı́a
+Análogamente, α1 , . . . , αj es una prueba de αj y j ≤ n ⇒ por H.I. αj es una tautologı́a
+Queremos ver que αn+1 es una tautologı́a
+Sea v valuación. v(αj ) = v(αk ) = 1 pues son tautologı́as
+1 = v(αj ) = v(αk → αn+1 ) = máx{1 − v(αk ), v(αn+1 )} = máx{0, v(αn+1 )} ⇒
+v(αn+1 ) = 1
+∴ αn+1 es tautologı́a
+
+Teorema de la deducción (versión axiomática):
+Γ ` (α → β) ⇔ Γ ∪ α ` β
+Demostración: La ida es trivial, la vuelta por inducción en la longitud de la prueba.
+⇒)Sabemos que Γ ` (α → β) ⇒ Γ ∪ {α} ` (α → β) pues Γ ⊆ Γ ∪ {α} y Γ ∪ {α} ` α pues
+α ∈ Γ ∪ {α}
+⇒ Γ ∪ {α} ` β por M.P. entre ambos datos
+⇐)
+Dato: Γ ∪ α ` β
+Queremos ver por inducción en la longitud de la prueba que Γ ∪ α ` (α → β)
+C.B. Sea α1 = β prueba a partir de Γ ∪ α ⇒
+1. β es un axioma
+1. β Axioma
+2. β → (α → β) Axioma 1
+3. α → β M.P. 1 y 2
+Como φ ` (α → β) ⇒ particularmente Γ ` (α → β)
+2. β ⊆ Γ
+1. β Dato
+2. β → (α → β) Axioma 1
+3. α → β M.P. 1 y 2
+
+3. β = α
+En la teorı́a vimos que φ ` (α → α) ⇒ particularmente Γ ` (α → α)
+H.I) Sea α1 , . . . , αk k ≤ n, una prueba de β a partir de Γ ∪ {α} ⇒ Γ ` (α → β)
+T.I) Sea α1 , . . . , αn+1 una prueba de β a partir de Γ ∪ {α} ⇒ Γ ` (α → β)
+Sea α1 , . . . , αn+1 una prueba de β a partir de Γ ∪ {α} ⇒ β es axioma o β ∈ Γ o β = α o
+β se obtiene por M.P. a partir de anteriores
+Los primeros tres casos son análogos al caso baso. Resta ver el último caso donde β se
+obtiene por M.P.
+∃ j, k ≤ n / αj = (αk → αn+1 ), αn+1 = β
+α1 , . . . , αk k ≤ n, una prueba a partir de Γ ∪ {α} ⇒ Γ ` (α → αk )
+α1 , . . . , αj j ≤ n, una prueba a partir de Γ ∪ {α} ⇒ Γ ` (α → αj ), αj = (αk → β)
+Queremos ver que Γ ` (α → β)
+1. (α → (αk → β)) → ((α → αk ) → (α → β)) Axioma 2
+2. (α → (αk → β)) pues Γ ` (α → (αk → β)3. (α → αk ) → (α → β) M.P. 1 y 2
+4. (α → αk ) pues Γ ` (α → αk )
+5. (α → β) M.P. 3 y 4
+∴ Γ ` (α → β)
+
+Teorema de Correctitud:
+
+Γ ` α → α ∈ C(Γ)
+Demostración:
+
+Caso 1) Γ = φ
+Queremos ver que φ ` α ⇒ α ∈ C(φ)
+Por definición, si φ ` α, α es demostrable ”1”
+Si α ∈ C(φ) = T autologias ⇒ α ∈ T autologias ”2”
+”1” ⇒ ”2” por Teorema visto anteriormente
+Caso 2) Γ 6= φ
+Por dato ∃ α1 , . . . αn prueba de α a partir de Γ
+Caso 1) α es un axioma ⇒ v(α) = 1
+Caso 2) α ∈ Γ ⇒ si v(Γ) = 1 ⇒ v(α) = 1
+Caso 3) α se obtiene por M.P. de anteriores
+⇒ ∃ αj j ≤ n / αj = (αi → α)
+Supongamos que ∃ v valuación / v(α) = 0
+v(αk ) = 1 k ≤ n pues forman parte de la prueba (visto en Teorema anterior)
+v(αj ) = 1 ⇒ máx{1 − v(αi ), v(α)} = 1 ⇒ máx{1 − 1, 0} = 1 ⇒ 0 = 1
+ABS! que vino de suponer que v(α) = 0 ⇒ v(α) = 1
+∴ v(α) = 1 ⇒ α ∈ C(Γ)
+Observación: Γ satisf acible ⇒ Γ consistente
+Demostración: Por el absurdo mediante Teorema de Correctitud
+Supongamos que Γ no es consistente ⇒ ∃ α ∈ F ORM / Γ ` α Y Γ ` ¬α ⇒ por Teo. de
+Correctitud α ∈ C(Γ) y ¬α ∈ C(Γ)
+Como Γ es satisfacible ⇒ ∃ v val. / v(Γ) = 1 ⇒ como α y ¬α ∈ C(Γ) ⇒ v(α) = 1 y
+v(¬α) = 1 ABS!
+∴ Γ es consistente
+
+0
+
+Lema de Lindenbaum: Sea Γ consistente ⇒ ∃ Γ maximal consistente / Γ ⊆ Γ
+
+0
+
+Demostración:
+#F ORM = ℵ0 ⇒ ∃ f : N → F ORM biyectiva
+F orm = Im(f ) = {γ0 , . . . , γn }
+Γ0 = Γ
+(
+Γn+1 =
+
+Γn ∪ {γn }
+Γn
+
+Γ0 =
+
+Γn
+
+S
+
+si Γn ∪ {γn } es consistente
+sino
+
+n∈N
+
+Queremos ver que Γ0 es m.c. y Γ ⊆ Γ0
+1. Γ = Γ0 ⊆ Γ0
+2. Veamos que Γ0 es consistente
+Supongamos que no lo es ⇒ ∃ α / Γ0 ` α y Γ0 ` ¬α
+∃α1 , . . . , αn prueba a partir de Γ0
+∃β1 , . . . , βk prueba a partir de Γ0
+X = {αj / 1 ≤ j ≤ n y αj ∈ Γ0 } ∪ {βi / 1 ≤ i ≤ n y βi ∈ Γ0 } Datos utilizados en ambas
+pruebas
+M = máx{r / γr ∈ X}
+⇒ X ⊆ ΓM +1 Como es el maximal, contiene a todos
+∴ ΓM +1 ` α y ΓM +1 ` ¬β
+ABS! porque ΓM +1 es consistente3. Veamos que Γn es consistente ∀n ∈ N
+C.B) Γ0 = Γ es consisntente (Dato)
+H.I) Γn es consistente
+T.I) Γn+1 es consistente
+(
+Γn+1 =
+
+rclΓn ∪ {γn }
+Γn
+
+si Γn ∪ {γn } es consistente ⇒ Γn+1 es consistente
+sino ⇒ Γn+1 = Γn es consistente por H.I.
+
+Vemos que Γ0 es maximal
+Supongo que ∃ β ∈ F ORM , β ∈
+/ Γ0 / Γ0 ∪ {β} es consistente
+⇒ ∃ N / β = γN
+(
+ΓN ∪ {γN }
+ΓN +1 =
+ΓN
+
+si ΓN ∪ {γN } es consistente
+sino
+
+Como γN ∈
+/ Γ0 ⇒ ΓN ∪ {γN } es inconsistente
+⇒ ∃ ξ ∈ F ORM / ΓN ∪ {γN } ` ξ y ΓN ∪ {γN } ` ¬ξ
+⇒ Γ0 ∪ {γn } ` ξ y Γ0 ∪ {γn } ` ¬ξ ABS! pues supusimos que es consistente
+∴ Γ0 es maximal consistente
+
+Observación:
+1. Γ ∪ {¬γ} es inconsistente ⇔ Γ ` γ
+2. Γ ∪ {γ} es inconsistente ⇔ Γ ` ¬γ
+Demostración: La ida se hace utilizando definición de consistente, teorema de la deducción
+y una prueba. La vuelta es sencilla.
+1. ⇐)
+Γ ` γ ⇒ Γ ∪ {¬γ} ` γ y Γ ∪ {¬γ} ` ¬γ ⇒ Γ ∪ {¬γ} es inconsistente
+⇒)
+Γ ∪ {¬γ} es inconsistente ⇒ ∃ α ∈ F ORM / Γ ∪ {¬γ} ` α y Γ ∪ {¬γ} ` ¬α
+⇒ por Teo. de la Deducción Γ ` (¬γ → α) (◦) y Γ ` (¬γ → α) (?)
+Hago una prueba de Γ ` γ:1. (¬γ → ¬α) → ((¬γ → α) → γ) Axioma 3
+2. ¬γ → α por dato ?
+3. (¬γ → α) → γ M.P. 1 y 2
+4. ¬γ → α por dato ◦
+5. γ M.P. 3 y 4
+⇒Γ`γ
+2. ⇐)
+Γ ` ¬γ ⇒ Γ ∪ {γ} ` ¬γ y Γ ∪ {γ} ` γ ⇒ Γ ∪ {γ} es inconsistente
+⇒)
+Γ ∪ {γ} es inconsistente ⇒ ∃ α ∈ F ORM / Γ ∪ {γ} ` α y Γ ∪ {γ} ` ¬α
+⇒ por Teo. de la Deducción Γ ` (γ → α) (◦) y Γ ` (γ → α) (?)
+Hago una prueba de Γ ` ¬γ:
+1. (¬¬γ → ¬¬α) → ((¬¬γ → ¬α) → ¬γ) Axioma 3
+2. (γ → α) → (¬¬γ → ¬¬α) Hecho en clase
+3. γ → α por dato ?
+4. ¬¬γ → ¬¬α M.P. 2 y 3
+5. (¬¬γ → ¬α) → ¬γ M.P. 4 y 1
+6. (γ → ¬α) → (¬¬γ → ¬α) Hecho en clase
+7. γ → ¬α por dato ◦
+8. ¬¬γ → ¬α M.P. 6 y 7
+9. ¬γ M.P. 8 y 5
+⇒ Γ ` ¬γ
+
+Proposición: Γ es m.c. ⇒ γ ∈ Γ ó ¬γ ∈ Γ ∀ γ ∈ F ORM
+Demostración: Absurdo utilizando Ley de De Morgan para la negación
+Supongamos que ¬(γ ∈ Γ o ¬γ ∈ Γ)
+Caso 1) γ ∈
+/ Γ o ¬γ ∈
+/Γ
+Como γ ∈
+/ Γ y Γ es m.c. Γ ∪ {γ} es inconsistente ⇒ Γ ` ¬γ por lema anterior (”1”)
+Como ¬γ ∈
+/ Γ y Γ es m.c. Γ∪{¬γ} es inconsistente ⇒ Γ ` γ por lema anterior (”2”)
+∴ por 1 y 2, Γ es inconsistente. ABS!Caso 2) γ ∧ ¬γ ∈ Γ
+Γ ` γ y Γ ` ¬γ ⇒ Γ es inconsistente. ABS!
+∴ γ ∈ Γ ó ¬γ ∈ Γ
+
+Proposición: Sea Γ inconsistente, γ ∈ Γ ⇔ Γ ` γ
+Demostración:
+⇒)
+Queremos ver que Γ ` γ. Realizo una prueba
+1. γ Dato
+∴Γ`γ
+⇐)
+Γ ` γ ⇒ (por Lema) Γ ∪ {¬γ} es inconsistente ⇒ ¬γ ∈
+/ Γ por Prop. anterior γ ∈ Gamma
+
+Teorema:
+Γ es consistente ⇒ Γ es satisf acible
+Demostración: Lema de Lindenbaum e inducción en la complejidad de α
+Γ es consistente ⇒ (por Lema de Lindenbaum) ∃ Γ0 m.c. Γ ⊆ Γ0
+Veamos que Γ0 es satisfacible
+Como Γ0 es m.c. ⇒ α ∈ Γ0 ó ¬α ∈ Γ0 ∀ α ∈ F ORM (por Prop. anteriormente vista)
+En particular, pj ∈ Γ0 ó¬pj ∈ Γ0 ∀ pj ∈ V AR
+(
+1 si pj ∈ Γ0
+Defino f : V AR → {0, 1} / f (pj ) =
+0 si pj ∈
+/ Γ0 , (⇒ ¬pj ∈ Γ0 )
+Sea vf la valuación que extiende a f, queremos ver que vf (Γ) = 1
+Veamos por inducción en c(α) que vf (α) = 1 ⇔ α ∈ Γ0
+C.B) c(α) = 1
+α = pj ⇒ si pj ∈ Γ0 ⇒ vf (pj ) = 1
+Notemos que si pj ∈
+/ Γ0 ⇒ vf (pj ) = 0
+H.I) α ∈ F ORM / c(α) = k k ≤ nvf (α) = 1 ⇔ α ∈ Γ0
+T.I) α ∈ F ORM / c(α) = n + 1
+vf (α) = 1 ⇔ α ∈ Γ0
+Sea α ∈ F ORM / c(α) = n + 1
+Caso 1) α = ¬β ∈ F ORM ⇒ c(β) = n
+vf (α) = 1 ⇔ vf (β) = 0 ⇔ por H.I. β ∈
+/ Γ0 ⇔ como Γ0 es m.c. ¬β ∈ Γ0 ⇔ α ∈ Γ0
+Caso 2) α = (β1 → β2 ), β1 , β2 ∈ F ORM
+c(α) = c(β1 ) + c(β2 ) + 1 = n + 1
+⇒ 0 ≤ c(β1 ) ≤ n y 0 ≤ c(β2 ) ≤ n
+vf (α) = 1 ⇔ vf (β1 ) = 0 o vf (β2 ) = 1
+⇒ por H.I: β1 ∈
+/ Γ0 ⇒ como es m.c. ¬β1 ∈ Γ0 ⇒ Γ ` (β1 → β2 )
+⇒ por H.I: β2 ∈ Γ0 ⇒ como es m.c. ¬β2 ∈
+/ Γ0 ⇒ Γ0 ` β2 ⇒ Γ0 ` (β2 → (β1 → β2 ))
+por (Axioma 1) ⇒ (β1 → β2 ) M.P. Dato y Axioma 2
+vf (α) = 0 ⇔ vf (β1 ) = 1 y vf (β2 ) = 0 ⇒ por H.I. β1 ∈ Γ0 y β2 ∈
+/ Γ0 (¬β2 ∈
+0
+Γ pues es m.c.)
+φ ` (β1 → (¬β2 → ¬(β1 → β2 ))) ⇒ φ ` ¬(β1 → β2 ) ⇒ Γ0 ` ¬(β1 → β2 ) ⇒ como
+Γ0 es m.c. ⇒ (β1 → β2 ) ∈
+/ Γ0
+∴ α ∈ Γ0
+
+Teorema de Completitud:
+α ∈ C(Γ) ⇔ Γ ` α
+Demostración: Por proposición y lemas anteriores
+α ∈ C(Γ) ⇒ Γ ∪ {¬α} es insatifacible ⇒ (contrarrecı́proco de Satifacible ⇒ Consistente)
+Γ ∪ {¬α} es inconsistente ⇒ (por Lema) Γ ` α
+
+Teorema: El sistema axiomático AX.1, AX.2, AX.3 y M.P. es consistente
+Demostración:Supongamos que no lo es ⇒ ∃ α ∈ F ORM / ` α y ` ¬α
+⇒ α ∈ C(φ) y ¬α ∈ C(φ) ⇒ α es tautologı́a y ¬α es tautologı́a ⇒ ∀ v valuación
+v(α) = 1 y v(¬α) = 1 ABS!
+∴ El sistema axiomático es consistente
+
+Parte VI
+
+Lógica de Primer Orden
+Lema: Sea L lenguaje de primer orden (LPO). I1 , I2 interpretaciones isomorfas vı́a h.
+Senado h : UI1 → UI2 biyectiva. Sea v una valuación sobre I1 ⇒ h ◦ v = h ◦ v
+Demostración: Por inducción en el tamaño de los términos tam(t) (cantidad de funciones
+que aparecen en t)
+v : V AR → U1 , v : T ERM → U1 , h : U1 → U2
+h ◦ v : T ERM → U2
+h ◦ v : V AR → U2
+h ◦ v : T ERM → U2
+Vamos a ver que se cumple por inducción en tam(t)
+C.B) tam(t) = 0 ⇒ t = xi ∈ V AR o t = c ∈ C
+Caso 1) h ◦ v(xi ) = h(v(xi )) = ( v|V AR = v) ⇒ h(v(xi ))
+= h ◦ v(xi ) = ( h ◦ v V AR = h ◦ v) ⇒ h ◦ v(xi )
+Caso 2) h◦v(c) = h(v(c)) = (por def. de v) h(CI1 ) = (por def. de isomorfismo) CI2 = h ◦ v(c)
+H.I) tam(t) ≤ n, t ∈ F ORM ⇒ h ◦ v(t) = h ◦ v(t)
+T.I) tam(t) = n + 1, t ∈ F ORM ⇒ h ◦ v(t) = h ◦ v(t)
+Sea t ∈ T ERM / tam(t) = n + 1 > 0
+t = f k (t1 , . . . , tn ), t1 , . . . , tn ∈ T ERM
+h ◦ v(f k (t1 , . . . , tk ) = h(v(f k (t1 , . . . , tk )) = (por def. de v) h(fIk1 (v(t1 ), . . . , v(tk )))
+(por def. de isomorfismo) fIk2 (h◦v(t1 ), . . . , h◦v(tk )) = (por H.I) fIk2 (h ◦ v(t1 ), . . . , h ◦ v(tk )) =
+h ◦ v(f k ((t1 , . . . , tk ))
+∴h◦v =h◦v
+
+Teorema: Sea L LPO. Sean I1 , I2 interpretaciones isomorfas vı́a h. Sea v : V AR ⇒ U1
+valuación, y α ∈ F ORM
+
+I1  α[v] ⇔ I2  α[h ◦ v]
+Demostración: Por inducción en el tamaño de las fórmulas. Usamos que el conj {¬, ∧, ∃}
+es adecuado
+C.B) tam(α) = 0 ⇒ α = pk (t1 , . . . , tk ) ∈ P, t1 , . . . , tk ∈ T ERM
+VI1 ,v (α) = 1 ⇔ (v(t1 ), . . . , v(tk )) ∈ PIk1 ⇔ (h es un iso.) (h ◦ v(t1 ), . . . , h ◦ v(tk )) ∈ PIk2
+⇔ (por Lema anterior) (h ◦ v(t1 ), . . . , h ◦ v(tk )) ∈ PIk2 ⇔ VI2 ,h◦v (P k (t1 , . . . , tk )) = 1
+H.I) Sea α ∈ F ORM , tam(α) ≤ n ⇒ (I1  α[v] ⇔ I2  α[h ◦ v])
+T.I) Sea α ∈ F ORM , tam(α) = n + 1 ⇒ (I1  α[v] ⇔ I2  α[h ◦ v])
+Sea α ∈ F ORM / tam(α) = n + 1 > 0 ⇒
+Caso 1) α = ¬β
+tam(α) = 1 + tam(β) = n + 1 ⇒ tam(β) = n
+I1  α[v] ⇔ VI1 ,v (α) = 1 ⇔ VI1 ,v (β) = 0 ⇔ (por H.I.) VI2 ,h◦v (β) = 0
+⇔ VI2 ,h◦v (α) = 1 ⇔ I2  α[h ◦ v]
+Caso 2) α = (β1 ∧ β2 )
+tam(β1 ) + tam(β2 ) + 1 = n + 1 ⇒ tam(β1 ) ≤ n y tam(β2 ) ≤ n
+I1  (β1 ∧ β2 )[v] ⇔ VI1 ,v (β1 ∧ β2 ) = 1 ⇔ mı́n{VI1 ,v (β1 ), VI1 ,v (β2 )} = 1 ⇔
+VI1 ,v (β1 ) = 1 y VI1 ,v (β2 ) = 1
+⇔ por H.I. VI2 ,h◦v (β1 ) = 1 y VI2 ,h◦v (β2 ) = 1 ⇔ mı́n{VI1 ,h◦v (β2 ), VI2 ,h◦v (β2 )} =
+1 ⇔ VI2 ,v (β1 ∧ β2 ) = 1 ⇔ I2  (β1 ∧ β2 )[h ◦ v]
+Caso 3) α = ∃x β
+tam(α) = tam(β) + 1 = n + 1 ⇒ tam(β) = n
+I1  ∃x β[v] ⇔ VI1 ,v (∃x β) = 1 ⇔ ∃α ∈ U1 / VI1 ,vx=α (β) = 1
+⇔ por H.I. ∃α ∈ U1 / VI1 ,(h◦v)x=α (β) = 1 ⇔ ∃α ∈ U1 / VI1 ,(h◦v)x=h(α) (β) = 1
+⇒ (tomo b = h(α) ∈ U2 ) ∃b ∈ U2 / VI1 ,(h◦v)x=b (β) = 1
+⇐ Como h es biyectiva α = h−1 (b)
+⇔ VI2 ,h◦v (∃xβ) = 1 ⇔ I1  ∃xβ[h ◦ v]∴ I2  α[h ◦ v]
+
+Corolario 1: Sean L LPO, α enunciado. I1 , I2 interpretaciones isomorfas.
+
+α es vedadera en I1 ⇔ α es vedadera en I2
+Demostración:
+I1  α ⇔ I1  α[v] ∀v : V AR → U1 val ⇔ Teo. anterior I2  α[h ◦ v] ∀v : V AR → U1 val
+⇔ I2  α[w] ∀w : V AR → U2 val
+⇒ Sea v : V AR → U1 ⇒ ∃w = h ◦ v : V AR → U2
+⇒ Sea w : V AR → U2 ⇒ ∃v = h−1 ◦ w : V AR → U1
+⇒ I2  α
+
+Corolario 2: Sean L LPO. I interpretación con universo U . a ∈ U elemento distinguible
+F : U → Uiso ⇒ F (a) = a
+Demostración:
+a es distinguible ⇒ ∃α(x) ∈ F ORM que expresa a {a}
+1. I  α[vx=a ]
+2. I 2 α[vx=b ] b 6= a
+⇒ por Teo. anterior I  α[f ◦ vx=a ], es decir, I  α[(f ◦ v)x=f (a) ]
+∴ por ”1” y ”2” F (a) = a
+
+Corolario 3: Sean L LPO. I interpretación con universo U . A ⊆ U expresable.
+F : U → Uiso ⇒ F (A) ⊆ A (F (a) ∈ A ∀ a ∈ A)
+Demostración:
+A es expresable ⇒ ∃α(x) que expresa a A
+1. I  α[vx=a ] ∀ a ∈ A
+2. I 2 α[vx=b ] ∀ b ∈/A⇒ por Teo. anterior I  α[f ◦ vx=a ], es decir, I  α[(f ◦ v)x=f (a) ]
+⇒ F (a) ∈ A ∀ a ∈ A
+∴ por ”1” y ”2” F (A) ⊆ A
+
+Corolario 4: Sean L LPO. I1 ≃ I2 vı́a h.
+a es distintiguible en I1 ⇔ h(a) es distintiguible en I2
+Demostración:
+a es dintiguible en I1 ⇒ ∃ α(x)queexpresa{a}
+1. I  α[vx=a ] ∀ a ∈ A
+2. I 2 α[vx=b ] ∀ b ∈
+/A
+Queremos ver que ∃ β que distingue h(a) en I2
+⇒ por Teo. anterior:
+1. ⇒ I2  α(x)[h ◦ vx=a ] ⇒ I2  α(x)[(h ◦ v)x=h(a) ]
+2. ⇒ I2 2 α(x)[h ◦ vx=b ] ⇒ I2  α(x)[(h ◦ v)x=h(b) ] Notemos que h(b) 6= h(a)
+Queremos ver que VI2 ,vx=c = 1 ⇔ c = h(a)
+⇐) por ”1”, como c = h(a), I2  α(x)[wx=h(a)=c) ] ⇒ VI2 ,wx=c (α(x)) = 1
+⇒ por contrarrecı́proco, si c 6= h(a) ⇒ por ”2” I2  α(x)[(w)x=c6=h(a) ] ⇒ VI2 ,wx=c (α(x)) =
+0
+∴ α(x) distingue a h(a) ⇒ h(a) es distinguible
+
+Parte VII
+
+Computabilidad
+Teorema (Composición de funciones computables es computable): Sean f1 , . . . , fk : Nk →
+N (parcialmente) computable. g : Nn → N (parc.) computable ⇒ h = g ◦ (f1 , . . . , fn ),
+h : Nk → N es (parc.) computable
+Demostración:
+Como fj es (parc) comp. existe Pj programa que lo computa ⇒ puedo reemplazarlo con
+una macro
+Como g es (parc) comp. existe Pg programa que lo computa ⇒ puedo reemplazarlo con
+una macro
+Defino el siguiente programa:
+Z1 ← f1 (x1 , . . . , xk )
+...
+Zn ← fn (x1 , . . . , xk )
+Y ← g(Z1 , . . . , Zn )
+∴ como existe programa que lo computa ⇒ h es (parc.) computable
+
+Teorema: Si h se obtiene a partir de g con un ERI y g es (parc.) computable ⇒ h es
+(parc.) computable
+Demostración:
+Como g : N2 → N es (parc) comp. existe Pg programa que lo computa ⇒ puedo reemplazarlo con una macro
+Defino el siguiente programa
+Y ←K
+[A1 ] IF X1 = 0 GOT O E1
+Y ← g(Z1 , Y )
+Z ←Z +1
+X1 ← X1 − 1
+GOT O A1
+∴ como existe programa que lo computa ⇒ h es (parc.) computable
+
+Teorema: Si h se obtiene a partir de f y g con un ERII, f y g son (parc.) computable ⇒
+h es (parc.) computable
+Demostración:
+Como g : Nk+1 → N es (parc) comp. existe Pg programa que lo computa ⇒ puedo reemplazarlo con una macroComo f : Nk → N es (parc) comp. existe Pf programa que lo computa ⇒ puedo reemplazarlo con una macro
+Defino el siguiente programa
+Y ← f (X1 , . . . , Xk )
+[A1 ] IF Xk+1 = 0 GOT O E1
+Y ← g(X1 , . . . , Xk , Z1 + Y )
+Z ←Z +1
+Xk+1 ← Xk+1 − 1
+GOT O A1
+∴ como existe programa que lo computa ⇒ h es (parc.) computable
+
+Teorema:
+1. Comp. de funciones RP son RP
+2. ERI y ERII de funciones RP son RP
+Demostración:
+f = g ◦ (h1 , . . . , hk )
+(h1 , . . . , hk ) : Nn → N es RP
+g : Nk → N es RP
+Queremos ver que ⇒ f : Nn → N es RP
+hi esRP ⇒ se obtiene aplicando nj ∈ N operaciones permitidas o funciones iniciales
+gesRP ⇒ se obtiene aplicando ng ∈ N operaciones permitidas o funciones iniciales
+⇒ f se obtiene aplicando n1 +· · ·+nk +ng +1 operaciones permitidas o funciones iniciales
+⇒ f es RP
+
+Teorema: f es RP ⇒ f es computable
+Demostración:
+f es RP ⇒ f se obtiene aplicando finitas operaciones permitidas o funciones iniciales ⇒
+f es finita computable, ERI o ERII de funciones computables ⇒ f es computable.
+
+Teorema:
+1. P k y Qk predicados RP ⇒ ¬P k , P k ∧ Qk son RP2. P k y Qk predicados computables ⇒ ¬P k , P k ∧ Qk son computables
+Demostración:
+1. P k , Qk RP ⇒ Cpk y Cqk : Nk → N son RP
+C¬pk : Nk → N / C¬pk = α ◦ C¬pk RP por composición de RP
+(
+Cpk ∩qk : Nk → N / Cpk ∩qk (~x) =
+
+1
+0
+
+si ~x ∈ pk ∩ qk
+sino
+
+Cpk ∩qk = P ROD ◦ (Cpk XCqk ) RP por comp. de RP
+2. P k es computable ⇒ Cpk : Nk → N es computable
+C¬pk : Nk → N / C¬pk = α ◦ Cpk es computable por composición de computables
+Qk es computable ⇒ Cpk : Nk → N es computable
+(
+1
+Cpk ∩qk : N → N / Cpk ∩qk (~x) =
+0
+k
+
+si ~x ∈ pk ∩ qk
+sino
+
+Cpk ∩qk = P ROD ◦ (Cpk XCqk ) Computable por comp. de computables
+
+Corolario:
+1. P k y Qk predicados RP ⇒ P k ∨ Qk , P k → Qk son RP
+2. P k y Qk predicados computables ⇒ P k ∨ Qk , P k → Qk son computables
+Demostración:
+
+Teorema:
+1) Sean h, g : Nn → N funciones RP y CP : Nn → {0, 1} función caracterı́stica de un predicado RP ⇒ f : Nm → N /
+(
+f (x1 , . . . , xn ) =
+
+h(x1 , . . . , xn ) si (x1 , . . . , xn ) ∈ P
+g(x1 , . . . , xn ) sino
+
+es RP
+2) Igual que el anterior pero en lugar de RP, h, g y P computables ⇒ f es computable
+Demostración:1) f (~x) = h(~x) ∗ CP (~x) + g(~x) ∗ α(CP (~x))
+f = SU M A(P ROD(h, CP ), P ROD(g, α ◦ CP )), por lo tanto f es composición de PROD,
+SUMA, α, h, g y CP , todas RP ⇒ f es RP
+2) f (~x) = h(~x) ∗ CP (~x) + g(~x) ∗ α(CP (~x))
+f = SU M A(P ROD(h, CP ), P ROD(g, α ◦ CP )), por lo tanto f es composición de PROD,
+SUMA, α, h, g y CP , todas computables ⇒ f es computable
+
+Teorema: Sean g1 , . . . , gn , h : Nn → N funciones RP y P1 , . . . , Pn predicados n-arios
+RP ⇒ f : Nm → N /
+
+g1 (~x) si ~x ∈ P1
+
+
+
+. . .
+f (~x) =
+
+gn (~x) si ~x ∈ Pn
+
+
+
+h(~x) sino
+es RP siendo Pj ∩ Pk = φ si j 6= k
+Demostración: Similar a tabulaciones
+
+
+Teorema (Suma Acotada): Sea Saf : Nk+1 → N /
+Saf (x1 , . . . , xk , y) =
+
+y
+X
+
+f (x1 , . . . , xk , j)
+
+j=0
+
+1) Si f es RP ⇒ Saf es RP
+2) Si f es computable ⇒ Saf es computable
+Demostración:
+
+1) ~x = (x1 , . . . , xk )
+Saf (~x, 0) =
+
+0
+P
+
+f (~x, j) = f (~x, 0) = quiero h(~x)
+
+j=0
+
+Saf (~x, y+1) =
+
+y+1
+P
+j=0
+
+f (~x, j) =
+
+y
+P
+
+f (~x, j) (→ Saf (~x, y)) +f (~x, y+1) = quiero H(~x, y, Saf (~x, y))
+
+j=0
+
+Defino h : Nk → N / h(~x) = f (~x, 0)
+h = f ◦ ((Π1 × · · · × Πk ) × (CERO ◦ Π1 )h es RP por ser composición de f, proyecciones y CERO, todas funciones RP
+Defino H : N2 → N /
+H(~x, y, z) = z + f (~x, SU C(y)) = SU M A(Πk+2 , f ◦ ((Π1 , . . . , Πk ), SU C(Πk+1 ))
+f y SUMA son RP. Πj y SUC son funciones iniciales ⇒ son RP ⇒ H es RP por composición de RP
+∴ Saf es RP por ser ERII a partir de h y de H que son RP
+2) Análogo al primer caso
+
+Teorema (Productoria Acotada): Sea Saf : Nk+1 → N /
+P af (x1 , . . . , xk , y) =
+
+y
+Y
+
+f (x1 , . . . , xk , j)
+
+j=0
+
+1) Si f es RP ⇒ P af es RP
+2) Si f es computable ⇒ P af es computable
+Demostración:
+1) ~x = (x1 , . . . , xk )
+P af (~x, 0) =
+
+0
+Q
+
+f (~x, j) = f (~x, 0) = quiero h(~x)
+
+j=0
+
+P af (~x, y+1) =
+
+y+1
+Q
+
+f (~x, j) =
+
+j=0
+
+y
+Q
+
+f (~x, j) (→ P af (~x, y)) ∗f (~x, y+1) = quiero H(~x, y, P af (~x, y))
+
+j=0
+
+Defino h : Nk → N / h(~x) = f (~x, 0)
+h = f ◦ ((Π1 × · · · × Πk ) × (CERO ◦ Π1 )
+h es RP por ser composición de f, proyecciones y CERO, todas funciones RP
+Defino H : N2 → N /
+H(~x, y, z) = z ∗ f (~x, SU C(y)) = P ROD(Πk+2 , f ◦ ((Π1 , . . . , Πk ), SU C(Πk+1 ))
+f y SUMA son RP. Πj y SUC son funciones iniciales ⇒ son RP ⇒ H es RP por composición de RP
+∴ P af es RP por ser ERII a partir de h y de H que son RP2) Análogo al primer caso
+
+Teorema (Cuantificadores Acotados): Sea CP : Nn + 1 → {0, 1} la función caracterı́stica del predicado P RP ⇒ los siguientes predicados son RP:
+1. U a(~x, y) = ∀ t ≤ y CP (~x, t)
+2. Ea(~x, y) = ∃ t ≤ y CP (~x, t)
+Demostración:
+1. U a(~x, y) =
+
+y
+Q
+
+CP (~x, t) = P aCP (~x, y)
+
+t=0
+
+U a es RP por ser productoria acotada de una función RP
+
+2. Ea(~x, y) = α(α(
+
+y
+P
+
+CP (~x, t)))
+
+t=0
+
+Ea = α ◦ α ◦ SaCP
+Ea es RP por ser composición de α que es RP por ser función inicial, y sumatoria acotada
+(que es RP)
+
+Teorema (Minimización acotada): Sean P n+1 un predicado RP. M inAP : Nn+1 → N
+(
+mı́n{t ≤ y CP (~x, t) = 1} si A 6= 0
+M inAp (~x, y) = mı́n CP (~x, t) =
+t≤y
+0
+sino
+M inAP es RP
+Demostración: Definimos un M inA0P y luego lo emparchamos en los casos que fallan
+Sea M inA0P : Nn+1 → N. Veamos que M inA0P es RP
+M inA0P =
+
+y Q
+j
+P
+
+α(Cp (~x, t))
+
+j=0 k=0
+
+M inA0P es RP por ser composición de sumatoria acotada, productoria acotada, α, función caracterı́stica de un predicado RP y proyecciones, todas funciones RP
+(La definición parece engorrosa pero la idea es la siguiente: α(Cp (~x, 0)) + α(Cp (~x, 0)) ∗
+α(Cp (~x, 1)) + . . . )
+Vemos que tiene una falla en la condición del ”sino”, lo arreglamos:
+M inAP = M inA0P (~x, y) ∗ (α(EQ (M inA0P (~x, y), SU C (Y ))))
+M inAP es RP por ser composición de M inA0P , α, EQ, SUC y proyecciones, todas funciones RP
+Teorema (Maximización acotada): Sean P n+1 un predicado RP. M axAP : Nn+1 →
+N
+(
+máx{t ≤ y CP (~x, t) = 1}
+M axAp (~x, y) = máx CP (~x, t) =
+t≤y
+0
+
+si A 6= 0
+sino
+
+M axAP es RP
+Demostración: Utilizando la minimización acotada, y utilizando un predicado auxiliar
+M axA(~x, y) = mı́n Q(~x, t)
+t≤y
+
+Q(~x, t) = P (~x, t) ∧ ∀t0 t ≤ t0 ≤ y ¬P (~x, t0 )
+Q es RP por ser composición de ∧, ¬, predicado RP y universal acotado
+M axA es RP por ser minimización acotada con predicado RP
+
+Parte VIII
+
+Numeración de Gödel y Programas
+Universales
+Teorema:
+Halt : N2 → N no es computable
+Demostración: Por al absurdo
+Supongamos que Halt es computable ⇒ ∃ f : N → N / f (x) = Halt(x, x), es decir,
+f = Halt ◦ (Π1 ◦ Π1 ) que es computable por composición de computables ⇒ ∃ un programa
+que compute a f y podemos reemplazarlo por una macro
+Definimos el siguiente programa: [A1 ] IF HALT (X, X) = 1 GOT O A1 , el cual tiene un
+código asignado que llamamo #P = n
+f (n) = Halt(n, n)
+f (n) = 1 ⇔ el programa de código n ante la entrada n termina ⇔ (mirando el programa
+que escribimos) Halt(n, n) = 0, pero Halt(n, n) = f (n) = 1 ABS! que vino de suponer que
+Halt es computable
+∴ Halt no es computable
+
+

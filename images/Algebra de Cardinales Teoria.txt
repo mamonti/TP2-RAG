@@ -1,0 +1,121 @@
+Algunas propiedades del álgebra de cardinales
+Marcelo M. Lynch
+Lógica Computacional - ITBA
+Decimos que dos conjuntos A y B son coordinables si existe una función
+biyectiva entre ellos. Notamos A ∼ B (∼ es una relación de equivalencia).
+Decimos #A = #B si A ∼ B. Decimos que #A ≤ #B si existe una función
+f : A → B inyectiva.
+En lo que sigue, A, B, C son conjuntos disjuntos dos a dos y a = #A,
+b = #B, c = #C.
+Recordemos que con a + b se denota al cardinal del conjunto A ∪ B, con con
+ab se denota al cardinal del conjunto A × B, y con ab el cardinal del conjunto
+de funciones con dominio en B y codominio en A (llamamos a este conjunto AB ).
+Propiedad. a(b + c) = ab + ac
+Demostración. Por propiedades de conjuntos, sabemos:
+A × (B ∪ C) = (A × B) ∪ (A × C)
+Luego, por la reflexividad de ∼ tenemos A × (B ∪ C) ∼ (A × B) ∪ (A × C).
+Propiedad. ab+c = ab ac
+Demostración. Llamamos:
+X = {f : B ∪ C → A : f es función}
+Y = {(f, g) / f : B → A es función y g : C → A es función}
+Notemos que #X = ab+c y #Y = ab ac . Definimos entonces una biyeccion:
+Φ:X→Y
+Φ(f ) = (f |B , f |C )
+i. Φ es inyectiva: Sean f, g ∈ X, tenemos Φ(f ) = Φ(g) ⇒ (f |B , f |C ) =
+(g|B , g|C ) luego las imágenes de f y g coinciden en todo su dominio (B ∪ C), es
+decir, f = g.
+ii. Φ es sobreyectiva: Sea (g, h) ∈ Y , defino:
+f : B∪C →A
+(
+g(t)
+si t ∈ B
+f (t) =
+h(t)
+si t ∈ C
+f ∈ X, y además Φ(f ) = (g, h). Luego Φ es sobreyectiva.
+Entonces Φ es biyectiva, es decir, X ∼ Y , o sea ab+c = ab ac
+
+Propiedad. (ab )c = abc
+Demostración. Queremos ver (AB )C ∼ AB×C . Recordemos que en (AB )C tenemos funciones de C → {funciones B → A}, y en AB×C tenemos funciones de
+B × C → A.
+Definimos entonces la función Ω : AB×C → (AB )C según:
+Ω(g) =fg : C → AB
+fg (c) = hg,c : B → A
+hg,c (x) = g(x, c)
+Para entender Ω se puede pensar que con el argumento de fg se ”fija” el segundo
+argumento de g (un elemento del conjunto C), y se devuelve una función hg,c
+que ”fija” el primero (un elemento de B): es decir, al evaluar hg,c en un x ∈ B
+se está evaluando la función g que es parámetro de Ω, con el elemento c como
+segundo parámetro, y el elemento x como primer parámetro.
+Probemos la inyectividad de Ω mostrando que si α, β ∈ AB×C con α 6= β
+entonces Ω(α) 6= Ω(β). Si α 6= β, por la definición de igualdad de funciones
+debe existir un elemento (b0 , c0 ) ∈ B × C tal que α(b0 , c0 ) 6= β(b0 , c0 ).
+Pero por como definimos Ω, tenemos α(b0 , c0 ) = Ω(α)(c0 )(b0 ) (¿se ve que
+primero se fija c0 y luego b0 , evaluando α con esos parámetros?) y β(b0 , c0 ) =
+Ω(β)(c0 )(b0 ).
+Pero ası́ Ω(α)(c0 )(b0 ) 6= Ω(β)(c0 )(b0 ) es decir, hα,c0 (b0 ) 6= hβ,c0 (b0 )
+Entonces, por igualdad de funciones: hα,c0 6= hβ,c0 (ya que difieren en b0 ).
+Pero hα,c0 = fα (c0 ), y hβ,c0 = fβ (c0 ), luego, de la misma manera, por igualdad
+de funciones es fα 6= fβ .
+Como Ω(α) = fα y Ω(β) = fβ , entonces Ω(α) 6= Ω(β), que era lo que querı́amos
+ver. Luego Ω es inyectiva.
+Veamos que Ω es sobreyectiva. Sea γ ∈ (AB )C , definimos g : B × C →
+A : g(b, c) = γ(c)(b). Para cualquier c0 ∈ C, dado cualquier b0 ∈ B es
+Ω(g)(c0 )(b0 ) = g(b0 , c0 ) = γ(c0 )(b0 ) ⇒ Ω(g)(c) = γ(c) ∀c ∈ C, luego Ω(g) = γ.
+Concluimos que Ω es sobreyectiva.
+Entonces Ω es biyectiva y ası́ (AB )C ∼ AB×C .
+Propiedad. b ≤ c ⇒ ba ≤ ca
+Demostración. Como b ≤ c existe g : B → C inyectiva.
+Definimos Ψ : B A → C A según:
+Ψ(f ) =g ◦ f : A → C
+g ◦ f (x) = g(f (x))
+Queremos ver que Ψ es inyectiva: Ψ(f1 ) = Ψ(f2 ) ⇒ g(f1 (x)) = g(f2 (x)),
+∀x ∈ A. Como g es inyectiva, esto implica f1 (x) = f2 (x). Como esto se cumple
+para cualquier x ∈ A, tenemos f1 = f2 . Luego Ψ es inyectiva, y ba ≤ ca .
+Propiedad. b ≤ c ⇒ ab ≤ ac
+Demostración. Como b ≤ c existe g : B → C inyectiva.
+Definimos f : B → Im(g) / f (x) = g(x). La funcion f es biyectiva, por como
+esta definida (ya que g es inyectiva, y porque siendo el codominio la imagen de
+g se garantiza la sobreyectividad), luego existe f −1 : Im(g) → B. Definimos
+Ψ : AB → AC según:
+Ψ(γ) =h : C → A
+(
+γ ◦ f −1 (x)
+h(x) =
+a0 ∈ A
+
+si x ∈ Im(g)
+si x ∈
+/ Im(g)
+
+Donde a0 es un elemento fijo cualquiera de A.
+Veamos que Ψ es inyectiva. Tomemos α, β ∈ AB . Si Ψ(α) = Ψ(β), por igualdad
+de funciones tenemos que ∀x ∈ C se cumple Ψ(α)(x) = Ψ(β)(x).
+En particular, ∀x ∈ Im(g), α ◦ f −1 (x) = β ◦ f −1 (x), con x = f (y) para algún
+y ∈ B por ser x parte de la imagen de g. (Notemos que todo x ∈ Im(g) tiene
+un único y ∈ B tal que x = f (y) por ser f biyectiva, y que existe f (y) para
+todo y ∈ B por ser f función).
+Luego ∀y ∈ B, α(f −1 (f (y))) = β(f −1 (f (y))) ⇒ ∀y ∈ B, α(y) = β(y) ⇒ α = β,
+por igualdad de funciones. Luego Ψ es inyectiva, y ası́ ab ≤ ac .
+Propiedad. b ≤ c ⇒ ab ≤ ac
+Demostración. Como b ≤ c existe g : B → C inyectiva.
+Definimos f : A × B → A × C / f (x, y) = (x, g(y))
+f es inyectiva: f (x, y) = f (z, w) ⇒ (x, g(y)) = (z, g(w)) ⇒ x = z ∧ g(y) =
+g(w) ⇒ x = z ∧ y = w, por ser g inyectiva. Entonces (x, y) = (z, w).
+Entonces f es inyectiva, y probamos ab ≤ ac
+
+Propiedad. (ab)c = ac bc
+Demostración. Definimos Φ : AC × B C → (A × B)C según:
+Φ(α, β) =γ : C → A × B
+γ(x) = (α(x), β(x))
+Vemos la inyectividad de Φ:
+Φ(α1 , α2 ) = Φ(β1 , β2 ) ⇒ ∀x ∈ C, (α1 (x), α2 (x)) = (β1 (x), β2 (x)) ⇒ α1 =
+β1 ∧ α2 = β2 ⇒ (α1 , α2 ) = (β1 , β2 ).
+Veamos la sobreyectividad de Φ:
+Sea γ ∈ (A × B)C , tenemos γ(x) = (γ1 (x), γ2 (x)). Definimos f : C → A /
+f (x) = γ1 (x) y g : C → B / g(x) = γ2 (x).
+(f, g) ∈ AC × B C , y Φ(f, g) = γ. Por lo tanto Φ es sobreyectiva.
+Luego Φ es biyectiva y AC × B C ∼ (A × B)C , o sea ac bc = (ab)c .
+
+
+

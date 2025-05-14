@@ -1,0 +1,244 @@
+Lógica y Computabilidad
+
+ITBA
+
+CODIFICACIÓN DE PROGRAMAS, FUNCIONES NO COMPUTABLES
+Y PROGRAMAS UNIVERSALES
+
+1.
+
+Codificación de Programas
+
+Tenemos como objetivo asignarle un número natural a cada programa en lenguaje S,
+es decir definir ]P ∈ N. Además queremos que se cumplan las siguientes restricciones:
+1. Si dos programas P y P 0 son distintos, entonces queremos que ]P =
+6 ]P 0 .
+2. Dado cualquier n ∈ N, queremos que exista un programa en lenguaje S tal que
+]P = n.
+Es decir, lo que queremos definir es una función biyectiva:
+] : {Programas en lenguaje S} → N
+Por lo tanto para lograr esta codificación de programas, primero vamos a codificar las
+instrucciones.
+1.1.
+
+Codificación de Instrucciones. .
+
+Enumeramos las variables en el siguiente orden:
+Y, X1 , Z1 , X2 , Z2 , X3 , Z3 , · · ·
+es decir, la variable Y esta en la posición 1 de la lista, la variable X1 está en la posición
+2 de la lista, etc.
+
+Enumeramos las etiquetas en el siguiente orden:
+A1 , B 1 , C 1 , D 1 , E 1 , A 2 , B 2 , C 2 , · · ·
+es decir, la etiqueta A1 esta en la posición 1 de la lista, la etiqueta A2 está en la posición
+6 de la lista, etc.
+
+Si bien se dispone de las siguientes 3 instrucciones en el lenguaje S:
+V ←V +1
+V ←V −1
+IF V 6= 0 GOT O L
+vamos a agregar una instrucción que no hace nada:
+V ←V
+Definimos
+] : {Instrucciones} → N
+de la siguiente forma:
+]I = ha, hb, cii
+Veamos qué representan a, b y c:
+a: Está asociado a la etiqueta de la instrucción.
+(
+0 si I no tiene etiqueta
+a=
+]L si I tiene adelante la etiqueta L
+c: Está asociado a la variable que aparece en la instrucción.
+C = ]V − 1, siendo V la variable que aparece en la instrucción I.
+b: Está asociado al tipo de instrucción.
+
+
+0
+si I es V ← V
+
+
+
+
+1
+si I es V ← V + 1
+b=
+
+2
+si I es V ← V − 1
+
+
+
+
+]L + 2 si I es IF V 6= 0 GOT O L
+
+Proposición 1.1. La función recién definida que asigna un número natural a cada instrucción es biyectiva.
+
+Ejercicio 1. .
+1. Hallar la instrucción de código 6.
+2. Hallar el código de la instrucción:
+[B1 ] IF Z3 6= 0 GOT O A1
+
+1.2.
+
+Codificación de programas. .
+
+Dado un programa P que tiene k instrucciones: I1 , I2 , · · · , Ik , definimos
+] : {P rogramas} → N
+de la siguiente manera:
+]P = [(]I1 , · · · , ]Ik )] − 1
+
+Ejercicio 2. Hallar el código del siguiente programa:
+[B1 ] X1 ← X1 − 1
+IF X1 6= 0 GOT O B1
+
+Ejercicio 3. Hallar el código del siguiente programa:
+[B1 ] X1 ← X1 − 1
+IF X1 6= 0 GOT O B1
+Y ←Y
+
+Luego de resolver los dos ejercicios anteriores, detectamos que la función recién definida no es inyectiva. Para resolver este problema vamos a agregar una restricción a los
+programas escritos en lenguaje S:
+La última instrucción no puede ser Y ← Y , a menos que sea la única instrucción.
+
+Proposición 1.2. La función recién definida que asigna un número natural a cada programa es biyectiva.
+
+Ejercicio 4. Hallar el programa de código 71.
+
+2.
+
+Funciones no computables
+
+Tesis 2.1 (de Church). Todos los algortimos para computar funciones f : A ⊂ Nk → N
+se pueden programar en lenguaje S.
+
+Teorema 2.1. Existen funciones no computables.
+
+Teorema 2.2. La función Halt : N × N → N definida de la siguiente manera:
+(
+1 si el programa de código y ante la entrada x se detiene
+Halt(x, y) =
+0 sino
+no es computable.
+
+3.
+
+Programas universales
+
+Definimos para cada n ∈ N>0 la siguiente función:
+n
+φn (x1 , · · · , xn , e) = ψP
+(x1 , · · · , xn )
+
+siendo ]P = e.
+Notemos que esta función solo está definida si el programa P termina ante la entrada
+(x1 , · · · , xn ) y en ese caso devuelve la salida del programa.
+
+Teorema 3.1. La función φn es parcialmente computable para cada n ∈ N>0 .
+Demostración: El siguiente programa computa la función universal Φn ,
+tal que Φ(x1 , · · · , xn , e) = ψPn (x1 , · · · , xn ) siendo P = #e:
+
+1) Z ← Xn+1 + 1
+Qn
+i
+2) S = i=1 pX
+2i
+3) K ← 1
+4) [C] IF K =| Z | +1 ∨ K = 0 GOTO F
+U ← r(Z[k])
+
+5)
+6)
+
+P ← pr(U )+1
+
+7)
+
+IF l(U ) = 0 GOTO N
+
+8)
+
+IF l(U ) = 1 GOTO S
+
+9)
+
+IF ¬(DIV (P, S)) GOTO N
+
+10)
+
+IF l(U ) = 2 GOTO R
+
+11)
+
+K ← mı́ni≤|Z| (l(Z[i]) + 2 = l(U ))
+
+12)
+
+GOTO C
+
+13) [R] S ← coc(P,S)
+14)
+
+GOTO N
+
+15) [S] S ← S · P
+16)
+
+GOTO N
+
+17) [N ] K ← K + 1
+18)
+
+GOTO C
+
+19) [F ] Y ← S[1]
+
+Analicemos un poco el programa...
+En la primer instrucción se guarda en la variable Z = [#I1 , · · · , #In ], dado que
+Xn+1 = e = [#I1 , · · · , #In ] − 1.
+
+En el segundo renglón se guarda en la variable S el estado inicial del programa de
+código e, de la siguiente manera: S = [0, X1 , 0, X2 , 0, · · · , 0, Xn ]
+
+En el tercer renglón se guarda en la variable K la instrucción a la que se apunta del
+programa de código e.
+En el renglón 4, si la instrucción a la que se apunta en el programa de código e es la
+0 (que no existe) o la siguiente a la última (que no existe) se direcciona a la etiqueda F,
+sino quiere decir que apunta a una instrucción correcta del programa de código e que hay
+que decodificar para ejecutarla y para ello se va al siguiente renglón.
+
+En el renglón 5: Recordemos que en Z[K] está el código de la K−ésima instrucción del
+programa de código e, es decir Z[K] =< a, < b, c >>, entonces se guarda en la variable
+U =< b, c >.
+
+En el renglón 6: La variable que aparece en la K−ésima instrucción del programa de
+código e es la (c+1)-ésima, entonces se guarda en P el (c + 1)-ésimo primo, notemos que
+c = r(U ), ya que U =< b, c >.
+
+En el renglón 7: Si b = 0, es una instrucción del tipo V ← V y direcciona a la etiqueta
+N.
+
+En el renglón 8: Si b = 1, es una instrucción del tipo V ← V + 1 y direcciona a la
+etiqueta S.
+
+En el renglón 9: Si P no divide a S, es decir si la variable V tiene el valor 0, va a la
+etiqueta N,
+
+En el renglón 10: Si b = 2, es una instrucción del tipo V ← V − 1, entonces direcciona
+a la etiqueta R.
+
+En el renglón 11: Si se llegó hasta acá es porque b ≥ 2, es decir es una instrucción del
+tipo IF. Por lo tanto el estado no cambia (S), y hay que determinar la próxima instrucción
+a ejecutar (a decodificar ) del programa de código e y guardar su número en la variable K.
+Como enl(Z[j]) está guaradado el número a vinculado a la instrucción j, busca la primer
+instrucción cuya etiqueta tengo el número tal que si le sumo 2 es b.
+
+En el renglón 13: Ejecuta la instrucción V ← V − 1 es decir divide S por P .
+
+En el renglón 15: Ejecuta la instrucción V ← V + 1 es decir multiplica S por P .
+
+
+Teorema 3.2. Existen funciones que son computables y no son recursivas primitivas.
+
+
+

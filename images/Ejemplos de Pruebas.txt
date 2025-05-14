@@ -1,0 +1,97 @@
+Lógica Computacional
+
+ITBA
+
+EJEMPLOS DE PRUEBAS
+
+Ejercicio 1. Hallar una prueba de ∅ ` (¬¬ρ → ρ).
+Demostración. Por el Teorema de Deducción, lo que nos piden equivale a probar
+{¬¬ρ} ` ρ
+1) (¬¬ρ → (¬ρ → ¬¬ρ)) (AX1)
+2) ¬¬ρ (Hip)
+3) (¬ρ → ¬¬ρ) (MP 1 y 2)
+4) ((¬ρ → ¬¬ρ) → ((¬ρ → ¬ρ) → ρ)) (AX3)
+5) ((¬ρ → ¬ρ) → ρ) (MP 3 y 4)
+6) (¬ρ → ¬ρ) (Probado en la teorı́a)
+7) ρ (MP 5 y 6)
+
+
+
+Ejercicio 2. Hallar una prueba de ∅ ` ((¬β → ¬α) → (α → β)).
+Demostración. Por el Teorema de la Deducción, lo que nos piden equivale a probar
+{(¬β → ¬α), α} ` β
+1) ((¬β → ¬α) → ((¬β → α) → β)). (AX3)
+2) (¬β → ¬α). (Hip)
+3) (¬β → α) → β). (MP 1 y 2)
+4) α → (¬β → α) (AX1)
+5) α (Hip)
+6) (¬β → α) (MP 4 y 5)
+7) β (MP 3 y 6)
+
+
+
+Ejercicio 3. Hallar una prueba de ∅ ` (¬¬¬ρ → ¬ρ).
+Demostración. Por el Teorema de la Deducción, lo que nos piden equivale a probar
+{¬¬¬ρ} ` ¬ρ
+1) (¬¬¬ρ → (¬¬ρ → ¬¬¬ρ)). (AX1)
+2) ¬¬¬ρ (Hip)
+3) (¬¬ρ → ¬¬¬ρ) (MP 1 y 2)
+4) ((¬¬ρ → ¬¬¬ρ) → ((¬¬ρ → ¬¬ρ) → ¬ρ)) (AX3)
+5) (¬¬ρ → ¬¬ρ) → ¬ρ) (MP 3 y 4)
+6) (¬¬ρ → ¬¬ρ) (Probado en la teórica)
+7) ¬ρ (MP 5 y 6)
+
+
+Ejercicio 4. Hallar una prueba de ∅ ` (ρ → ¬¬ρ).
+Demostración. .
+1) (¬¬¬ρ → ¬ρ) (Probado en (3))
+2) ((¬¬¬ρ → ¬ρ) → (ρ → ¬¬ρ)) (Probado en el ejercicio (2))
+3) (ρ → ¬¬ρ) (MP 1 y 2).
+
+
+
+Ejercicio 5. Hallar una prueba de ∅ ` ((α → β) → (¬¬α → ¬¬β))
+Demostración. Por el Teorema de la Deducción, lo que nos piden equivale a probar:
+{(α → β), ¬¬α}
+1) (¬¬α → α) (Probado en el ejericicio (1)).
+2) ¬¬α (Hip)
+3) α (MP 1 y 2)
+4) (α → β) (Hip)
+5) β (MP 3 y 4)
+6) (β → ¬¬β) (Probado en el ejercicio (4)).
+7) ¬¬β (MP 5 y 6)
+
+
+
+Ejercicio 6. Hallar una prueba de ∅ ` ((α → β) → (¬β → ¬α)).
+Demostración. Por el Teorema de la Deducción, lo que nos piden equivale a probar
+{(α → β), ¬β} ` ¬α
+1) ((¬¬α → ¬¬β) → ((¬¬α → ¬β) → ¬α)) (AX3)
+2) ((α → β) → (¬¬α → ¬¬β)) (Probado en ejercicio (5)).
+3) (α → β) (Hip)
+4) (¬¬α → ¬¬β) (MP 2 y 3)
+5) ((¬¬α → ¬β) → ¬α) (MP 4 y 1)
+6) (¬β → (¬¬α → ¬β)) (AX1)
+7) ¬β (Hip)
+8) (¬¬α → ¬β) (MP 6 y 7)
+9) ¬α (MP 5 y 8)
+
+
+
+Ejercicio 7. Probar que si Γ ∪ {ϕ} es inconsistente, entonces Γ ` ¬ϕ.
+Demostración. Como Γ∪{ϕ} es inconsistente, existe ψ tal que Γ∪{ϕ} ` ψ y Γ∪{ϕ} ` ¬ψ,
+por lo tanto por el Teorema de la Deducción:
+Γ ` (ϕ → ψ) y Γ ` (ϕ → ¬ψ)
+1) ((¬¬ϕ → ¬¬ψ) → ((¬¬ϕ → ¬ψ) → ¬ϕ)) (AX3)
+2) ((ϕ → ψ) → (¬¬ϕ → ¬¬ψ) (Probado en el ejericio (5))
+3) (ϕ → ψ) (Dato)
+4) (¬¬ϕ → ¬¬ψ) (MP 2 y 3)
+5) ((¬¬ϕ → ¬ψ) → ¬ϕ) (MP 1 y 4)
+6) ((ϕ → ¬ψ) → (¬¬ϕ → ¬ψ)) (Hecho en la práctica).
+7) (ϕ → ¬ψ) (Dato)
+8) (¬¬ϕ → ¬ψ) (MP 6 y 7)
+9) ¬ϕ (MP 5 y 8)
+
+
+
+

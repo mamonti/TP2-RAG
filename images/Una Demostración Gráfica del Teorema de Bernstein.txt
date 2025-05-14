@@ -1,0 +1,260 @@
+Una demostración gráfica del teorema de Bernstein
+Marcelo Lynch
+
+Teorema (de Bernstein). Sean A y B dos conjuntos. Si existen dos funciones inyectivas f : A → B y g : B → A entonces existe una función biyectiva h : A → B.
+
+Una demostración con flechitas
+Vamos a esbozar la demostración, con ayuda de diagramas que nos van a dejar visualizar los conceptos
+necesarios para la construcción de la biyección. Supongamos entonces que tenemos dos conjuntos A y B
+y funciones inyectivas f : A → B y g : B → A. Vamos a asumir que A y B son disjuntos. Podemos
+asumirlo sin perder generalidad: en el apéndice al final del documento se puede encontrar la justificación.
+Funciones como flechas
+Al fin y al cabo construir una función h : A → B es dar un montón de flechas que cumplan que cada
+elemento de A tenga una única flecha que llega a un elemento de B. La función es biyectiva si
+a todo elemento de B le llega exactamente una flecha desde A. En nuestro caso, para construir la h
+biyectiva lo único que tenemos es las funciones inyectivas f : A → B y g : B → A.
+Es decir tenemos a nuestra disposición un conjunto de flechas que van de A a B (las de f ) y otro
+conjunto de flechas que van de B a A (las de g). En lo que sigue las flechas de f las vamos a dibujar de
+color azul y las flechas de g de color rojo. La función biyectiva que queremos construir será h : A → B y
+la vamos a representar con flechas naranja.
+Como f es una función con dominio en A, sabemos que de todo elemento de A sale una flecha azul
+que va a parar a un elemento de B: a −→ f (a). De la misma forma, de cada elemento de B sale una
+flecha roja que va a parar a un elemento de A: b −→ g(b).
+¿Qué significa (en términos de flechas) que las funciones f y g sean inyectivas? En una función
+inyectiva a un elemento del codominio le llega a lo sumo una flecha. Podrı́a no llegarle ninguna flecha:
+en este caso decimos que el elemento no tiene preimagen por la función. Por ejemplo, en la función
+inyectiva d : N → N / d(n) = 2n, los números impares no tienen preimagen por d, no les llega ninguna
+flecha. Y a los pares les llega exactamente una flecha.
+Siguiendo las flechas
+¿Que pasa si seguimos las flechas de f y g desde un elemento cualquiera? Por ejemplo, que pasa si desde
+a ∈ A seguimos las flechas “hacia adelante”, es decir, aplicando las funciones f y g:
+a −→ f (a) −→ g(f (a)) −→ f (g(f (a)) −→g(f (g(f (a)))−→ · · ·
+|{z}
+| {z }
+| {z }
+|{z}
+∈A
+
+∈B
+
+∈A
+
+∈B
+
+Las flechas van alternando entre elementos de A y B mientras vamos aplicando f y g. Notemos que
+este proceso de “seguir flechas para adelante” puede continuar siempre, porque todos los elementos tienen una flecha que sale (en otras palabras, siempre puedo aplicar la función).
+Una cosa que puede pasar es que en algún momento siguiendo flechas volvamos a encontrarnos con
+a: puede ser que siguiendo la cadena en algún momento una flecha azul caiga justo en el elemento de B
+que es la preimagen de a. Ası́, la siguiente flecha irá a parar a a:
+
+a
+
+f (a)
+
+f (g(· · · (f (a))
+|
+{z
+}
+
+···
+
+g(f (a))
+
+preimagen de a
+
+Notar que en estos casos la cadena siempre es cı́clica: no quedan elementos “afuera” del ciclo, es decir,
+no podrı́a pasar algo ası́ (donde todos los ai y bi son distintos):
+a1
+
+b1
+
+a2
+
+b2
+
+a3
+
+b3
+
+Porque como las funciones son inyectivas, no puede ser que a a2 le lleguen dos flechas distintas
+(la de b1 y la de b3 ).
+¿Qué pasa si ahora queremos seguir las flechas “hacia atrás”, yendo de preimagen a preimagen? En este caso quizás no podemos continuar el proceso indefinidamente: si me encuentro un elemento
+sin preimagen, al que no le llega ninguna flecha, entonces tengo que frenar ahı́. Por ejemplo, empezando
+en algún b ∈ B podrı́a ser:
+b ←−
+
+α1
+|{z}
+
+preim. de b
+
+←−
+
+β1
+|{z}
+
+preim. de α1
+
+←−
+
+α2
+|{z}
+
+•
+
+preim. de β1
+
+En este ejemplo no existe ningún β ∈ B tal que g(β) = α2 , entonces podemos seguir las flechas hacia
+atrás solo hasta ahı́.
+Cadenas
+Con esta idea de seguir flechas, vemos que si tomamos cualquier elemento, sea de A o de B, podemos construir a partir del mismo una cadena siguiendo las flechas para los dos lados, alternando entre elementos
+de A y de B:
+(· · ·?)−→α1 −→β1 −→a−→f (a)−→g(f (a))−→(· · · )
+Notemos que la cadena nunca se ramifica, siempre es “lineal”, porque como máximo tenemos una
+flecha hacia atrás (y siempre una sola hacia adelante). Ası́, cada cadena puede ser de uno y solo uno de
+estos tipos:
+1. Cı́clica, como la que vimos más arriba
+2. Sin “principio” ni “fin”: todos los elementos tienen preimagen (siempre puedo ir hacia atrás), y no
+se forma un ciclo (siempre puedo seguir flechas sin repetir elementos).
+3. Que “empieza” en un elemento de A que no tiene preimagen, es decir no puedo seguir ninguna
+flecha hacia atrás.
+4. Que “empieza” en un elemento de B que no tiene preimagen.
+Observaciones:
+• se puede “armar” la misma cadena empezando desde dos elementos distintos: por ejemplo, si
+empezamos a seguir flechas desde a o desde f (a), terminamos al final con la misma cadena
+• las cadenas tienen infinitos elementos salvo en el caso cı́clico (y en el caso cı́clico siempre hay un
+numero par de eslabones: ¡pensar por qué!)
+
+Las cadenas particionan los conjuntos
+Llegamos ahora a la primera idea clave de la demostración, en forma de la siguiente afirmación:
+Cada elemento de A o de B pertenece a una y solo una cadena
+Veamos por qué es cierto. Intuitivamente, tenemos que evidentemente cualquier elemento pertenece a
+alguna de estas cadenas, porque la puedo armar a partir de ese elemento. Pero además hay una sola forma
+de armar la cadena, porque como f y g son inyectivas siempre tengo una sola opción de flecha hacia
+adelante y a lo sumo una sola opción de flecha hacia atrás (o ninguna, y la cadena frena ahı́).
+Podemos ir un poco más allá definiendo una relación R en A ∪ B tal que:
+xRy ⇐⇒ puedo llegar de x a y siguiendo flechas de f y g, hacia adelante o hacia atrás
+Se puede mostrar que R es una relación de equivalencia (y se deja como ejercicio al lector o lectora).
+Las clases de equivalencia de R forman entonces una partición de A ∪ B y cada clase tiene los
+elementos de una de estas cadenas que estabamos construyendo.
+Entonces las cadenas nos particionan tanto a A como B (si bien las clases de equivalencia son
+sobre A ∪ B, podemos conseguir las particiones sobre A o B individualmente, intersecando con A y B).
+La Figura 1 a continuación nos ilustra la situación:
+
+Figura 1: Las cadenas particionan a los conjuntos A y B (las particiones de A ∪ B se muestran en
+distintos colores).
+
+¿Para qué nos sirve esto? La idea es la siguiente: recordemos que nuestro objetivo es encontrar
+para cada elemento de A uno y solo un elemento de B y unirlos con una flecha naranja (esto es
+construir la biyección h). Como las cadenas nos cubren a todos los elementos, entonces si encontramos
+una forma de hacer este proceso para cada cadena, sin olvidarnos de ningun elemento en la cadena,
+entonces tendremos la función completa (ver la Figura 2).
+
+Figura 2: Si construyo las flechas de h “cadena a cadena”, consigo la función h : A → B completa:
+no me va a quedar ningún elemento suelto porque las cadenas cubren todo.
+
+Construyendo h
+Veamos entonces para cada tipo de cadena como construimos “localmente” las flechas de h.
+Cadenas cı́clicas, cadenas sin principio ni fin y cadenas que empiezan en A. En estos tres casos podemos simplemente usar las mismas flechas azules de f : esto es porque a cada elemento de B en la cadena
+le llega una flecha azul (y de cada elemento de A sale una flecha). Las figuras 3, 4, y 5 ilustran la
+construcción para cada caso.
+Notar que en todos los casos (aun en los que las cadenas continuan infinitamente) todos los elementos
+van a quedar apareados por las flechas naranja (y exactamente participan de una flecha). De nuevo: no
+queda nadie suelto ni asociado a más de una flecha. Con esto podemos decir algo ası́ como que en cada
+caso “esa partecita de h es biyectiva”.
+
+
+Figura 3: Una cadena cı́clica y la construccion de “esa parte” de h a partir de ella, usando las
+flechas azules de f .
+
+Figura 4: Una cadena sin principio ni fin y la construccion de “esa parte” de h, usando las flechas
+azules de f .
+
+Figura 5: Una cadena que empieza en A y la construccion de “esa parte” de h, usando las flechas
+azules de f .
+
+Cadenas que empiezan en B. Este caso es distinto: como la cadena empieza en un elemento b1 ∈ B
+que no tiene preimagen por f , no podemos usar f para construir h: ¡nos quedarı́a suelto b1 ! Pero sı́
+podemos usar las flechas de g: a todos los elementos de A les llega una flecha roja de g, que sale de un
+único elemento de B. Si damos vuelta las flechas de g, nos quedan las flechas A → B que queremos, y
+no nos queda nadie suelto. La figura 6 muestra la construcción de h en este caso:
+
+Figura 6: Una cadena que empieza en B y la construccion de “esa parte” de h, dando vuelta las
+flechas rojas.
+
+La función h entonces puede escribirse ası́:
+
+si a pertenece a una cadena cı́clica
+
+f (a)
+
+f (a)
+si a pertenece a una cadena sin principio ni fin
+h(a) =
+f (a)
+si a pertenece a una cadena que empieza en A
+
+
+
+preimg (a) si a pertenece a una cadena que empieza en B
+Donde preimg (a) es la preimagen por g de a, es decir el único elemento ba ∈ B tal que g(ba ) = a (si
+estamos en ese caso, sabemos que va a existir).
+Por todo lo que ya dijimos, sabemos que la función está bien definida: cada elemento de A cae en
+uno y solo uno de los casos, y además siempre existe el elemento al que lo estamos mandando. Además,
+la función es biyectiva: a cada elemento de B le llega una y solo una flecha naranja de h.
+Construimos una función biyectiva entre A y B solo sabiendo que existen f : A → B y g : B → A
+inyectivas, y por lo tanto completamos este boceto de la demostración.
+¿Boceto?
+Arriba dijimos que lo que hicimos constituye un boceto de la demostración. La demostración completamente formal usando estas ideas es esencialmente la misma, solo que con menos dibujos:
+• hay que definir y categorizar las cadenas usando la aplicación/composición de funciones en lugar
+de hablar de “flechas rojas y azules”,
+• luego mostrar que las cadenas ası́ definidas particionan a los conjuntos: con esto se puede definir h
+igual que lo hicimos, separando en casos según el “tipo de cadena”,
+• y finalmente, mostrar que h es biyectiva: nosotros lo justificamos con ejemplos y hablando de flechas,
+pero puede hacerse con las definiciones de inyectividad y sobreyectividad y las caracterı́sticas de
+cada cadena.
+
+Apéndice
+Qué pasa si A y B no son disjuntos
+Cuando arrancamos la demostración asumimos que los conjuntos A y B eran disjuntos y dijimos que
+no perdı́amos generalidad, es decir que el teorema sirve igual aunque los conjuntos no sean disjuntos.
+Veamos por qué.
+Si A y B no son disjuntos, definimos A0 = A × {0} y B 0 = B × {1}. Por ejemplo, si A = {1, 2, 3}
+y B = {3, 4, 5} entonces A0 = {(1, 0), (2, 0), (3, 0)} y B 0 = {(3, 1), (4, 1), (5, 1)}. Estos conjuntos sı́ son
+disjuntos (nunca dos pares ordenados que tengan 0 y 1 en la segunda componente van a ser iguales).
+Ahora podemos definir las funciones:
+F : A0 → B 0
+F ((a, 0)) = (f (a), 1)
+y:
+G : B 0 → A0
+G((b, 1)) = (g(b), 0)
+Estas funciones son inyectivas:
+F ((a1 , 0)) = F ((a2 , 0)) ⇒def (f (a1 ), 1) = (f (a2 ), 1) ⇒ f (a1 ) = f (a2 ) |{z}
+⇒ a1 = a2 ⇒ (a1 , 0) = (a2 , 0)
+f es iny.
+
+G((b1 , 1)) = G((b2 , 1)) ⇒def (g(b1 ), 0) = (g(b2 ), 0) ⇒ g(b1 ) = g(b2 ) |{z}
+⇒ b1 = b2 ⇒ (b1 , 1) = (b2 , 1)
+g es iny.
+
+Entonces tenemos dos conjuntos A0 y B 0 disjuntos y funciones inyectivas entre ellos: entonces podemos
+conseguir una función biyectiva H : A0 → B 0 usando todo lo que ya hicimos. Pero usando H podemos
+construir una función biyectiva entre A y B, los conjuntos originales. Simplemente obtenemos la primera
+componente de la función H:
+h:A→B
+h(a) = β, donde H((a, 0)) = (β, 1)
+
+Ası́, para todo a ∈ A se cumple H((a, 0)) = (h(a), 1). Tenemos que h es inyectiva:
+h(a1 ) = h(a2 ) ⇒ (h(a1 ), 1) = (h(a2 ), 1) |{z}
+⇒ H((a1 , 0)) = H((a2 , 0)) |{z}
+⇒ (a1 , 0) = (a2 , 0) ⇒ a1 = a2
+H iny.
+
+def. h
+
+Y h es sobreyectiva: si b ∈ B, entonces (b, 1) ∈ B 0 y entonces sabemos que existe (a, 0) ∈ A0 tal que
+H((a, 0)) = (b, 1) porque H es sobreyectiva. Pero entonces h(a) = b por definición de h.
+Entonces h : A → B es biyectiva, y queda demostrado lo que querı́amos.
+
+
+

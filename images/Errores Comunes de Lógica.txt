@@ -1,0 +1,104 @@
+Lógica Computacional 2017
+
+Francisco Pérez Sammartino
+
+Errores Comunes(Practicas 1 y 2)
+
+A continuación se detallan una serie de errores que son muy comunes de cometer. En cada uno de
+los distintos ejercicios, primero se intentara resolver el problema en forma errónea (letra itálica),
+luego se analizará por qué está mal la resolución y finalmente se dará una recomendación para
+encarar el ejercicio de forma correcta.
+Es importante que antes de leer el análisis del error, se piense por qué está mal la resolución.
+Los ejercicios se realizan con el propósito de marcar los errores, no deben ser tomados como
+modelo de resolución.
+Errores de Practica 1: Cardinalidad
+Ejercicio 3. Inciso 3. : Sea (𝑨𝒏 ) 𝒏 ∈ 𝑵 una familia de conjuntos numerables. Probar que 𝑺 =
+∪𝒏∈𝑵 𝑨𝒎 es numerable.
+Solución errónea: se realiza el ejercicio mediante el uso de inducción en la variable m.
+Análisis de error: el error se encuentra en que la unión que plantea el ejercicio es una unión de
+infinitos conjuntos, y NO de un número finito de ellos. Al realizar inducción se está probando algo
+totalmente distinto que es: “La unión finita de conjuntos numerables es numerable “. Es importante
+que quede clara la diferencia entre el enunciado original y el citado anteriormente.
+Recomendación: una forma posible para encarar el ejercicio es: como los conjuntos son numerables
+por hipótesis, y la unión es numerable, se puede pensar en 2 índices uno para indicar el conjunto y
+otro para indicar un elemento dentro de este. Con la idea anterior se puede pensar en armar una
+función entre NxN y S.
+
+Ejercicio 10.7: Demostrar que c*c=c.
+Otra forma de enunciar el problema sería: Demostrar que RxR es coordinable con R.
+Solución errónea: ya habiendo probado que #𝑅 ≤ #(𝑅𝑥𝑅) , solo queda probar la “otra”
+desigualdad, para luego utilizar el teorema de Bernstein. Entonces, teniendo en mente la prueba de
+“NxN ~ N” realizada en la clase, se define la siguiente función:
+
+𝑓: 𝑅𝑥𝑅−→ 𝑅 | 𝑓(𝑥, 𝑦) = 2|𝑥| . 3|𝑦| . 5𝛼(𝑥) . 7∝(𝑦)
+siendo
+
+∝: 𝑅 → {0,1}| ∝ (𝑥 ) = {
+
+0 𝑥≥0
+1 𝑥<0
+
+Como se puede ver la función está correctamente definida, entonces se pasa a la prueba de
+inyectividad:
+𝑇𝐹𝐴
+
+𝑓(𝑎, 𝑏) = 𝑓(𝑐, 𝑑) → 2|𝑎| . 3|𝑏| . 5𝛼(𝑎) . 7∝(𝑏) = 2|𝑐| . 3|𝑑| . 5𝛼(𝑐) . 7∝(𝑑) →
+
+→ |𝑎| = |𝑐| 𝑦 |𝑏| = |𝑑| 𝑦 𝛼(𝑎) = 𝛼(𝑐) 𝑦 𝛼(𝑏) = 𝛼(𝑑) → (𝑎, 𝑏) = (𝑐, 𝑑)
+
+Análisis del error: el error se encuentra en la aplicación del TFA( Teorema Fundamental de la
+Aritmética) para los números reales. Para aquellos que todavía tengan dudas acerca de la
+inyectividad propongo el siguiente ejemplo que muestra que la función f NO ES inyectiva:
+Sean (a, b) = (log 2 3 , log 3 2) y (c, d) = (log 2 2, log 3 3) notemos que a, b, c, d ∈ R
+es facil ver que f(a, b) = 6 y f(c, d) = 6 y (a, b) ≠ (c, d)
+Queda demostrado que f NO ES inyectiva!!
+Recomendación: una forma de encarar el problema es utilizando la prueba realizada en clase de
+(0,1)x(0,1) ~ (0,1). Con lo anterior y sabiendo que (o probándolo) (0,1) ~ R queda demostrado.
+
+Errores de Practica 2: Calculo Proposicional
+Ejercicio 10: Sea ∝ 𝒖𝒏𝒂 𝒇𝒐𝒓𝒎𝒖𝒍𝒂. 𝑷𝒓𝒐𝒃𝒂𝒓 𝒒𝒖𝒆 𝒆𝒍 #𝒔(∝) ≤ 𝒄(∝) + #𝑽𝒂𝒓𝑹(∝)
+En el caso de este ejercicio, el error no se encuentra en el método de resolución: este ejercicio se
+puede resolver utilizando inducción en 𝐜(∝). A continuación se realiza la prueba:
+Caso base) c(∝) = 0 → ∝= pj ∈ Var. Entonces, # s(∝) = 1 , c(∝) = 0 y #VarR(∝) = 1. Por lo
+tanto queda probado el predicado.
+Hipótesis Inductiva) #𝐬(∝) ≤ 𝐜(∝) + #VarR(∝) ; ∝ ∈ Form y c(∝) ≤ n , n ∈ N.
+Tesis Inductiva) c(∝) = n + 1. Aclaración: la tesis se realizara sobre el caso ∝= ( β ̂ γ) con el
+objetivo de mostrar el error en la resolución.
+Para el caso aclarado anteriormente se cumple:
+n + 1 = c(∝) =
+
+HI
+c(β) c(γ)
++
++ 1 → c(β) ≤ n y c(α) ≤ n y ∝, β ϵ Form → se cumple que:
+≥0 ≥0
+
+#s(β) ≤ c(β) + #VarR(β)
+#s(γ) ≤ c(γ) + #VarR(γ)
+Sumando miembro a miembro de ambas desigualdades se obtiene:
+#s(β) + #s(γ) ≤ c(β) + c(γ) + #VarR(β) + #VarR(γ)
+Con la expresión anterior y usando que #VarR(∝) = #VarR(β) + #VarR(γ) y que c(∝) = c(β) +
+c(γ) + 1, se obtiene:
+#s(β) + #s(γ) ≤ c(∝) − 1 + #VarR(∝)
+Por último y AQUÍ ES DONDE ESTA EL ERROR se utiliza la siguiente expresión:
+
+#𝒔(∝) = #𝒔(𝜷) + #𝒔(𝜸) + 1.
+Reemplazando esto último en la expresión anterior se completa la prueba ERRONEA.
+
+Análisis del error: el error, como fue mencionado anteriormente se encuentra en la expresión:
+#𝑠(∝) = #𝑠(𝛽) + #𝑠(𝛾) + 1. Esta expresión es incorrecta pues los conjuntos 𝑠(𝛽) 𝑦 𝑠(𝛾) podrían
+no ser disjuntos, por lo que habría subformulas que estarían siendo“contadas” 2 veces. A
+continuación un ejemplo:
+Sea ∝= (𝑝1 𝑝
+̂ 1 ), el conjunto 𝑠(∝) = {𝑝1 , ∝} 𝑦 #𝑠(∝) = 2. Sin embargo si se realizara la cuenta
+con la expresión anterior se hubiera llegado a:
+
+#𝒔(∝) = #𝒔(𝒑𝟏 ) + #𝒔(𝒑𝟏 ) + 𝟏 = 𝟑‼!
+Recomendación: para realizar el ejercicio es suficiente el uso de la siguiente desigualdad:
+#𝒔(∝) ≤ #𝒔(𝜷) + #𝒔(𝜸) + 1 cuya validez queda demostrada por la propia definición del
+conjunto de subformulas:
+𝑠( (β ̂ γ)) = {∝} ∪ 𝑠(𝛽) ∪ 𝑠(𝛾)
+En el ejercicio 9.2 sucede algo similar, es importante realizar ambos ejercicios para que quede claro
+el concepto.
+
+
